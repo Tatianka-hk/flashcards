@@ -1,15 +1,9 @@
 <script setup lang="ts">
-import SelectInput from './ui/SelectInput.vue'
+import FileInput from './ui/FileInput.vue'
 </script>
 
 <template>
-  <SelectInput
-    value="en"
-    :options="[
-      { value: 'en', label: 'English' },
-      { value: 'ua', label: 'Українська' },
-    ]"
-  />
+  <FileInput />
 </template>
 
 <style scoped></style>

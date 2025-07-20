@@ -2,7 +2,6 @@
   <div class="text-text text-base bg-primary rounded-lg">
     <div class="flex gap-1 py-4 px-4" @click="onClick">
       {{ findSelectedOption(value) }}
-      <!-- зробити реверс -->
       <ChevronUpIcon v-if="opened" />
       <ChevronDownIcon v-else />
     </div>
@@ -46,7 +45,10 @@ const onClick = () => {
 }
 
 const findSelectedOption = (val: valueType): string => {
-  return props.options.find((option) => option.value === val).label
+  return (
+    props?.options?.find((option: OptionType) => option.value === val).label ||
+    ''
+  )
 }
 
 const onOptionClick = (val: valueType) => {
