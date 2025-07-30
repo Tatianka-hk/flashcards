@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import FileInput from './ui/FileInput.vue'
+import { startPage } from './components'
 </script>
 
 <template>
-  <FileInput />
+  <startPage />
 </template>
 
 <style scoped></style>
