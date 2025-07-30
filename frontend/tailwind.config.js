@@ -10,6 +10,7 @@ export default {
         danger: '#ed655e',
         text: '#4b4444',
         thirty: '#fde1f7',
+        blue: '#d8e2ec',
       },
     },
   },
