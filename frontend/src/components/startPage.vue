@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { FileInput, VButton } from '../ui'
-const fileText = ref<File | null>(null)
+const fileText = ref<string | null>(null)
 const onChangeFile = (text: string) => {
   fileText.value = text
 }

@@ -19,6 +19,5 @@ async function onFileChange(event: Event) {
   if (!file) return
   const text = await extractPdfText(file)
   emit('file:change', text)
-  console.log('📄 Текст із PDF:', text)
 }
 </script>

@@ -1,29 +1,22 @@
 import http, { IncomingMessage, ServerResponse } from 'http'
 import { getFlashCardsFromDocument } from './utils'
 async function handleFlashcards(req: IncomingMessage, res: ServerResponse) {
-  console.log('📥 METHOD:', req.method)
-  console.log('📨 URL:', req.url)
-
-  // === CORS headers ===
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL || '*')
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
 
-  // === Handle preflight ===
   if (req.method === 'OPTIONS') {
     res.writeHead(204)
     res.end()
     return
   }
 
-  // === Only POST is accepted ===
   if (req.method !== 'POST') {
     res.writeHead(405, { 'Content-Type': 'text/plain' })
     res.end('Method Not Allowed')
     return
   }
 
-  // === Read body ===
   let body = ''
   req.on('data', (chunk) => {
     body += chunk
@@ -39,8 +32,6 @@ async function handleFlashcards(req: IncomingMessage, res: ServerResponse) {
         res.end('Bad Request: missing text')
         return
       }
-
-      console.log('✅ Текст отримано:', text.slice(0, 100))
 
       const result = await getFlashCardsFromDocument(text)
 
