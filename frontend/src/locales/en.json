@@ -1,0 +1,17 @@
+{
+    "title": "Flash Cards",
+    "button": {
+        "generate": "Generate",
+        "download": "Download",
+        "back": "Back"
+    },
+    "message": {
+        "limitReached": "You have used the service 3 times",
+        "generateCardError": "Error generating flashcards"
+    },
+    "file": {
+        "noFile": "Please upload a pdf file",
+        "error": "Error processing file",
+        "uploaded": "Uploaded: "
+    }
+}

@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "pdfjs-dist": "^5.3.93",
-    "vue": "^3.5.17"
+    "vue": "^3.5.17",
+    "vue-i18n": "^11.1.11"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.2",

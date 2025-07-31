@@ -1,8 +1,8 @@
 <template>
-    <div class="w-full h-full flex flex-col items-center justify-center gap-5">
+    <div class="w-full flex flex-col items-center justify-center gap-5">
         <div v-if="cards.length">
             <div class="flex gap-4 items-center justify-center">
-                <div class="w-[110px] h-[100px]">
+                <div class="md:w-[110px] h-[100px] w-[50px]">
                     <Arrow
                         label="Previous"
                         v-show="currentIndex > 0"
@@ -11,23 +11,24 @@
                     />
                 </div>
                 <div><Card :card="cards[currentIndex]" /></div>
-
-                <Arrow
-                    v-show="currentIndex < cards.length - 1"
-                    @click="onClick(1)"
-                />
+                <div class="md:w-[110px] h-[100px] w-[50px]">
+                    <Arrow
+                        v-show="currentIndex < cards.length - 1"
+                        @click="onClick(1)"
+                    />
+                </div>
             </div>
-            <div class="flex items-center justify-center mt-4">
-                <VButton label="Скачати" @click="downloadJSON(cards)" />
+            <div class="flex items-center justify-center mt-4 gap-4">
+                <VButton
+                    :label="$t('button.download')"
+                    @click="downloadJSON(cards)"
+                />
+                <VButton :label="$t('button.back')" @click="$emit('close')" />
             </div>
         </div>
         <div v-else class="flex flex-col items-center justify-center">
-            <div
-                class="bg-blue text-xl p-4 rounded-lg w-[545px] h-[180px] text-error flex items-center justify-center mb-[20px]"
-            >
-                Не вдалося створити картки
-            </div>
-            <VButton label="Назад" @click="$emit('close')" />
+            <MessageItem :message="$t('message.generateCardError')" />
+            <VButton :label="$t('button.back')" @click="$emit('close')" />
         </div>
     </div>
 </template>
