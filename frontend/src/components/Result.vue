@@ -1,27 +1,31 @@
 <template>
-  <div class="flex gap-4 w-full h-full items-center justify-center">
-    <Arrow v-if="currentIndex > 0" @click="onClick(-1)" class="rotate-180" />
-    <div><Card :card="giveCard()" /></div>
+  <div class="w-full h-full flex flex-col items-center justify-center gap-5">
+    <div class="flex gap-4 items-center justify-center">
+      <Arrow v-if="currentIndex > 0" @click="onClick(-1)" class="rotate-180" />
+      <div><Card :card="cards[currentIndex]" /></div>
 
-    <Arrow v-if="currentIndex < cards.length - 1" @click="onClick(1)" />
+      <Arrow v-if="currentIndex < cards.length - 1" @click="onClick(1)" />
+    </div>
+    <div class="flex items-center justify-center mt-4">
+      <VButton label="Скачати" @click="downloadJSON(cards)" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick } from 'vue'
-import Arrow from '@/ui/Arrow.vue'
-import Card from '@/ui/Card/Card.vue'
-import { cards1 } from '@/test/test.ts'
+import { ref } from 'vue'
+import { Card, Arrow, VButton } from '@/ui'
+import type { ICard } from '@/types/card'
+import { downloadJSON } from '@/utils/files'
 
-const cards = ref(cards1)
+defineProps<{
+  cards: ICard[]
+}>()
+
 const currentIndex = ref(0)
 
 const onClick = (step: number) => {
   const next = currentIndex.value + step
   currentIndex.value = next
-}
-
-const giveCard = () => {
-  return cards.value[currentIndex.value]
 }
 </script>

@@ -1,15 +1,32 @@
 <template>
   <button
-    @click="onClick"
-    class="px-4 py-4 bg-primary text-text rounded hover:bg-thirty text-base"
+    @click="ifClicked"
+    :class="[
+      'px-4 py-4 text-text rounded text-base',
+      disabled
+        ? 'bg-[#d8c3c2] cursor-not-allowed'
+        : 'bg-primary hover:bg-thirty cursor-pointer',
+    ]"
   >
     {{ label }}
   </button>
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  label: string
-  onClick: () => void
-}>()
+const props = withDefaults(
+  defineProps<{
+    label: string
+    onClick: () => void
+    disabled?: boolean
+  }>(),
+  {
+    disabled: false,
+  }
+)
+
+const ifClicked = (): void => {
+  if (!props.disabled) {
+    props.onClick()
+  }
+}
 </script>

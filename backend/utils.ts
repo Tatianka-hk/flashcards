@@ -4,8 +4,6 @@ dotenv.config()
 
 const TOGETHER_API_KEY = process.env.TOGETHER_API_KEY
 export async function getFlashCardsFromDocument(text: string) {
-  console.log('text:', text)
-  console.log('TOGETHER_API_KEY:', TOGETHER_API_KEY)
   const prompt = `Прочитай текст і створи флешкартки у форматі:
     front: запитання
     back: відповідь
@@ -32,12 +30,8 @@ export async function getFlashCardsFromDocument(text: string) {
       }),
     }
   )
-  console.log('togetherRes:', togetherRes)
   const json = await togetherRes.json()
-  console.log('json:', json)
   const content = json.choices[0].message.content
-  console.log('content:', content)
-
   return parseResult(content)
 }
 
