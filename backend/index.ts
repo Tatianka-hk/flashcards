@@ -1,59 +1,34 @@
-import http, { IncomingMessage, ServerResponse } from 'http'
+import express from 'express'
+import cors from 'cors'
 import { getFlashCardsFromDocument } from './utils'
-async function handleFlashcards(req: IncomingMessage, res: ServerResponse) {
-  res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL || '*')
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
 
-  if (req.method === 'OPTIONS') {
-    res.writeHead(204)
-    res.end()
-    return
-  }
+const app = express()
+const PORT = 3001
+console.log(process.env.FRONTEND_URL)
+// app.use(cors({ origin: process.env.FRONTEND_URL || '*' }))
+app.use(express.json())
+app.use(cors())
 
-  if (req.method !== 'POST') {
-    res.writeHead(405, { 'Content-Type': 'text/plain' })
-    res.end('Method Not Allowed')
-    return
-  }
+app.post('/flashcards', async (req, res) => {
+  try {
+    const { text } = req.body
 
-  let body = ''
-  req.on('data', (chunk) => {
-    body += chunk
-  })
-
-  req.on('end', async () => {
-    try {
-      const parsed = JSON.parse(body)
-      const text = parsed.text
-
-      if (!text || typeof text !== 'string') {
-        res.writeHead(400, { 'Content-Type': 'text/plain' })
-        res.end('Bad Request: missing text')
-        return
-      }
-
-      const result = await getFlashCardsFromDocument(text)
-
-      res.writeHead(200, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ flashcards: result }))
-    } catch (err: any) {
-      console.error('❌ Помилка парсингу або AI:', err.message)
-      res.writeHead(500, { 'Content-Type': 'text/plain' })
-      res.end(`Server Error: ${err.message}`)
+    if (!text || typeof text !== 'string') {
+      return res.status(400).send('Bad Request: missing text')
     }
-  })
-}
 
-const server = http.createServer((req, res) => {
-  if (req.url === '/flashcards') {
-    handleFlashcards(req, res)
-  } else {
-    res.writeHead(404, { 'Content-Type': 'text/plain' })
-    res.end('Not Found')
+    const result = await getFlashCardsFromDocument(text)
+
+    res.status(200).json({ flashcards: result })
+  } catch (err: any) {
+    res.status(500).send(`Server Error: ${err.message}`)
   }
 })
 
-server.listen(3001, () => {
-  console.log('Server running at http://localhost:3001/')
+app.use((req, res) => {
+  res.status(404).send('Not Found')
+})
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}/`)
 })

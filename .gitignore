@@ -4,3 +4,7 @@
 
 /backend/.env
 /backend/node_modules
+
+/test
+/frontend/src/test
+/frontend/.env
