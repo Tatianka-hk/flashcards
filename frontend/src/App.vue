@@ -3,7 +3,7 @@ import { startPage } from './components'
 </script>
 
 <template>
-  <startPage />
+    <startPage />
 </template>
 
 <style scoped></style>

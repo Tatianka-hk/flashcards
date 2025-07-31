@@ -2,10 +2,10 @@
   <button
     @click="ifClicked"
     :class="[
-      'px-4 py-4 text-text rounded text-base',
+      'px-4 py-4 text-text rounded text-base rounded-lg',
       disabled
         ? 'bg-[#d8c3c2] cursor-not-allowed'
-        : 'bg-primary hover:bg-thirty cursor-pointer',
+        : 'bg-primary hover:bg-thirty/60 cursor-pointer',
     ]"
   >
     {{ label }}

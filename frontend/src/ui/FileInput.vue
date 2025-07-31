@@ -15,15 +15,20 @@ const emit = defineEmits<{
   (e: 'file:change', text: string): void
 }>()
 
-const message = ref<string>('Додайте сюди файл')
+const message = ref<string>('Додайте сюди pdf файл')
 
 async function onFileChange(event: Event) {
   const input = event.target as HTMLInputElement
-  const file = input.files?.[0]
+  try {
+    const file = input.files?.[0]
 
-  if (!file) return
-  if (file.name?.length > 0) message.value = `Завантажено: ${file.name}`
-  const text = await extractPdfText(file)
-  emit('file:change', text)
+    if (!file) return
+    if (file.name?.length > 0) message.value = `Завантажено: ${file.name}`
+    const text = await extractPdfText(file)
+    emit('file:change', text)
+  } catch (error) {
+    message.value = 'Помилка при обробці файлу'
+    console.error(error)
+  }
 }
 </script>
