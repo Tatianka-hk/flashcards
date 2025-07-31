@@ -31,8 +31,8 @@ const onChangeFile = (text: string) => {
 
 const onClickButton = async () => {
     if (!fileText.value) return
+    loading.value = true
     try {
-        loading.value = true
         const response = await fetch(
             `${import.meta.env.VITE_BACKEND_URL}/flashcards`,
             {
