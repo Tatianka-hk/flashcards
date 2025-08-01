@@ -1,0 +1,17 @@
+{
+    "title": "Tarjetas de Memoria",
+    "button": {
+        "generate": "Generar",
+        "download": "Descargar",
+        "back": "Atrás"
+    },
+    "message": {
+        "limitReached": "Has utilizado nuestros servicios 3 veces",
+        "generateCardError": "Error al generar las tarjetas de memoria"
+    },
+    "file": {
+        "noFile": "Por favor, sube un archivo PDF",
+        "error": "Error al procesar el archivo",
+        "uploaded": "Subido: "
+    }
+}

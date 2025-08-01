@@ -1,0 +1,17 @@
+{
+    "title": "Targetes de Memòria",
+    "button": {
+        "generate": "Generar",
+        "download": "Descarregar",
+        "back": "Enrere"
+    },
+    "message": {
+        "limitReached": "Has utilitzat els nostres serveis 3 vegades",
+        "generateCardError": "Error en generar les targetes de memòria"
+    },
+    "file": {
+        "noFile": "Si us plau, puja un fitxer PDF",
+        "error": "Error en processar el fitxer",
+        "uploaded": "Pujat: "
+    }
+}

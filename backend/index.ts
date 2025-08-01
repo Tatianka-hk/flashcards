@@ -10,25 +10,26 @@ app.use(express.json())
 app.use(cors())
 
 app.post('/flashcards', async (req, res) => {
-  try {
-    const { text } = req.body
+    try {
+        const { text } = req.body
 
-    if (!text || typeof text !== 'string') {
-      return res.status(400).send('Bad Request: missing text')
+        if (!text || typeof text !== 'string') {
+            return res.status(400).send('Bad Request: missing text')
+        }
+
+        const result = await getFlashCardsFromDocument(text)
+
+        res.status(200).json({ flashcards: result })
+    } catch (err: any) {
+        console.error(err)
+        res.status(500).send(`Server Error: ${err.message}`)
     }
-
-    const result = await getFlashCardsFromDocument(text)
-
-    res.status(200).json({ flashcards: result })
-  } catch (err: any) {
-    res.status(500).send(`Server Error: ${err.message}`)
-  }
 })
 
 app.use((req, res) => {
-  res.status(404).send('Not Found')
+    res.status(404).send('Not Found')
 })
 
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`)
+    console.log(`Server running at http://localhost:${PORT}/`)
 })
