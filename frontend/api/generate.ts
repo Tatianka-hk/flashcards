@@ -1,5 +1,5 @@
 import { VercelRequest, VercelResponse } from '@vercel/node'
-import { getFlashCardsFromDocument } from '../../backend/utils'
+import { getFlashCardsFromDocument } from './utils'
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     try {
@@ -9,9 +9,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             return res.status(400).json({ error: 'Invalid input' })
         }
 
-        const cards = getFlashCardsFromDocument(text)
+        const flashcards = await getFlashCardsFromDocument(text)
 
-        res.status(200).json({ cards })
+        res.status(200).json({ flashcards })
     } catch (error) {
         res.status(500).json({ error: 'Server error', details: String(error) })
     }

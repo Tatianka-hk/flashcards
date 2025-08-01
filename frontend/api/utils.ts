@@ -1,7 +1,3 @@
-// import dotenv from 'dotenv'
-
-// dotenv.config()
-
 const TOGETHER_API_KEY = process.env.TOGETHER_API_KEY
 export async function getFlashCardsFromDocument(text: string) {
     const prompt = `Прочитай текст і створи флешкартки у форматі:
