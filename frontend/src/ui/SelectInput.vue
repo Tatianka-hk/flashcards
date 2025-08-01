@@ -48,7 +48,7 @@ const onClick = () => {
 const findSelectedOption = (val: valueType): string => {
     return (
         props?.options?.find((option: OptionType) => option.value === val)
-            .label || ''
+            ?.label || ''
     )
 }
 

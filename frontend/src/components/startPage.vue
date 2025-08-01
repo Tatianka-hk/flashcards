@@ -56,17 +56,15 @@ const onClickButton = async () => {
     if (!fileText.value) return
     loading.value = true
     try {
-        const response = await fetch(
-            `${import.meta.env.VITE_BACKEND_URL}/flashcards`,
-            {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ text: fileText.value }),
-            }
-        )
-        usageCount.value++
-        localStorage.setItem(usageKey, usageCount.value.toString())
-
+        const response = await fetch(`/api/generate'`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: fileText.value }),
+        })
+        if (response.ok) {
+            usageCount.value++
+            localStorage.setItem(usageKey, usageCount.value.toString())
+        }
         const data = await response.json()
         loading.value = false
         flashcards.value = data.flashcards
