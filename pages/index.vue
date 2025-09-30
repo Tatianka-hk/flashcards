@@ -7,7 +7,6 @@
             :options="langs"
             @change="changeLang($event)"
         />
-
         <AuthButtons />
     </div>
     <Result v-if="viewResult" :cards="flashcards" @close="viewResult = false" />
