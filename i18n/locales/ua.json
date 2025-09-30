@@ -1,0 +1,46 @@
+{
+    "title": "Флеш-картки",
+    "button": {
+        "generate": "Зробити флеш-картки",
+        "download": "Завантажити файл",
+        "back": "Назад"
+    },
+    "message": {
+        "limitReached": "Ви використали наші послуги 3 рази",
+        "generateCardError": "Помилка при генерації флеш-карток"
+    },
+    "file": {
+        "noFile": " Завантажте, будь ласка, pdf файл",
+        "error": "Помилка при обробці файлу",
+        "uploaded": "Завантажено: "
+    },
+
+    "auth": {
+        "labels": {
+            "email": "Email",
+            "password": "Пароль",
+            "confirm_password": "Підтвердіть пароль"
+        },
+        "actions": {
+            "login": "Увійти",
+            "signup": "Зареєструватися",
+            "login_google": "Увійти з Google",
+            "forgot": "Забули пароль?"
+        },
+        "errors": {
+            "email_invalid": "Вкажіть коректний email.",
+            "email_exists": "Цей email уже зареєстрований.",
+            "password_mismatch": "Паролі не збігаються.",
+            "invalid_credentials": "Невірний email або пароль.",
+            "too_many_attempts": "Забагато спроб. Спробуйте пізніше.",
+            "something_went_wrong": "Щось пішло не так."
+        },
+        "success": {
+            "signup": "Обліковий запис створено.",
+            "login": "Вхід виконано."
+        },
+        "info": {
+            "reset_sent": "Якщо email існує, ми надіслали інструкції з відновлення."
+        }
+    }
+}

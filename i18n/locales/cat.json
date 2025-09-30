@@ -1,0 +1,45 @@
+{
+    "title": "Targetes de Memòria",
+    "button": {
+        "generate": "Generar flashcards",
+        "download": "Descarregar fitxer",
+        "back": "Enrere"
+    },
+    "message": {
+        "limitReached": "Has utilitzat els nostres serveis 3 vegades",
+        "generateCardError": "Error en generar les targetes de memòria"
+    },
+    "file": {
+        "noFile": "Si us plau, puja un fitxer PDF",
+        "error": "Error en processar el fitxer",
+        "uploaded": "Pujat: "
+    },
+    "auth": {
+        "labels": {
+            "email": "Correu electrònic",
+            "password": "Contrasenya",
+            "confirm_password": "Confirma la contrasenya"
+        },
+        "actions": {
+            "login": "Inicia sessió",
+            "signup": "Registra't",
+            "login_google": "Inicia sessió amb Google",
+            "forgot": "Has oblidat la contrasenya?"
+        },
+        "errors": {
+            "email_invalid": "Introdueix un correu electrònic vàlid.",
+            "email_exists": "Aquest correu electrònic ja està registrat.",
+            "password_mismatch": "Les contrasenyes no coincideixen.",
+            "invalid_credentials": "Correu electrònic o contrasenya incorrectes.",
+            "too_many_attempts": "Massa intents. Torna-ho a provar més tard.",
+            "something_went_wrong": "Alguna cosa ha anat malament."
+        },
+        "success": {
+            "signup": "El compte s'ha creat correctament.",
+            "login": "Has iniciat sessió correctament."
+        },
+        "info": {
+            "reset_sent": "Si el correu electrònic existeix, t'hem enviat instruccions per restablir la contrasenya."
+        }
+    }
+}
