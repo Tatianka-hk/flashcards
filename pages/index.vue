@@ -37,13 +37,11 @@ import Loading from '../ui/Loading.vue'
 import SelectInput from '../ui/SelectInput.vue'
 import { MAX_USES, langs } from '../static'
 import { useI18n } from 'vue-i18n'
-// testdelete
-import { cards } from '~/test'
 import AuthButtons from '~/components/auth/authButtons.vue'
 
 const fileText = ref<string | null>(null)
 const viewResult = ref<boolean>(true)
-const flashcards = ref<ICard[]>([...cards])
+const flashcards = ref<ICard[]>([])
 const loading = ref<boolean>(false)
 const usageKey = 'asdasd'
 const usageCount = ref<number>(

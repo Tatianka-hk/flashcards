@@ -1,5 +1,5 @@
 import { defineNuxtConfig } from 'nuxt/config'
-import connectDB from './utils/db'
+import connectDB from './server/utils/db'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -23,5 +23,3 @@ export default defineNuxtConfig({
         display: 'swap',
     },
 })
-
-connectDB()

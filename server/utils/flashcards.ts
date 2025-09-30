@@ -1,4 +1,9 @@
 const TOGETHER_API_KEY = process.env.TOGETHER_API_KEY
+
+if (!TOGETHER_API_KEY) {
+    throw new Error('TOGETHER_API_KEY is not set')
+}
+
 export async function getFlashCardsFromDocument(text: string) {
     const prompt = `Прочитай текст і створи флешкартки у форматі:
     front: запитання

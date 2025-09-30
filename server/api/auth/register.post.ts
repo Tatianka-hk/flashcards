@@ -7,28 +7,30 @@ export default defineEventHandler(async (event) => {
         email: string
         password: string
     }>(event)
+    const email = body.email.trim().toLowerCase()
+    const password = body.password.trim()
 
-    if (!body.email || !body.password) {
+    if (!email || !password) {
         throw createError({
             statusCode: 400,
             statusMessage: 'Missing email or password',
         })
     }
 
-    const hashedPassword = hashPassword(body.password)
+    const hashedPassword = hashPassword(password)
 
     await connectDB()
 
-    const existing = await User.findOne({ email: body.email })
+    const existing = await User.findOne({ email })
     if (existing) {
         throw createError({
-            statusCode: 404,
+            statusCode: 409,
             statusMessage: 'User already exists',
         })
     }
 
     await User.insertOne({
-        email: body.email,
+        email: email,
         password: hashedPassword,
         createdAt: new Date(),
     })

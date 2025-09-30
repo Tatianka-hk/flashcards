@@ -1,5 +1,6 @@
 import crypto from 'crypto'
 import type { H3Event } from 'h3'
+import { getCookie, setCookie } from 'h3'
 
 const LIMIT_MS = 60 * 60 * 1000
 

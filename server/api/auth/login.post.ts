@@ -1,7 +1,7 @@
 import { User } from '~/server/models/User'
 import connectDB from '~/utils/db'
 import { hashPassword, limitLoginAttempts } from './utils'
-import { signJwt, setSessionCookie } from '../../utils/jwt'
+import { signJwt, setSessionCookie } from '../../../utils/jwt'
 
 export default defineEventHandler(async (event) => {
     const body = await readBody<{
@@ -9,7 +9,10 @@ export default defineEventHandler(async (event) => {
         password: string
     }>(event)
 
-    if (!body.email || !body.password) {
+    const email = body.email.trim().toLowerCase()
+    const password = body.password.trim()
+
+    if (!email || !password) {
         throw createError({
             statusCode: 400,
             statusMessage: 'Missing email or password',
@@ -25,21 +28,20 @@ export default defineEventHandler(async (event) => {
         })
     }
 
-    const hashedPassword = hashPassword(body.password)
+    const hashedPassword = hashPassword(password)
 
     await connectDB()
 
     const existing = await User.findOne({
-        email: body.email,
-        password: hashedPassword,
+        email,
     })
-    if (existing) {
+    if (existing && existing.password === hashedPassword) {
         const token = signJwt({ uid: String(existing._id) })
         setSessionCookie(event, token)
-        return { success: true, message: 'User is authorized ' }
+        return { success: true, message: 'User is authorized' }
     } else {
         throw createError({
-            statusCode: 404,
+            statusCode: 401,
             statusMessage: 'Invalid data',
         })
     }

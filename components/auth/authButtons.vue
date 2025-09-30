@@ -4,14 +4,16 @@
 
     <div class="flex flex-col gap-2" v-else>
         <button
+            @click="$router.push('/login')"
             class="bg-primary cursor-pointer py-1 px-2 text-base rounded-[8px] font-julius"
         >
-            Login
+            {{ t('auth.actions.login') }}
         </button>
         <button
+            @click="$router.push('/signup')"
             class="bg-blue cursor-pointer py-1 px-2 text-base rounded-[8px] font-julius"
         >
-            Sign up
+            {{ t('auth.actions.signup') }}
         </button>
     </div>
 </template>

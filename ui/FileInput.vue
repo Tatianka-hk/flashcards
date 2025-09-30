@@ -2,7 +2,12 @@
     <label
         class="flex flex-col items-center justify-center w-2/4 h-[350px] border-2 border-dashed border-accent rounded-lg text-text text-center cursor-pointer bg-[#d8e2ec]"
     >
-        <input type="file" class="hidden" @change="onFileChange" />
+        <input
+            type="file"
+            accept=".pdf,application/pdf"
+            class="hidden"
+            @change="onFileChange"
+        />
         <span class="text-base text-text">{{ message }}</span>
     </label>
 </template>
