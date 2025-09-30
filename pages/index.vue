@@ -7,7 +7,8 @@
             :options="langs"
             @change="changeLang($event)"
         />
-        <AuthButtons />
+        <UserCircle v-if="isAuth" />
+        <AuthButtons v-else />
     </div>
     <Result v-if="viewResult" :cards="flashcards" @close="viewResult = false" />
     <div v-else class="flex w-full items-center justify-center">
@@ -38,9 +39,11 @@ import SelectInput from '../ui/SelectInput.vue'
 import { MAX_USES, langs } from '../static'
 import { useI18n } from 'vue-i18n'
 import AuthButtons from '~/components/auth/authButtons.vue'
+import { useAuth } from '~/composables/useAuth'
 
+const { isAuth } = useAuth()
 const fileText = ref<string | null>(null)
-const viewResult = ref<boolean>(true)
+const viewResult = ref<boolean>(false)
 const flashcards = ref<ICard[]>([])
 const loading = ref<boolean>(false)
 const usageKey = 'asdasd'

@@ -1,7 +1,7 @@
 import { User } from '~/server/models/User'
-import connectDB from '~/utils/db'
+import connectDB from './../../utils/db'
 import { hashPassword, limitLoginAttempts } from './utils'
-import { signJwt, setSessionCookie } from '../../../utils/jwt'
+import { signJwt, setSessionCookie } from './../../utils/jwt'
 
 export default defineEventHandler(async (event) => {
     const body = await readBody<{

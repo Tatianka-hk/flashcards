@@ -28,7 +28,7 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { login } from '~/api/auth'
 import { Field, Logo, VButton } from '~/ui'
-import { useSnackbar } from '~/utils/useSnackbar'
+import { useSnackbar } from '~/composables/useSnackbar'
 const { showSnackbar } = useSnackbar()
 
 const { t } = useI18n()

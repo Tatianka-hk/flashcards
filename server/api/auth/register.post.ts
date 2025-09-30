@@ -1,5 +1,5 @@
 import { User } from '~/server/models/User'
-import connectDB from '~/utils/db'
+import connectDB from './../../utils/db'
 import { hashPassword } from './utils'
 
 export default defineEventHandler(async (event) => {

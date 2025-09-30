@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { useSnackbar } from '~/utils/useSnackbar'
+import { useSnackbar } from '~/composables/useSnackbar'
 import { computed } from 'vue'
 
 const { currentMessage } = useSnackbar()
