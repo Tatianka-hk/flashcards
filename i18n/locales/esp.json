@@ -6,7 +6,7 @@
         "back": "Atrás"
     },
     "message": {
-        "limitReached": "Has utilizado nuestros servicios 3 veces",
+        "limitReached": "Has utilizado nuestros servicios {count} veces",
         "generateCardError": "Error al generar las tarjetas de memoria"
     },
     "file": {

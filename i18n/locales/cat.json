@@ -6,7 +6,7 @@
         "back": "Enrere"
     },
     "message": {
-        "limitReached": "Has utilitzat els nostres serveis 3 vegades",
+        "limitReached": "Has utilitzat els nostres serveis {count} vegades",
         "generateCardError": "Error en generar les targetes de memòria"
     },
     "file": {

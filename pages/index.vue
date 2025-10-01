@@ -25,7 +25,7 @@
             <Loading v-if="loading" />
         </div>
         <div v-else class="flex flex-col items-center gap-4">
-            <MessageItem :message="$t('message.limitReached')" />
+            <MessageItem :message="$t('message.limitReached', { count: 3 })" />
         </div>
     </div>
 </template>

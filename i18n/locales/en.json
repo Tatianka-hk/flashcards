@@ -6,7 +6,7 @@
         "back": "Back"
     },
     "message": {
-        "limitReached": "You have used the service 3 times",
+        "limitReached": "You have used the service {count} times",
         "generateCardError": "Error generating flashcards"
     },
     "file": {

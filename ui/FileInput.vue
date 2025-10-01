@@ -44,6 +44,7 @@ async function onFileChange(event: Event) {
         emit('file:change', text)
     } catch (e) {
         error.value = true
+        rawFileName.value = null
         console.error(e)
     }
 }
