@@ -1,0 +1,45 @@
+{
+    "title": "Tarjetas de Memoria",
+    "button": {
+        "generate": "Generar flashcards",
+        "download": "Descargar archivo",
+        "back": "Atrás"
+    },
+    "message": {
+        "limitReached": "Has utilizado nuestros servicios {count} veces",
+        "generateCardError": "Error al generar las tarjetas de memoria"
+    },
+    "file": {
+        "noFile": "Por favor, sube un archivo PDF",
+        "error": "Error al procesar el archivo",
+        "uploaded": "Subido: "
+    },
+    "auth": {
+        "labels": {
+            "email": "Correo electrónico",
+            "password": "Contraseña",
+            "confirm_password": "Confirmar contraseña"
+        },
+        "actions": {
+            "login": "Iniciar sesión",
+            "signup": "Registrarse",
+            "login_google": "Iniciar sesión con Google",
+            "forgot": "¿Olvidaste tu contraseña?"
+        },
+        "errors": {
+            "email_invalid": "Introduce un correo electrónico válido.",
+            "email_exists": "Este correo electrónico ya está registrado.",
+            "password_mismatch": "Las contraseñas no coinciden.",
+            "invalid_credentials": "Correo electrónico o contraseña incorrectos.",
+            "too_many_attempts": "Demasiados intentos. Inténtalo más tarde.",
+            "something_went_wrong": "Algo salió mal."
+        },
+        "success": {
+            "signup": "La cuenta ha sido creada.",
+            "login": "Has iniciado sesión correctamente."
+        },
+        "info": {
+            "reset_sent": "Si el correo electrónico existe, hemos enviado las instrucciones de restablecimiento."
+        }
+    }
+}

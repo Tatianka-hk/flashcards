@@ -9,10 +9,12 @@
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare",
         "prepare": "husky install"
-
     },
     "dependencies": {
+        "@nuxtjs/google-fonts": "^3.2.0",
         "@nuxtjs/i18n": "^10.1.0",
+        "jsonwebtoken": "^9.0.2",
+        "mongoose": "^8.18.2",
         "nuxt": "^3.13.0",
         "pdfjs-dist": "^5.3.93",
         "vue": "^3.5.21",
@@ -20,19 +22,19 @@
         "vue-router": "^4.5.1"
     },
     "devDependencies": {
+        "@eslint/js": "^9.31.0",
         "@nuxtjs/tailwindcss": "^6.14.0",
         "@types/node": "^24.5.2",
-        "tailwindcss": "^3.4.3",
-        "typescript-eslint": "^8.36.0",
-        "postcss": "^8.5.6",
-        "prettier": "^3.6.2",
-        "@eslint/js": "^9.31.0",
         "eslint": "^9.31.0",
         "eslint-config-prettier": "^10.1.5",
         "eslint-plugin-prettier": "^5.5.1",
         "eslint-plugin-vue": "^10.3.0",
         "husky": "^9.1.7",
-        "lint-staged": "^16.1.2"
+        "lint-staged": "^16.1.2",
+        "postcss": "^8.5.6",
+        "prettier": "^3.6.2",
+        "tailwindcss": "^3.4.3",
+        "typescript-eslint": "^8.36.0"
     },
     "lint-staged": {
         "**/*.js": [
