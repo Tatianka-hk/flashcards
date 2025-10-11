@@ -1,3 +1,7 @@
 export { default as IconChevronDown } from './IconChevronDown.vue'
 export { default as IconChevronUp } from './IconChevronUp.vue'
 export { default as IconUser } from './IconUser.vue'
+export { default as IconAddFolder } from './IconAddFolder.vue'
+export { default as IconPlus } from './IconPlus.vue'
+export { default as IconBase } from './IconBase.vue'
+export { default as IconLogout } from './IconLogout.vue'

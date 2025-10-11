@@ -23,10 +23,11 @@
             />
         </div>
         <VButton
-            :label="t('auth.actions.signup')"
             :disabled="!email || !password || !confirmPassword"
             :onClick="onClick"
-        ></VButton>
+        >
+            {{ t('auth.actions.signup') }}
+        </VButton>
     </div>
 </template>
 <script setup lang="ts">

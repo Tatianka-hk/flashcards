@@ -17,11 +17,9 @@
                 {{ usageCount }} / 3</span
             >
             <FileInput @file:change="onChangeFile" />
-            <VButton
-                :label="$t('button.generate')"
-                @click="onClickButton"
-                :disabled="!fileText || loading"
-            />
+            <VButton @click="onClickButton" :disabled="!fileText || loading">
+                {{ t('button.generate') }}
+            </VButton>
             <Loading v-if="loading" />
         </div>
         <div v-else class="flex flex-col items-center gap-4">
@@ -41,6 +39,7 @@ import { useI18n } from 'vue-i18n'
 import AuthButtons from '~/components/auth/authButtons.vue'
 import { useAuth } from '~/composables/useAuth'
 
+const { t } = useI18n()
 const { isAuth } = useAuth()
 const fileText = ref<string | null>(null)
 const viewResult = ref<boolean>(false)

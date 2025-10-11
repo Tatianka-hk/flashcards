@@ -11,16 +11,15 @@
         ]"
         :disabled="disabled"
     >
-        {{ label }}
+        <slot />
     </button>
 </template>
 
 <script setup lang="ts">
 const props = withDefaults(
     defineProps<{
-        label: string
         onClick: () => void
-        disabled?: boolean
+        disabled?: booleanS
         extraClass?: string
     }>(),
     {
