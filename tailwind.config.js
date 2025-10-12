@@ -18,6 +18,8 @@ export default {
                 thirty: '#fde1f7',
                 blue: '#d8e2ec',
                 error: '#ed655e',
+                hoverblue: '#c5d2e0',
+                hoverbackground: '#e8dbed',
             },
             fontFamily: {
                 julius: ['"Julius Sans One"', 'sans-serif'],

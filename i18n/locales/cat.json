@@ -41,5 +41,17 @@
         "info": {
             "reset_sent": "Si el correu electrònic existeix, t'hem enviat instruccions per restablir la contrasenya."
         }
+    },
+    "dropdown": {
+        "edit": "Editar",
+        "delete": "Eliminar"
+    },
+    "menu": {
+        "buttons": {
+            "addFolder": "Afegir una carpeta",
+            "addFlashcard": "Afegir flashcard",
+            "logout": "Logout",
+            "generate": "Generar flashcards"
+        }
     }
 }

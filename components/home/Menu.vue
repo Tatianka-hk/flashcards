@@ -1,24 +1,29 @@
 <template>
     <div
-        class="border border-rt border-text p-[40px] flex flex-col justify-between h-[100vh]"
+        class="border border-rt border-text p-[40px] flex flex-col justify-between h-[100%]"
     >
         <div class="flex flex-col gap-4">
             <VButton
                 v-for="button in buttons"
                 :key="button.label"
-                @click="button.onClick"
+                :onClick="button.onClick"
                 class="flex items-center gap-5"
             >
                 <component :is="button.icon" class="h-[36px] w-[36px]" />
-                {{ button.label }}
+                {{ t(button.label) }}
             </VButton>
         </div>
         <div>
             <VButton class="flex items-center gap-5">
                 <IconLogout class="h-[36px] w-[36px]" />
-                {{ $t('button.logout') }}
+                {{ t('menu.buttons.logout') }}
             </VButton>
         </div>
+        <AddFolderDialog
+            v-if="isOpen"
+            :closeDialog="closeDialog"
+            :isOpen="isOpen"
+        />
     </div>
 </template>
 <script setup lang="ts">
@@ -26,6 +31,8 @@ import { VueElement } from 'vue'
 import { IconAddFolder, IconPlus, IconBase, IconLogout } from '~/assets/icons'
 import { useI18n } from 'vue-i18n'
 import VButton from '~/ui/VButton.vue'
+import AddFolderDialog from '../folder/AddFolderDialog.vue'
+import { useDialog } from '~/composables/useDialog'
 
 interface IButton {
     label: string
@@ -34,20 +41,20 @@ interface IButton {
 }
 
 const { t } = useI18n()
-
-const buttons: IButton = [
+const { isOpen, openDialog, closeDialog } = useDialog()
+const buttons: IButton[] = [
     {
-        label: t('button.addFolder'),
+        label: 'menu.buttons.addFolder',
         icon: IconAddFolder,
-        onClick: () => {},
+        onClick: openDialog,
     },
     {
-        label: t('button.addFlashcard'),
+        label: 'menu.buttons.addFlashcard',
         icon: IconPlus,
         onClick: () => {},
     },
     {
-        label: t('button.generate'),
+        label: 'menu.buttons.generate',
         icon: IconBase,
         onClick: () => {},
     },

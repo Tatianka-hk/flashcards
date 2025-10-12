@@ -41,5 +41,17 @@
         "info": {
             "reset_sent": "Si el correo electrónico existe, hemos enviado las instrucciones de restablecimiento."
         }
+    },
+    "dropdown": {
+        "edit": "Editar",
+        "delete": "Eliminar"
+    },
+    "menu": {
+        "buttons": {
+            "addFolder": "Añadir carpeta",
+            "addFlashcard": "Añadir tarjeta",
+            "logout": "Logout",
+            "generate": "Generar tarjetas"
+        }
     }
 }
