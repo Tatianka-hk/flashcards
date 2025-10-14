@@ -2,6 +2,8 @@
     <Teleport to="#caps">
         <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50">
             <div
+                aria-modal="true"
+                role="dialog"
                 :class="[
                     'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-[40px] px-[80px]',
                     mode === 'error' ? 'bg-blue' : 'bg-primary',
@@ -22,8 +24,10 @@
     </Teleport>
 </template>
 <script setup lang="ts">
+import { onMounted, onUnmounted } from 'vue'
 import { IconClose } from '~/assets/icons'
-withDefaults(
+
+const props = withDefaults(
     defineProps<{
         onClose: () => void
         isOpen: boolean
@@ -33,4 +37,18 @@ withDefaults(
         mode: 'default',
     }
 )
+
+const handleKeydown = (event: KeyboardEvent) => {
+    if (event.key === 'Escape' && props.isOpen) {
+        props.onClose()
+    }
+}
+
+onMounted(() => {
+    document.addEventListener('keydown', handleKeydown)
+})
+
+onUnmounted(() => {
+    document.removeEventListener('keydown', handleKeydown)
+})
 </script>

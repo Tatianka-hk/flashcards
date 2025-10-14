@@ -24,4 +24,5 @@ import { IconPlay } from '~/assets/icons'
 import DropDownMenu from '~/ui/DropDownMenu.vue'
 
 defineProps<{ folder: IFolder }>()
+defineEmits(['changed'])
 </script>

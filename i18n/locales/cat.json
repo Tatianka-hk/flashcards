@@ -50,7 +50,7 @@
         "buttons": {
             "addFolder": "Afegir una carpeta",
             "addFlashcard": "Afegir flashcard",
-            "logout": "Logout",
+            "logout": "Tancar sessió",
             "generate": "Generar flashcards"
         }
     },

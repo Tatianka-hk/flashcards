@@ -3,10 +3,23 @@ import { Folder } from '~/server/models/Folder'
 
 export default defineEventHandler(async (event) => {
     const folderID: string | undefined = getRouterParam(event, 'id')
+    if (!folderID) {
+        throw createError({
+            statusCode: 400,
+            statusMessage: 'Missing folder ID',
+        })
+    }
 
     try {
         await connectDB()
-        await Folder.deleteOne({ _id: folderID })
+        const result = await Folder.deleteOne({ _id: folderID })
+        if (result.deletedCount === 0) {
+            throw createError({
+                statusCode: 404,
+                statusMessage: 'Folder not found',
+            })
+        }
+
         return { success: true }
     } catch (err: any) {
         throw createError({

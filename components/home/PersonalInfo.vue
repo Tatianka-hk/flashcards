@@ -1,17 +1,33 @@
 <template>
     <div class="p-[40px] border border-r border-text flex gap-2 justify-center">
         <UserCircle />
-        <h1 class="text-xl font-bold mt-[20px]">{{ email }}</h1>
+        <Loading v-if="loading" />
+        <h1 class="text-xl font-bold mt-[20px]" v-else>{{ email }}</h1>
     </div>
 </template>
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { getEmail } from '~/api/auth'
-import UserCircle from '~/ui/UserCircle.vue'
+import { UserCircle, Loading } from '~/ui'
 
 const email = ref('')
+const error = ref('')
+const loading = ref(false)
+
 onMounted(async () => {
-    const res: { email: string } = await getEmail()
-    email.value = res.email
+    try {
+        loading.value = true
+        const res = await getEmail()
+        if (res?.email) {
+            email.value = res.email
+        } else {
+            error.value = 'Failed to load email'
+        }
+    } catch (err) {
+        console.error('Failed to fetch email:', err)
+        error.value = 'Failed to load email'
+    } finally {
+        loading.value = false
+    }
 })
 </script>

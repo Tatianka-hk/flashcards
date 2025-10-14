@@ -17,7 +17,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { getFolders } from '~/api/folder'
 import FolderItem from '../folder/FolderItem.vue'
 import PersonalInfo from './PersonalInfo.vue'
@@ -25,12 +25,6 @@ import Menu from './Menu.vue'
 import { useRoute } from 'vue-router'
 import { useAuth } from '~/composables/useAuth'
 import { navigateTo } from 'nuxt/app'
-
-const { isAuth } = useAuth()
-
-if (!isAuth._value) {
-    navigateTo('/')
-}
 
 const route = useRoute()
 const folders = ref([])
@@ -51,4 +45,12 @@ watch(
     },
     { immediate: true }
 )
+
+onMounted(async () => {
+    const { isAuth } = useAuth()
+    console.log('isAuth', isAuth.value)
+    if (!isAuth) {
+        navigateTo('/')
+    }
+})
 </script>

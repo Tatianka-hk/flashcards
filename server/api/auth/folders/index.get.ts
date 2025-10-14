@@ -8,6 +8,12 @@ export default defineEventHandler(async (event) => {
     try {
         await connectDB()
         const userId = event.context.userId
+        if (!userId) {
+            return createError({
+                statusCode: 401,
+                statusMessage: 'Unauthorized',
+            })
+        }
         const folders = await Folder.find({
             userId,
             parentId: parentId ?? null,

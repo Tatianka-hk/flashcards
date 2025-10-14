@@ -19,7 +19,7 @@
 const props = withDefaults(
     defineProps<{
         onClick: () => void
-        disabled?: booleanS
+        disabled?: boolean
         extraClass?: string
     }>(),
     {

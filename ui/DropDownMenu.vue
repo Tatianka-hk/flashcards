@@ -121,9 +121,14 @@ const onEdit = () => {
     close()
 }
 
-const onDelete = () => {
-    deleteFolder(props.folderId)
-    emit('changed')
-    close()
+const onDelete = async () => {
+    try {
+        await deleteFolder(props.folderId)
+        emit('changed')
+    } catch (e) {
+        console.error(e)
+    } finally {
+        close()
+    }
 }
 </script>

@@ -27,5 +27,4 @@ export default defineEventHandler(async (event) => {
             data: String(err),
         })
     }
-    return { email: user.email }
 })

@@ -6,7 +6,7 @@
             <VButton
                 v-for="button in buttons"
                 :key="button.label"
-                :onClick="button.onClick"
+                @click="button.onClick"
                 class="flex items-center gap-5"
             >
                 <component :is="button.icon" class="h-[36px] w-[36px]" />

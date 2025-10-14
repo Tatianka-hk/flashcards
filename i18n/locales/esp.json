@@ -50,7 +50,7 @@
         "buttons": {
             "addFolder": "Añadir carpeta",
             "addFlashcard": "Añadir tarjeta",
-            "logout": "Logout",
+            "logout": "Cerrar sesión",
             "generate": "Generar tarjetas"
         }
     },

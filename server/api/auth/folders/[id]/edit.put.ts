@@ -7,6 +7,12 @@ export default defineEventHandler(async (event) => {
     }>(event)
 
     const folderID: string | undefined = getRouterParam(event, 'id')
+    if (!folderID) {
+        throw createError({
+            statusCode: 400,
+            statusMessage: 'Missing folder ID',
+        })
+    }
 
     if (!body.name) {
         throw createError({
@@ -17,10 +23,16 @@ export default defineEventHandler(async (event) => {
 
     try {
         await connectDB()
-        await Folder.findOneAndUpdate(
+        const folder = await Folder.findOneAndUpdate(
             { _id: folderID },
             { $set: { name: body.name } }
         )
+        if (!folder) {
+            throw createError({
+                statusCode: 404,
+                statusMessage: 'Folder not found',
+            })
+        }
         return { success: true }
     } catch (err: any) {
         throw createError({
