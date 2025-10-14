@@ -9,7 +9,7 @@
             <!-- end menu -->
             <FolderItem
                 v-for="folder in folders"
-                :key="folder.name"
+                :key="folder._id"
                 :folder="folder"
                 @changed="() => updateFolders()"
             />
@@ -25,14 +25,15 @@ import Menu from './Menu.vue'
 import { useRoute } from 'vue-router'
 import { useAuth } from '~/composables/useAuth'
 import { navigateTo } from 'nuxt/app'
+import { IFolder } from '~/types'
 
 const route = useRoute()
-const folders = ref([])
+const folders: IFolder[] = ref([])
 
 const updateFolders = async () => {
     try {
         const res = await getFolders(route.params.id as string)
-        folders.value = res.folders ?? res
+        folders.value = res?.folders ?? res
     } catch (err) {
         console.error('Failed to load folders:', err)
     }
@@ -49,8 +50,8 @@ watch(
 onMounted(async () => {
     const { isAuth } = useAuth()
     console.log('isAuth', isAuth.value)
-    if (!isAuth) {
-        navigateTo('/')
+    if (!isAuth.value) {
+        // navigateTo('/')
     }
 })
 </script>

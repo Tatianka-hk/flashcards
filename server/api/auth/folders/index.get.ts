@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
         await connectDB()
         const userId = event.context.userId
         if (!userId) {
-            return createError({
+            throw createError({
                 statusCode: 401,
                 statusMessage: 'Unauthorized',
             })

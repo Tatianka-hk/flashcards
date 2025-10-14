@@ -2,6 +2,7 @@
     <div class="p-[40px] border border-r border-text flex gap-2 justify-center">
         <UserCircle />
         <Loading v-if="loading" />
+
         <h1 class="text-xl font-bold mt-[20px]" v-else>{{ email }}</h1>
     </div>
 </template>
