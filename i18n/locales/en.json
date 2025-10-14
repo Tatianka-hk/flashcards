@@ -41,5 +41,25 @@
         "info": {
             "reset_sent": "If the email exists, we have sent reset instructions."
         }
+    },
+    "dropdown": {
+        "edit": "Edit",
+        "delete": "Delete"
+    },
+    "menu": {
+        "buttons": {
+            "addFolder": "Add folder",
+            "addFlashcard": "Add flashcard",
+            "logout": "Logout",
+            "generate": "Generate flashcards"
+        }
+    },
+    "folder": {
+        "edit": "Edit folder",
+        "create": "Create folder",
+        "name": "Folder name",
+        "nameError": "Folder name must be at least 3 characters",
+        "editSuccess": "Folder edited successfully",
+        "createSuccess": "Folder created successfully"
     }
 }

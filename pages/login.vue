@@ -16,11 +16,9 @@
                 v-model="password"
             />
         </div>
-        <VButton
-            :label="t('auth.actions.login')"
-            :disabled="!email || !password"
-            :onClick="onClick"
-        ></VButton>
+        <VButton :disabled="!email || !password" :onClick="onClick">{{
+            t('auth.actions.login')
+        }}</VButton>
     </div>
 </template>
 <script setup lang="ts">

@@ -4,5 +4,8 @@
         {
             "path": "./.nuxt/tsconfig.server.json"
         }
-    ]
+    ],
+    "compilerOptions": {
+        "allowImportingTsExtensions": true
+    }
 }

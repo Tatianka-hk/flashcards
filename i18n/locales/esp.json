@@ -41,5 +41,25 @@
         "info": {
             "reset_sent": "Si el correo electrónico existe, hemos enviado las instrucciones de restablecimiento."
         }
+    },
+    "dropdown": {
+        "edit": "Editar",
+        "delete": "Eliminar"
+    },
+    "menu": {
+        "buttons": {
+            "addFolder": "Añadir carpeta",
+            "addFlashcard": "Añadir tarjeta",
+            "logout": "Cerrar sesión",
+            "generate": "Generar tarjetas"
+        }
+    },
+    "folder": {
+        "edit": "Editar la carpeta",
+        "create": "Crear una carpeta",
+        "name": "Nombre de la carpeta",
+        "nameError": "El nombre de la carpeta debe tener al menos 3 caracteres",
+        "editSuccess": "Carpeta editada correctamente",
+        "createSuccess": "Carpeta creada correctamente"
     }
 }

@@ -19,16 +19,17 @@
                 </div>
             </div>
             <div class="flex items-center justify-center mt-4 gap-4">
-                <VButton
-                    :label="$t('button.download')"
-                    @click="downloadJSON(cards)"
-                />
-                <VButton :label="$t('button.back')" @click="$emit('close')" />
+                <VButton @click="downloadJSON(cards)">
+                    {{ t('button.download') }}
+                </VButton>
+                <VButton @click="$emit('close')">
+                    {{ $t('button.back') }}
+                </VButton>
             </div>
         </div>
         <div v-else class="flex flex-col items-center justify-center">
             <MessageItem :message="$t('message.generateCardError')" />
-            <VButton :label="$t('button.back')" @click="$emit('close')" />
+            <VButton @click="$emit('close')"> {{ t('button.back') }} </VButton>
         </div>
     </div>
 </template>
@@ -38,11 +39,13 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { Card, Arrow, VButton } from '@/ui'
 import type { ICard } from '@/types/card'
 import { downloadJSON } from '@/utils/files'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
     cards: ICard[]
 }>()
 
+const { t } = useI18n()
 const currentIndex = ref(0)
 
 onMounted(() => {

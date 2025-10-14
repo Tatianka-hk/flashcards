@@ -22,3 +22,17 @@ export function login(data: AuthUserType) {
         data,
     })
 }
+
+export function logout() {
+    return apiRequest({
+        method: 'POST',
+        url: `${PREFIX}/logout`,
+    })
+}
+
+export function getEmail() {
+    return apiRequest({
+        method: 'GET',
+        url: `${PREFIX}/email`,
+    })
+}
