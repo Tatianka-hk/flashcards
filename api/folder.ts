@@ -10,9 +10,25 @@ export function addFolder(data: { name: string; parentId?: string }) {
     })
 }
 
-export function getFolders() {
+export function getFolders(parentId?: string | null) {
+    const url = parentId ? `${PREFIX}?parentId=${parentId}` : `${PREFIX}`
     return apiRequest({
         method: 'GET',
-        url: `${PREFIX}`,
+        url: `${url}`,
+    })
+}
+
+export function editFolder(folderID: string, name: string) {
+    return apiRequest({
+        method: 'PUT',
+        url: `${PREFIX}/${folderID}/edit`,
+        data: { name: name },
+    })
+}
+
+export function deleteFolder(folderID: string) {
+    return apiRequest({
+        method: 'DELETE',
+        url: `${PREFIX}/${folderID}/delete`,
     })
 }

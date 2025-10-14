@@ -53,5 +53,13 @@
             "logout": "Logout",
             "generate": "Generar tarjetas"
         }
+    },
+    "folder": {
+        "edit": "Editar la carpeta",
+        "create": "Crear una carpeta",
+        "name": "Nombre de la carpeta",
+        "nameError": "El nombre de la carpeta debe tener al menos 3 caracteres",
+        "editSuccess": "Carpeta editada correctamente",
+        "createSuccess": "Carpeta creada correctamente"
     }
 }

@@ -10,7 +10,11 @@
         </span>
         <span class="flex gap-5 items-center">
             <IconPlay />
-            <DropDownMenu />
+            <DropDownMenu
+                :folderName="folder.name"
+                :folderId="folder._id"
+                :onChanged="() => $emit('changed')"
+            />
         </span>
     </div>
 </template>

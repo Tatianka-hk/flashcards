@@ -1,23 +1,25 @@
 <template>
-    <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50">
-        <div
-            :class="[
-                'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-[40px] px-[80px]',
-                mode === 'error' ? 'bg-blue' : 'bg-primary',
-            ]"
-        >
-            <button
+    <Teleport to="#caps">
+        <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50">
+            <div
                 :class="[
-                    'absolute -top-2 -right-2 rounded-full p-1',
-                    mode === 'error' ? 'bg-primary' : 'bg-blue',
-                    isOpen ? 'block' : 'hidden',
+                    'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-[40px] px-[80px]',
+                    mode === 'error' ? 'bg-blue' : 'bg-primary',
                 ]"
             >
-                <IconClose @click="onClose" />
-            </button>
-            <slot />
+                <button
+                    :class="[
+                        'absolute -top-2 -right-2 rounded-full p-1',
+                        mode === 'error' ? 'bg-primary' : 'bg-blue',
+                        isOpen ? 'block' : 'hidden',
+                    ]"
+                >
+                    <IconClose @click="onClose" />
+                </button>
+                <slot />
+            </div>
         </div>
-    </div>
+    </Teleport>
 </template>
 <script setup lang="ts">
 import { IconClose } from '~/assets/icons'

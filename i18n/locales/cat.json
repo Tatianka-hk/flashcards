@@ -53,5 +53,13 @@
             "logout": "Logout",
             "generate": "Generar flashcards"
         }
+    },
+    "folder": {
+        "edit": "Editar carpeta",
+        "create": "Crear carpeta",
+        "name": "Nom de la carpeta",
+        "nameError": "El nom de la carpeta ha de tenir almenys 3 caracters",
+        "editSuccess": "Carpeta editada correctament",
+        "createSuccess": "Carpeta creada correctament"
     }
 }

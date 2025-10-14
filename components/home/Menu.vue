@@ -14,15 +14,18 @@
             </VButton>
         </div>
         <div>
-            <VButton class="flex items-center gap-5">
+            <VButton class="flex items-center gap-5" @click="handleLogout">
                 <IconLogout class="h-[36px] w-[36px]" />
                 {{ t('menu.buttons.logout') }}
             </VButton>
         </div>
-        <AddFolderDialog
+        <FolderDialog
             v-if="isOpen"
             :closeDialog="closeDialog"
             :isOpen="isOpen"
+            mode="Create"
+            :folderID="folderID"
+            :onChanged="() => emit('changed')"
         />
     </div>
 </template>
@@ -31,17 +34,23 @@ import { VueElement } from 'vue'
 import { IconAddFolder, IconPlus, IconBase, IconLogout } from '~/assets/icons'
 import { useI18n } from 'vue-i18n'
 import VButton from '~/ui/VButton.vue'
-import AddFolderDialog from '../folder/AddFolderDialog.vue'
+import FolderDialog from '../folder/FolderDialog.vue'
 import { useDialog } from '~/composables/useDialog'
+import { useRoute } from 'vue-router'
+import { logout } from '~/api/auth'
 
 interface IButton {
     label: string
     icon: VueElement
     onClick: () => void
 }
+const emit = defineEmits(['changed'])
 
 const { t } = useI18n()
 const { isOpen, openDialog, closeDialog } = useDialog()
+const route = useRoute()
+const folderID: string = route.params.id ?? ''
+
 const buttons: IButton[] = [
     {
         label: 'menu.buttons.addFolder',
@@ -56,7 +65,14 @@ const buttons: IButton[] = [
     {
         label: 'menu.buttons.generate',
         icon: IconBase,
-        onClick: () => {},
+        onClick: () => {
+            window.location.href = '/'
+        },
     },
 ]
+
+const handleLogout = () => {
+    logout()
+    window.location.href = '/'
+}
 </script>

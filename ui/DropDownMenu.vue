@@ -52,6 +52,15 @@
                 </button>
             </div>
         </transition>
+        <FolderDialog
+            v-if="isEditOpen"
+            :folderID="folderId"
+            :folderName="folderName"
+            :closeDialog="closeEditDialog"
+            :isOpen="isEditOpen"
+            mode="Edit"
+            :onChanged="() => emit('changed')"
+        />
     </div>
 </template>
 
@@ -59,8 +68,22 @@
 import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { Icon3Points, IconEdit, IconDelete } from '~/assets/icons'
 import { useI18n } from 'vue-i18n'
-import { on } from 'events'
+import FolderDialog from '~/components/folder/FolderDialog.vue'
+import { useDialog } from '~/composables/useDialog'
+import { deleteFolder } from '~/api/folder'
 
+const props = defineProps<{
+    folderName: string
+    folderId: string
+}>()
+
+const emit = defineEmits(['changed'])
+
+const {
+    openDialog: openEditDialog,
+    closeDialog: closeEditDialog,
+    isOpen: isEditOpen,
+} = useDialog()
 const { t } = useI18n()
 
 const open = ref(false)
@@ -93,17 +116,14 @@ const openAndFocus = async (i: number) => {
     await nextTick(() => items[i].value?.focus())
 }
 
-const emit = defineEmits<{
-    (e: 'edit'): void
-    (e: 'delete'): void
-}>()
-
 const onEdit = () => {
-    emit('edit')
+    openEditDialog()
     close()
 }
+
 const onDelete = () => {
-    emit('delete')
+    deleteFolder(props.folderId)
+    emit('changed')
     close()
 }
 </script>
