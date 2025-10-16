@@ -63,7 +63,7 @@
         "createSuccess": "Carpeta creada correctamente"
     },
     "card": {
-        "frontLabel": "Termino",
+        "frontLabel": "Término",
         "backLabel": "Descripción",
         "save": "Guardar",
         "saveSuccess": "Tarjetas guardadas correctamente"

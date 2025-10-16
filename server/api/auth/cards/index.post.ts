@@ -50,8 +50,6 @@ export default defineEventHandler(async (event) => {
                     $set: {
                         front: cardsToUpdate.map((card) => card.front),
                         back: cardsToUpdate.map((card) => card.back),
-                        folderId: body.folderId,
-                        createdAt: new Date(),
                     },
                 }
             )
@@ -60,8 +58,15 @@ export default defineEventHandler(async (event) => {
         const cardToAdd: IDbCard[] = body.cards?.filter(
             (card) => !cardsExist.find((c) => c._id === card._id)
         )
-        console.log('toAdd: ', cardToAdd)
         if (cardToAdd.length > 0) {
+            await Card.insertMany(
+                cardToAdd.map((card) => ({
+                    front: card.front,
+                    back: card.back,
+                    folderId: body.folderId,
+                    createdAt: new Date(),
+                }))
+            )
             cardToAdd.forEach(async (card) => {
                 await Card.create({
                     front: card.front,

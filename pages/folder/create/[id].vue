@@ -4,7 +4,7 @@
             <VButton @click="$router.back()">
                 <IconBack />
             </VButton>
-            <VButton @click="$router.back()">
+            <VButton @click="logoutHandle()">
                 <IconLogout />
             </VButton>
         </div>
@@ -46,6 +46,7 @@ import { useRoute } from 'vue-router'
 import { useSnackbar } from '~/composables/useSnackbar'
 import { IconLogout, IconBack } from '~/assets/icons/'
 import { useI18n } from 'vue-i18n'
+import { logout } from '~/api/auth'
 
 const createEmptyCard = (): ICard => ({
     front: '',
@@ -80,13 +81,26 @@ const save = async () => {
         })
 }
 
+const logoutHandle = () => {
+    try {
+        logout()
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 onMounted(async () => {
-    const { cards: cardsFromDB } = await getCards(route.params.id as string)
-    console.log(cardsFromDB)
-    cards.value =
-        cardsFromDB && cardsFromDB?.length > 0
-            ? [...cardsFromDB]
-            : [createEmptyCard()]
+    try {
+        const { cards: cardsFromDB } = await getCards(route.params.id as string)
+        console.log(cardsFromDB)
+        cards.value =
+            cardsFromDB && cardsFromDB?.length > 0
+                ? [...cardsFromDB]
+                : [createEmptyCard()]
+    } catch (err) {
+        console.error(err)
+        showSnackbar(t('auth.errors.something_went_wrong'), 'error')
+    }
 })
 </script>
 <style scoped>
