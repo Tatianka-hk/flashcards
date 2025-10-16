@@ -61,5 +61,11 @@
         "nameError": "El nombre de la carpeta debe tener al menos 3 caracteres",
         "editSuccess": "Carpeta editada correctamente",
         "createSuccess": "Carpeta creada correctamente"
+    },
+    "card": {
+        "frontLabel": "Término",
+        "backLabel": "Descripción",
+        "save": "Guardar",
+        "saveSuccess": "Tarjetas guardadas correctamente"
     }
 }

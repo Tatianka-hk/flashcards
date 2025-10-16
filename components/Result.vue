@@ -10,7 +10,9 @@
                         class="rotate-180"
                     />
                 </div>
-                <div><Card :card="cards[currentIndex]" /></div>
+                <div>
+                    <Card :card="cards[currentIndex]" />
+                </div>
                 <div class="md:w-[110px] h-[100px] w-[50px]">
                     <Arrow
                         v-show="currentIndex < cards.length - 1"
@@ -36,10 +38,11 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { Card, Arrow, VButton } from '@/ui'
+import { Arrow, VButton } from '@/ui'
 import type { ICard } from '@/types/card'
 import { downloadJSON } from '@/utils/files'
 import { useI18n } from 'vue-i18n'
+import Card from '../ui/Card/Card.vue'
 
 const props = defineProps<{
     cards: ICard[]

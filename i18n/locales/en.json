@@ -61,5 +61,11 @@
         "nameError": "Folder name must be at least 3 characters",
         "editSuccess": "Folder edited successfully",
         "createSuccess": "Folder created successfully"
+    },
+    "card": {
+        "frontLabel": "Termin",
+        "backLabel": "Description",
+        "save": "Save",
+        "saveSuccess": "Cards saved successfully"
     }
 }

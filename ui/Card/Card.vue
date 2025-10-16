@@ -13,7 +13,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import CardSide from './CardSide.vue'
-import type { ICard } from '../../../types/card'
+import type { ICard } from '../../types'
 
 defineProps<{
     card: ICard

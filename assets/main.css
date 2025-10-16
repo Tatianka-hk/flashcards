@@ -14,6 +14,12 @@ body {
     background-color: #f4edf6;
 }
 
+html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
 a,
 .green {
     text-decoration: none;
