@@ -49,7 +49,7 @@
             </div>
             <div class="flex w-full h-full items-center justify-center">
                 <TestResult
-                    :anwers="answers"
+                    :answers="answers"
                     v-if="currentIndex >= cards.length"
                 />
             </div>
@@ -76,7 +76,7 @@ const { showSnackbar } = useSnackbar()
 const cards = ref<ICard[]>([])
 const currentIndex = ref(0)
 const answers = ref<IAnswer[]>([])
-const answer = ref<string>(' ')
+const answer = ref<string>('')
 const isChecked = ref<boolean>(false)
 const isCorrect = ref<boolean>(false)
 const isLoading = ref<boolean>(false)
@@ -89,23 +89,19 @@ const goToNext = () => {
 }
 
 const skipQuestion = () => {
-    if (currentIndex.value < cards.value.length - 1) {
-        answers.value.push({
-            cardId: cards.value[currentIndex.value].id ?? '0',
-            isCorrect: false,
-        })
-        goToNext()
-    }
+    answers.value.push({
+        cardId: cards.value[currentIndex.value]._id ?? '0',
+        isCorrect: false,
+    })
+    goToNext()
 }
 
 const setCorrect = () => {
-    if (currentIndex.value < cards.value.length - 1) {
-        answers.value.push({
-            cardId: cards.value[currentIndex.value].id ?? '0',
-            isCorrect: true,
-        })
-        goToNext()
-    }
+    answers.value.push({
+        cardId: cards.value[currentIndex.value]._id ?? '0',
+        isCorrect: true,
+    })
+    goToNext()
 }
 
 const checkAnswer = () => {
@@ -115,7 +111,7 @@ const checkAnswer = () => {
 
 const nextQuestion = () => {
     answers.value.push({
-        cardId: cards.value[currentIndex.value].id ?? '0',
+        cardId: cards.value[currentIndex.value]._id ?? '0',
         isCorrect: isCorrect.value,
     })
     goToNext()

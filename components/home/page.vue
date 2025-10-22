@@ -35,8 +35,8 @@ import { getCards } from '~/api/cards'
 import CardItem from '../folder/CardItem.vue'
 
 const route = useRoute()
-const folders: IFolder[] = ref([])
-const cards: ICard[] = ref([])
+const folders = ref<IFolder[]>([])
+const cards = ref<ICard[]>([])
 
 const updateFolders = async () => {
     try {

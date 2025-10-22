@@ -24,16 +24,26 @@ const route = useRoute()
 const card = ref<ICard | null>(null)
 
 const getCardData = async () => {
-    const { id } = useRoute().params
-    const data = await getCard(id as string)
-    card.value = data.card
+    const { id } = route.params
+    if (!id || typeof id !== 'string') {
+        router.back()
+        return
+    }
+    try {
+        const data = await getCard(id)
+        card.value = data.card
+    } catch (e) {
+        router.back()
+    }
 }
 
-const handleEditCard = () => {
+const handleEditCard = async () => {
     const { id } = route.params
-    console.log('id')
-    editCard(id as string, card.value as ICard)
-    router.back()
+    if (!id || typeof id !== 'string' || !card.value) return
+    try {
+        await editCard(id, card.value as ICard)
+        router.back()
+    } catch (e) {}
 }
 
 onMounted(() => getCardData())

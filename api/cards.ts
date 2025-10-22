@@ -22,7 +22,9 @@ export function getCards(folderId?: string | null) {
     })
 }
 
-export function getCard(cardId: string): Promise<ICard> {
+export function getCard(
+    cardId: string
+): Promise<{ success: boolean; card: ICard }> {
     const url = `${PREFIX}/${cardId}`
     return apiRequest({
         method: 'GET',

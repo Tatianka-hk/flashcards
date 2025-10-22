@@ -20,7 +20,7 @@
                 {{ result.correctCount }}
             </span>
             <span
-                class="text-base font-julius after:content-[.] after:flex-1 after:border-b after:border-dotted after:border-text after:mx-2 after:translate-y-[2px] text-error"
+                class="text-base font-julius after:content-[''] after:flex-1 after:border-b after:border-dotted after:border-text after:mx-2 after:translate-y-[2px] text-error"
             >
                 Incorrect
             </span>
@@ -39,13 +39,13 @@ import { computed } from 'vue'
 import { IAnswer } from '~/types'
 import VButton from '~/ui/VButton.vue'
 
-const props = defineProps<{ anwers: IAnswer[] }>()
+const props = defineProps<{ answers: IAnswer[] }>()
 
 const result = computed(() => {
     return {
-        all: props.anwers.length,
-        correctCount: props.anwers.filter((answer) => answer.isCorrect).length,
-        inCorrectCount: props.anwers.filter((answer) => !answer.isCorrect)
+        all: props.answers.length,
+        correctCount: props.answers.filter((answer) => answer.isCorrect).length,
+        inCorrectCount: props.answers.filter((answer) => !answer.isCorrect)
             .length,
     }
 })

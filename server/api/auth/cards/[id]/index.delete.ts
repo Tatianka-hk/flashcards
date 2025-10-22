@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
     if (!cardId) {
         throw createError({
             statusCode: 400,
-            statusMessage: 'Missing folder ID',
+            statusMessage: 'Missing card ID',
         })
     }
 
