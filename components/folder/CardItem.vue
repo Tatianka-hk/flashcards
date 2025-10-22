@@ -6,9 +6,8 @@
             {{ card.front }}
         </span>
         <span class="flex gap-5 items-center">
-            <DropDownMenu
-                :folderName="card.front"
-                :folderId="card._id"
+            <DropDownMenuCard
+                :cardId="card._id"
                 :onChanged="() => $emit('changed')"
             />
         </span>
@@ -16,7 +15,7 @@
 </template>
 <script setup lang="ts">
 import { ICard } from '~/types'
-import DropDownMenu from '~/ui/DropDownMenu.vue'
+import DropDownMenuCard from './DropDownMenuCard.vue'
 
 defineProps<{ card: ICard }>()
 defineEmits(['changed'])

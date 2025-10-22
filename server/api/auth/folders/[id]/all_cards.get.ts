@@ -5,7 +5,6 @@ import { Folder } from '~/server/models/Folder'
 
 export default defineEventHandler(async (event) => {
     const folderId: string | undefined = getRouterParam(event, 'id')
-    console.log(folderId)
     try {
         await connectDB()
         const userId = event.context.userId

@@ -5,13 +5,19 @@
             <PersonalInfo />
             <Menu :onChanged="() => updateFolders()" />
         </div>
+        <!-- end menu -->
         <div class="flex flex-col w-full">
-            <!-- end menu -->
             <FolderItem
                 v-for="folder in folders"
                 :key="folder._id"
                 :folder="folder"
                 @changed="() => updateFolders()"
+            />
+            <CardItem
+                v-for="card in cards"
+                :key="card._id"
+                :card="card"
+                @changed="() => updateCards()"
             />
         </div>
     </div>
@@ -24,11 +30,13 @@ import PersonalInfo from './PersonalInfo.vue'
 import Menu from './Menu.vue'
 import { useRoute } from 'vue-router'
 import { useAuth } from '~/composables/useAuth'
-import { navigateTo } from 'nuxt/app'
-import { IFolder } from '~/types'
+import { ICard, IFolder } from '~/types'
+import { getCards } from '~/api/cards'
+import CardItem from '../folder/CardItem.vue'
 
 const route = useRoute()
 const folders: IFolder[] = ref([])
+const cards: ICard[] = ref([])
 
 const updateFolders = async () => {
     try {
@@ -39,10 +47,20 @@ const updateFolders = async () => {
     }
 }
 
+const updateCards = async () => {
+    try {
+        const res = await getCards(route.params.id as string)
+        cards.value = res?.cards ?? res
+    } catch (err) {
+        console.error('Failed to load cards:', err)
+    }
+}
+
 watch(
     () => route.params.id,
     async () => {
         updateFolders()
+        updateCards()
     },
     { immediate: true }
 )

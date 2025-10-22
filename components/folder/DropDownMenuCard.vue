@@ -32,47 +32,29 @@
                 <span class="text-2xl">{{ t('dropdown.delete') }}</span>
             </button>
         </div>
-
-        <FolderDialog
-            v-if="isEditOpen"
-            :folderID="folderId"
-            :folderName="folderName"
-            :closeDialog="closeEditDialog"
-            :isOpen="isEditOpen"
-            mode="Edit"
-            :onChanged="() => emit('changed')"
-        />
     </DropDownMenu>
 </template>
 
 <script setup lang="ts">
 import DropDownMenu from '~/ui/DropDownMenu.vue'
-import FolderDialog from '~/components/folder/FolderDialog.vue'
 import { Icon3Points, IconEdit, IconDelete } from '~/assets/icons'
 import { useI18n } from 'vue-i18n'
-import { useDialog } from '~/composables/useDialog'
-import { deleteFolder } from '~/api/folder'
+import { deleteCard } from '~/api/cards'
+import { navigateTo } from 'nuxt/app'
 
 const props = defineProps<{
-    folderName: string
-    folderId: string
+    cardId: string
 }>()
 const emit = defineEmits(['changed'])
 const { t } = useI18n()
 
-const {
-    openDialog: openEditDialog,
-    closeDialog: closeEditDialog,
-    isOpen: isEditOpen,
-} = useDialog()
-
 const onEdit = () => {
-    openEditDialog()
+    navigateTo(`/card/edit/${props.cardId}`)
 }
 
 const onDelete = async () => {
     try {
-        await deleteFolder(props.folderId)
+        await deleteCard(props.cardId)
         emit('changed')
     } catch (e) {
         console.error(e)
