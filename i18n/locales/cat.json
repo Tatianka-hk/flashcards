@@ -66,6 +66,18 @@
         "frontLabel": "Terme",
         "backLabel": "Descripció",
         "save": "Guardar",
-        "saveSuccess": "Targetes guardades correctament"
+        "saveSuccess": "Targetes guardades correctament",
+        "edit": "Editar la carpeta"
+    },
+    "learn": {
+        "allCards": "Totes les targetes",
+        "Correct": "Correcte",
+        "Incorrect": "Incorrecte",
+        "all": "Totes",
+        "NoCard": "Desgració, la carpeta no te targetes",
+        "wrongAnswer": "Resposta incorrecta",
+        "skip": "Saltar",
+        "setCorrect": "Estableix correcte",
+        "next": "Següent"
     }
 }

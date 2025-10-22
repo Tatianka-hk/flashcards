@@ -66,6 +66,18 @@
         "frontLabel": "Termin",
         "backLabel": "Description",
         "save": "Save",
-        "saveSuccess": "Cards saved successfully"
+        "saveSuccess": "Cards saved successfully",
+        "edit": "Edit card"
+    },
+    "learn": {
+        "allCards": "All cards",
+        "Correct": "Correct",
+        "Incorrect": "Incorrect",
+        "all": "All",
+        "NoCard": " Sorry, Folder doesn't have cards",
+        "wrongAnswer": "Answer isn't correct",
+        "setCorrect": "Set correct",
+        "skip": "Skip",
+        "next": "Next"
     }
 }

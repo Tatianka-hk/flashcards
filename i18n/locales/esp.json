@@ -66,6 +66,18 @@
         "frontLabel": "Término",
         "backLabel": "Descripción",
         "save": "Guardar",
-        "saveSuccess": "Tarjetas guardadas correctamente"
+        "saveSuccess": "Tarjetas guardadas correctamente",
+        "edit": "Editar la carpeta"
+    },
+    "learn": {
+        "allCards": "Todas las tarjetas",
+        "Correct": "Correcto",
+        "Incorrect": "Incorrecto",
+        "all": "Todos",
+        "NoCard": "Lo siento, la carpeta no tiene tarjetas",
+        "wrongAnswer": "Respuesta incorrecta",
+        "skip": "Saltar",
+        "setCorrect": "Establecer como correcto",
+        "next": "Siguiente"
     }
 }

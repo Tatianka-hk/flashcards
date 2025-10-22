@@ -7,12 +7,13 @@
             @update:back="card.back = $event"
         />
         <div class="w-full flex justify-center mt-4">
-            <VButton @click="handleEditCard">Edit</VButton>
+            <VButton @click="handleEditCard">{{ t('card.edit') }}</VButton>
         </div>
     </div>
 </template>
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { getCard, editCard } from '~/api/cards'
 import CardForm from '~/components/CardForm.vue'
@@ -22,6 +23,7 @@ import VButton from '~/ui/VButton.vue'
 const router = useRouter()
 const route = useRoute()
 const card = ref<ICard | null>(null)
+const { t } = useI18n()
 
 const getCardData = async () => {
     const { id } = route.params

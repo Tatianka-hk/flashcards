@@ -11,9 +11,13 @@
                 class="flex items-center justify-center h-full w-full"
                 v-if="!cards"
             >
-                Sorry, Folder doesn't have cards
-                <VButton @click="$router.back()">Back</VButton>
-                <VButton>Add cards</VButton>
+                {{ t('learn.noCards') }}
+                <VButton @click="$router.back()">
+                    {{ t('button.back') }}
+                </VButton>
+                <VButton @click="$router.push(`/folder/create/${folderID}`)">
+                    {{ t('learn.AllCards') }}
+                </VButton>
             </div>
             <div
                 class="flex flex-col items-center gap-[40px]"
@@ -28,22 +32,22 @@
                 />
 
                 <div v-if="!isCorrect && isChecked" class="text-error">
-                    Answer is doesn't correct
+                    {{ t('learn.wrongAnswer') }}
                 </div>
 
                 <div class="flex gap-4">
                     <VButton @click="skipQuestion()" v-if="!isChecked">
-                        Skip
+                        {{ t('learn.skip') }}
                     </VButton>
                     <VButton
                         @click="setCorrect()"
                         v-if="isChecked && !isCorrect"
                     >
-                        Set correct
+                        {{ t('learn.setCorrect') }}
                     </VButton>
                     <VButton @click="checkAnswer()" v-else> Check </VButton>
                     <VButton @click="nextQuestion()" v-if="isChecked">
-                        Next
+                        {{ t('learn.next') }}
                     </VButton>
                 </div>
             </div>
@@ -73,6 +77,7 @@ const route = useRoute()
 const { t } = useI18n()
 const { showSnackbar } = useSnackbar()
 
+const folderID = route.params.id
 const cards = ref<ICard[]>([])
 const currentIndex = ref(0)
 const answers = ref<IAnswer[]>([])
@@ -121,7 +126,6 @@ onMounted(async () => {
     try {
         isLoading.value = true
         getAllCard(route.params.id as string).then((res) => {
-            console.log(res)
             cards.value = res.cards
             isLoading.value = false
         })
