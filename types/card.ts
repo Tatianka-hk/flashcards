@@ -1,5 +1,5 @@
 export interface ICard {
-    id?: string
+    _id?: string
     front: string
     back: string
 }

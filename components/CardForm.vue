@@ -14,8 +14,8 @@
             </span>
             <textarea
                 class="bg-[#f7f1fa] text-text text-base font-julius h-[189px] p-2 resize-none"
-                @input="emit('update:front', front)"
-                v-model="front"
+                @input="emit('update:back', back)"
+                v-model="back"
             />
         </div>
         <div class="flex flex-col gap-4 h-[222px] w-[666px]">
@@ -24,8 +24,8 @@
             </span>
             <textarea
                 class="bg-[#f7f1fa] text-text text-base font-julius h-[189px] p-2 resize-none"
-                @input="emit('update:back', back)"
-                v-model="back"
+                @input="emit('update:front', front)"
+                v-model="front"
             />
         </div>
     </div>

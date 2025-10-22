@@ -35,3 +35,10 @@ export function deleteFolder(folderID: string) {
         url: `${PREFIX}/${encodeURIComponent(folderID)}/delete`,
     })
 }
+
+export function getAllCard(folderId: string) {
+    return apiRequest({
+        method: 'GET',
+        url: `${PREFIX}/${encodeURIComponent(folderId)}/all_cards`,
+    })
+}
