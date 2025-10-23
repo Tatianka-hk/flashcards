@@ -67,7 +67,11 @@
         "backLabel": "Description",
         "save": "Save",
         "saveSuccess": "Cards saved successfully",
-        "edit": "Edit card"
+        "edit": "Edit card",
+        "noCards": "Nothing here yet…",
+        "error": {
+            "empty": "Front and back can't be empty"
+        }
     },
     "learn": {
         "allCards": "All cards",
@@ -79,5 +83,6 @@
         "setCorrect": "Set correct",
         "skip": "Skip",
         "next": "Next"
-    }
+    },
+    "failedToLoad": "Failed to load"
 }

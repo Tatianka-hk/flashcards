@@ -67,7 +67,11 @@
         "backLabel": "Descripció",
         "save": "Guardar",
         "saveSuccess": "Targetes guardades correctament",
-        "edit": "Editar la carpeta"
+        "edit": "Editar targeta",
+        "noCards": "Encara no hi ha targetes",
+        "error": {
+            "empty": "El terme i la descripció no poden estar buits"
+        }
     },
     "learn": {
         "allCards": "Totes les targetes",
@@ -79,5 +83,6 @@
         "skip": "Saltar",
         "setCorrect": "Estableix correcte",
         "next": "Següent"
-    }
+    },
+    "failedToLoad": "No s'ha pogut carregar"
 }

@@ -67,7 +67,11 @@
         "backLabel": "Descripción",
         "save": "Guardar",
         "saveSuccess": "Tarjetas guardadas correctamente",
-        "edit": "Editar la carpeta"
+        "edit": "Editar la tarjeta",
+        "noCards": "Aun no hay tarjetas",
+        "error": {
+            "empty": "El término y la descripción no pueden estar vacíos"
+        }
     },
     "learn": {
         "allCards": "Todas las tarjetas",
@@ -79,5 +83,6 @@
         "skip": "Saltar",
         "setCorrect": "Establecer como correcto",
         "next": "Siguiente"
-    }
+    },
+    "failedToLoad": "No se pudo cargar"
 }

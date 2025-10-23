@@ -9,7 +9,7 @@
         <div class="w-full" v-else>
             <div
                 class="flex items-center justify-center h-full w-full"
-                v-if="!cards"
+                v-if="(cards?.length ?? 0) === 0"
             >
                 {{ t('learn.noCards') }}
                 <VButton @click="$router.back()">
@@ -29,6 +29,7 @@
                     class="bg-blue p-2"
                     v-model="answer"
                     :disabled="isChecked"
+                    @keyup.enter="isChecked ? nextQuestion() : checkAnswer"
                 />
 
                 <div v-if="!isCorrect && isChecked" class="text-error">
@@ -36,17 +37,19 @@
                 </div>
 
                 <div class="flex gap-4">
-                    <VButton @click="skipQuestion()" v-if="!isChecked">
+                    <VButton v-if="!isChecked" @click="skipQuestion">
                         {{ t('learn.skip') }}
                     </VButton>
-                    <VButton
-                        @click="setCorrect()"
-                        v-if="isChecked && !isCorrect"
-                    >
+
+                    <VButton v-if="!isChecked" @click="checkAnswer">
+                        Check
+                    </VButton>
+
+                    <VButton v-if="isChecked && !isCorrect" @click="setCorrect">
                         {{ t('learn.setCorrect') }}
                     </VButton>
-                    <VButton @click="checkAnswer()" v-else> Check </VButton>
-                    <VButton @click="nextQuestion()" v-if="isChecked">
+
+                    <VButton v-if="isChecked" @click="nextQuestion">
                         {{ t('learn.next') }}
                     </VButton>
                 </div>
@@ -61,8 +64,7 @@
     </div>
 </template>
 <script setup lang="ts">
-//don't show front?
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { getAllCard } from '~/api/folder'
@@ -77,7 +79,7 @@ const route = useRoute()
 const { t } = useI18n()
 const { showSnackbar } = useSnackbar()
 
-const folderID = route.params.id
+const folderID = computed(() => route.params.id as string)
 const cards = ref<ICard[]>([])
 const currentIndex = ref(0)
 const answers = ref<IAnswer[]>([])
@@ -110,7 +112,11 @@ const setCorrect = () => {
 }
 
 const checkAnswer = () => {
-    isCorrect.value = cards.value[currentIndex.value].back === answer.value
+    const normalize = (s: string) =>
+        s.normalize('NFKC').trim().replace(/\s+/g, ' ').toLowerCase()
+    isCorrect.value =
+        normalize(cards.value[currentIndex.value].back) ===
+        normalize(answer.value)
     isChecked.value = true
 }
 
@@ -127,11 +133,12 @@ onMounted(async () => {
         isLoading.value = true
         getAllCard(route.params.id as string).then((res) => {
             cards.value = res.cards
-            isLoading.value = false
         })
     } catch (err) {
         console.error(err)
         showSnackbar(t('auth.errors.something_went_wrong'), 'error')
+    } finally {
+        isLoading.value = false
     }
 })
 </script>

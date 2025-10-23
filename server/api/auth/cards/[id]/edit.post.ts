@@ -22,6 +22,11 @@ export default defineEventHandler(async (event) => {
         })
     }
 
+    const userId = (event.context as any).userId
+    if (!userId) {
+        throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
+    }
+
     try {
         await connectDB()
         const card = await Card.findOneAndUpdate(

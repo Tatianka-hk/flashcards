@@ -12,6 +12,12 @@ export default defineEventHandler(async (event) => {
                 statusMessage: 'Unauthorized',
             })
         }
+        if (!cardId) {
+            throw createError({
+                statusCode: 400,
+                statusMessage: 'Missing Card ID',
+            })
+        }
         const card = await Card.findOne({
             _id: cardId,
         })
