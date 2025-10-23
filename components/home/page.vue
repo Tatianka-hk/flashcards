@@ -1,12 +1,16 @@
 <template>
     <div class="flex items-stretch min-h-screen">
         <!-- menu -->
-        <div class="flex flex-col w-[460px] h-[100vh] min-h-screen">
+        <div
+            class="flex flex-col w-[460px] h-[100vh] min-h-screen hidden lg:block"
+        >
             <PersonalInfo />
             <Menu :onChanged="() => updateFolders()" />
         </div>
+        <!-- end menu -->
         <div class="flex flex-col w-full">
-            <!-- end menu -->
+            <MobileTop />
+
             <FolderItem
                 v-for="folder in folders"
                 :key="folder._id"
@@ -20,12 +24,13 @@
 import { onMounted, ref, watch } from 'vue'
 import { getFolders } from '~/api/folder'
 import FolderItem from '../folder/FolderItem.vue'
-import PersonalInfo from './PersonalInfo.vue'
-import Menu from './Menu.vue'
+import { PersonalInfo, MobileTop, Menu } from './'
 import { useRoute } from 'vue-router'
 import { useAuth } from '~/composables/useAuth'
 import { navigateTo } from 'nuxt/app'
 import { IFolder } from '~/types'
+import VButton from '~/ui/VButton.vue'
+import IconLogout from '~/assets/icons/IconLogout.vue'
 
 const route = useRoute()
 const folders: IFolder[] = ref([])
