@@ -21,3 +21,30 @@ export function getCards(folderId?: string | null) {
         url,
     })
 }
+
+export function getCard(
+    cardId: string
+): Promise<{ success: boolean; card: ICard }> {
+    const url = `${PREFIX}/${cardId}`
+    return apiRequest({
+        method: 'GET',
+        url,
+    })
+}
+
+export function editCard(cardId: string, data: ICard) {
+    const url = `${PREFIX}/${cardId}/edit`
+    return apiRequest({
+        method: 'POST',
+        url,
+        data,
+    })
+}
+
+export function deleteCard(cardId: string) {
+    const url = `${PREFIX}/${cardId}`
+    return apiRequest({
+        method: 'DELETE',
+        url,
+    })
+}

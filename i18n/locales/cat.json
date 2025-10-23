@@ -66,6 +66,23 @@
         "frontLabel": "Terme",
         "backLabel": "Descripció",
         "save": "Guardar",
-        "saveSuccess": "Targetes guardades correctament"
-    }
+        "saveSuccess": "Targetes guardades correctament",
+        "edit": "Editar targeta",
+        "noCards": "Encara no hi ha targetes",
+        "error": {
+            "empty": "El terme i la descripció no poden estar buits"
+        }
+    },
+    "learn": {
+        "allCards": "Totes les targetes",
+        "Correct": "Correcte",
+        "Incorrect": "Incorrecte",
+        "all": "Totes",
+        "NoCard": "Desgració, la carpeta no te targetes",
+        "wrongAnswer": "Resposta incorrecta",
+        "skip": "Saltar",
+        "setCorrect": "Estableix correcte",
+        "next": "Següent"
+    },
+    "failedToLoad": "No s'ha pogut carregar"
 }

@@ -4,3 +4,8 @@ export interface IFolder {
     childrenFolders: IFolder[]
     _id: string
 }
+
+export interface IAnswer {
+    cardId: string
+    isCorrect: boolean
+}

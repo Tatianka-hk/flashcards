@@ -10,7 +10,7 @@
         </span>
         <span class="flex gap-5 items-center">
             <IconPlay />
-            <DropDownMenu
+            <DropDownMenuFolder
                 :folderName="folder.name"
                 :folderId="folder._id"
                 :onChanged="() => $emit('changed')"
@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import { IFolder } from '~/types'
 import { IconPlay } from '~/assets/icons'
-import DropDownMenu from '~/ui/DropDownMenu.vue'
+import DropDownMenuFolder from '~/components/folder/DropDownMenuFolder.vue'
 
 defineProps<{ folder: IFolder }>()
 defineEmits(['changed'])

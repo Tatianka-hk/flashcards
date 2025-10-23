@@ -11,6 +11,8 @@
 //     }
 // }
 
+// export type ApiResponse<T> = { data: T , success: boolean} |
+
 class ApiError extends Error {
     status: number
     details?: any
