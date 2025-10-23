@@ -6,10 +6,10 @@
             <span
                 class="text-base font-julius text-text after:content-[''] after:flex-1 after:border-b after:border-dotted after:border-text after:mx-2 after:translate-y-[2px]"
             >
-                {{ t('learn.allCards') }}
+                {{ t('learn.all') }}
             </span>
             <span class="text-base font-julius text-text">
-                {{ t('learn.all') }}
+                {{ result.all }}
             </span>
             <span
                 class="text-base font-julius flex-1 relative text-mint after:content-[''] after:flex-1 after:border-b after:border-dotted after:border-text after:mx-2 after:translate-y-[2px]"
@@ -17,12 +17,12 @@
                 {{ t('learn.Correct') }}</span
             >
             <span class="text-base font-julius text-mint">
-                {{ t('learn.Incorrect') }}
+                {{ result.correctCount }}
             </span>
             <span
                 class="text-base font-julius after:content-[''] after:flex-1 after:border-b after:border-dotted after:border-text after:mx-2 after:translate-y-[2px] text-error"
             >
-                Incorrect
+                {{ t('learn.Incorrect') }}
             </span>
             <span class="text-base font-julius text-error">
                 {{ result.inCorrectCount }}

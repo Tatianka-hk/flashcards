@@ -1,6 +1,6 @@
 <template>
     <div
-        class="border border-rt border-text p-[40px] flex flex-col justify-between h-[100%]"
+        class="border border-rt border-text p-[40px] flex flex-col justify-between h-[calc(100vh-138px)]"
     >
         <div class="flex flex-col gap-4">
             <VButton
@@ -12,6 +12,7 @@
                 <component :is="button.icon" class="h-[36px] w-[36px]" />
                 {{ t(button.label) }}
             </VButton>
+            <LanguageInput />
         </div>
         <div>
             <VButton class="flex items-center gap-5" @click="handleLogout">
@@ -38,6 +39,7 @@ import FolderDialog from '../folder/FolderDialog.vue'
 import { useDialog } from '~/composables/useDialog'
 import { useRoute } from 'vue-router'
 import { logout } from '~/api/auth'
+import LanguageInput from '../LanguageInput.vue'
 
 interface IButton {
     label: string

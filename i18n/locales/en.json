@@ -3,7 +3,8 @@
     "button": {
         "generate": "Generate flashcards",
         "download": "Download file",
-        "back": "Back"
+        "back": "Back",
+        "addCards": "Add cards"
     },
     "message": {
         "limitReached": "You have used the service {count} times",

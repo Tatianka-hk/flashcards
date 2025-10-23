@@ -10,38 +10,43 @@
                 <Icon3Points />
             </button>
         </template>
+        <template #default="{ close }">
+            <div class="overflow-hidden rounded-[10px]" role="none">
+                <button
+                    data-menu-item
+                    class="flex w-full gap-2 items-center justify-between px-4 py-2 border-b border-text hover:text-slate-900 hover:bg-hoverblue focus:outline-none rounded-t-[10px]"
+                    role="menuitem"
+                    @click="
+                        () => {
+                            close()
+                            onEdit()
+                        }
+                    "
+                >
+                    <IconEdit class="w-[24px] h-[24px] min-w-[24px]" />
+                    <span class="text-2xl">{{ t('dropdown.edit') }}</span>
+                </button>
 
-        <div class="overflow-hidden rounded-[10px]" role="none">
-            <button
-                data-menu-item
-                class="flex w-full gap-2 items-center justify-between px-4 py-2 border-b border-text hover:text-slate-900 hover:bg-hoverblue focus:outline-none rounded-t-[10px]"
-                role="menuitem"
-                @click="onEdit"
-            >
-                <IconEdit class="w-[24px] h-[24px] min-w-[24px]" />
-                <span class="text-2xl">{{ t('dropdown.edit') }}</span>
-            </button>
-
-            <button
-                data-menu-item
-                class="flex w-full gap-2 items-center text-rose-600 hover:text-rose-700 px-4 py-2 hover:bg-hoverblue focus:outline-none rounded-b-[10px]"
-                role="menuitem"
-                @click="onDelete"
-            >
-                <IconDelete class="text-rose-600 w-[24px] h-[24px]" />
-                <span class="text-2xl">{{ t('dropdown.delete') }}</span>
-            </button>
-        </div>
-
-        <FolderDialog
-            v-if="isEditOpen"
-            :folderID="folderId"
-            :folderName="folderName"
-            :closeDialog="closeEditDialog"
-            :isOpen="isEditOpen"
-            mode="Edit"
-            :onChanged="() => emit('changed')"
-        />
+                <button
+                    data-menu-item
+                    class="flex w-full gap-2 items-center text-rose-600 hover:text-rose-700 px-4 py-2 hover:bg-hoverblue focus:outline-none rounded-b-[10px]"
+                    role="menuitem"
+                    @click="onDelete"
+                >
+                    <IconDelete class="text-rose-600 w-[24px] h-[24px]" />
+                    <span class="text-2xl">{{ t('dropdown.delete') }}</span>
+                </button>
+            </div>
+            <FolderDialog
+                v-if="isEditOpen"
+                :folderID="folderId"
+                :folderName="folderName"
+                :closeDialog="closeEditDialog"
+                :isOpen="isEditOpen"
+                mode="Edit"
+                :onChanged="() => emit('changed')"
+            />
+        </template>
     </DropDownMenu>
 </template>
 

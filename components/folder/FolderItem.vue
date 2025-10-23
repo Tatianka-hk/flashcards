@@ -9,7 +9,7 @@
             {{ folder.name }}
         </span>
         <span class="flex gap-5 items-center">
-            <IconPlay />
+            <IconPlay @click="PassCards" />
             <DropDownMenuFolder
                 :folderName="folder.name"
                 :folderId="folder._id"
@@ -22,7 +22,12 @@
 import { IFolder } from '~/types'
 import { IconPlay } from '~/assets/icons'
 import DropDownMenuFolder from '~/components/folder/DropDownMenuFolder.vue'
+import { navigateTo } from 'nuxt/app'
 
-defineProps<{ folder: IFolder }>()
+const props = defineProps<{ folder: IFolder }>()
 defineEmits(['changed'])
+
+const PassCards = () => {
+    navigateTo(`/folder/learn/${props.folder?._id}`)
+}
 </script>

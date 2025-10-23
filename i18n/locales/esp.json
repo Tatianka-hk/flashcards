@@ -3,7 +3,8 @@
     "button": {
         "generate": "Generar flashcards",
         "download": "Descargar archivo",
-        "back": "Atrás"
+        "back": "Atrás",
+        "addCards": "Agregar tarjetas"
     },
     "message": {
         "limitReached": "Has utilizado nuestros servicios {count} veces",

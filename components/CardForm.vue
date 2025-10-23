@@ -9,27 +9,29 @@
                 <IconClose class="h-[20px] w-[20px]" />
             </div>
         </div>
-        <div class="flex flex-col gap-4 h-[222px] w-[666px]">
-            <span for="card-front" class="text-2xl font-julius text-text"
-                >{{ t('card.frontLabel') }}
-            </span>
-            <textarea
-                class="bg-[#f7f1fa] text-text text-base font-julius h-[189px] p-2 resize-none"
-                @input="emit('update:front', front)"
-                v-model="front"
-                id="card-front"
-            />
-        </div>
-        <div class="flex flex-col gap-4 h-[222px] w-[666px]">
-            <span for="card-back" class="text-2xl font-julius text-text"
-                >{{ t('card.backLabel') }}
-            </span>
-            <textarea
-                class="bg-[#f7f1fa] text-text text-base font-julius h-[189px] p-2 resize-none"
-                @input="emit('update:front', back)"
-                v-model="back"
-                id="card-back"
-            />
+        <div class="flex flex-col lg:flex-row">
+            <div class="flex flex-col gap-4 h-[222px] lg:w-[666px]">
+                <span for="card-front" class="text-2xl font-julius text-text"
+                    >{{ t('card.frontLabel') }}
+                </span>
+                <textarea
+                    class="bg-[#f7f1fa] text-text text-base font-julius h-[189px] p-2 resize-none"
+                    @input="emit('update:front', front)"
+                    v-model="front"
+                    id="card-front"
+                />
+            </div>
+            <div class="flex flex-col gap-4 h-[222px] lg:w-[666px]">
+                <span for="card-back" class="text-2xl font-julius text-text"
+                    >{{ t('card.backLabel') }}
+                </span>
+                <textarea
+                    class="bg-[#f7f1fa] text-text text-base font-julius h-[189px] p-2 resize-none"
+                    @input="emit('update:front', back)"
+                    v-model="back"
+                    id="card-back"
+                />
+            </div>
         </div>
     </div>
 </template>
