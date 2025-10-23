@@ -2,6 +2,7 @@
     <div class="bg-blue p-[40px] flex gap-[108px] w-fit relative">
         <div class="absolute -top-4 -right-1">
             <div
+                v-if="canDelete"
                 @click="$emit('delete')"
                 class="bg-[#e6d6f5] h-[20px] w-[20px] rounded-full"
             >
@@ -9,23 +10,25 @@
             </div>
         </div>
         <div class="flex flex-col gap-4 h-[222px] w-[666px]">
-            <span class="text-2xl font-julius text-text"
+            <span for="card-front" class="text-2xl font-julius text-text"
                 >{{ t('card.frontLabel') }}
             </span>
             <textarea
                 class="bg-[#f7f1fa] text-text text-base font-julius h-[189px] p-2 resize-none"
                 @input="emit('update:front', front)"
                 v-model="front"
+                id="card-front"
             />
         </div>
         <div class="flex flex-col gap-4 h-[222px] w-[666px]">
-            <span class="text-2xl font-julius text-text"
+            <span for="card-back" class="text-2xl font-julius text-text"
                 >{{ t('card.backLabel') }}
             </span>
             <textarea
                 class="bg-[#f7f1fa] text-text text-base font-julius h-[189px] p-2 resize-none"
-                @input="emit('update:back', back)"
+                @input="emit('update:front', back)"
                 v-model="back"
+                id="card-back"
             />
         </div>
     </div>
@@ -36,11 +39,18 @@ import { useI18n } from 'vue-i18n'
 import IconClose from '~/assets/icons/IconClose.vue'
 import { ICard, IDbCard } from '~/types'
 
-const props = defineProps<{ defCard?: ICard | IDbCard }>()
-const front = ref(
-    props.defCard && props.defCard?.front ? props.defCard?.front : ''
+const props = withDefaults(
+    defineProps<{
+        defCard?: ICard | IDbCard
+        canDelete?: boolean
+    }>(),
+    {
+        canDelete: true,
+    }
 )
-const back = ref(props.defCard?.back || '')
+const front = ref(props.defCard?.front ?? '')
+const back = ref(props.defCard?.back ?? '')
+
 const { t } = useI18n()
 
 const emit = defineEmits<{
