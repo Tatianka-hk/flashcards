@@ -1,11 +1,17 @@
 <template>
     <div class="p-[40px]">
-        <div class="w-full justify-between flex">
-            <VButton @click="$router.back()">
-                <IconBack />
+        <div class="w-full justify-between flex mb-[20px]">
+            <VButton
+                @click="$router.back()"
+                class="w-[42px] h-[42px] flex items-center justify-center"
+            >
+                <IconBack class="w-[24px] h-[24px] min-w-[24px]" />
             </VButton>
-            <VButton @click="logoutHandle()">
-                <IconLogout />
+            <VButton
+                @click="logoutHandle()"
+                class="w-[42px] h-[42px] flex items-center justify-center"
+            >
+                <IconLogout class="w-[24px] h-[24px] min-w-[24px]" />
             </VButton>
         </div>
         <div class="flex flex-col gap-[40px] w-full items-center">
@@ -30,7 +36,7 @@
                 <IconPlus class="h-[36px] w-[36px]" />
             </div>
             <VButton extraClass="!bg-blue" @click="save">{{
-                t('button.save')
+                t('card.save')
             }}</VButton>
         </div>
     </div>

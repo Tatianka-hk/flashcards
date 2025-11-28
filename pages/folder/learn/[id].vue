@@ -7,6 +7,12 @@
             <Loading />
         </div>
         <div class="w-full" v-else>
+            <VButton
+                class="absolute left-4 top-4 w-[42px] h-[42px] flex items-center justify-center !p-0 block lg:hidden"
+                @click="$router.back()"
+            >
+                <IconBack class="h-[24px] w-[24px]" />
+            </VButton>
             <div
                 class="flex items-center justify-center h-full w-full"
                 v-if="(cards?.length ?? 0) === 0"
@@ -54,11 +60,11 @@
                     </VButton>
                 </div>
             </div>
-            <div class="flex w-full h-full items-center justify-center">
-                <TestResult
-                    :answers="answers"
-                    v-if="currentIndex >= cards.length"
-                />
+            <div
+                class="flex w-full h-full items-center justify-center"
+                v-if="currentIndex >= cards.length"
+            >
+                <TestResult :answers="answers" />
             </div>
         </div>
     </div>
@@ -74,6 +80,7 @@ import { IAnswer, ICard } from '~/types'
 import { Loading } from '~/ui'
 import Card from '~/ui/Card/Card.vue'
 import VButton from '~/ui/VButton.vue'
+import { IconBack } from '~/assets/icons'
 
 const route = useRoute()
 const { t } = useI18n()
@@ -86,7 +93,7 @@ const answers = ref<IAnswer[]>([])
 const answer = ref<string>('')
 const isChecked = ref<boolean>(false)
 const isCorrect = ref<boolean>(false)
-const isLoading = ref<boolean>(false)
+const isLoading = ref<boolean>(true)
 
 const goToNext = () => {
     answer.value = ''

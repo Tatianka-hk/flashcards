@@ -2,11 +2,7 @@
     <div
         class="flex w-full items-center justify-end mb-[40px] gap-[20px] pr-[40px] pt-[40px]"
     >
-        <SelectInput
-            :value="locale"
-            :options="langs"
-            @change="changeLang($event)"
-        />
+        <LanguageInput />
         <UserCircle v-if="isAuth" />
         <AuthButtons v-else />
     </div>
@@ -33,11 +29,11 @@ import { FileInput, VButton, MessageItem, UserCircle } from '../ui'
 import Result from '../components/Result.vue'
 import type { ICard } from '../types/card'
 import Loading from '../ui/Loading.vue'
-import SelectInput from '../ui/SelectInput.vue'
-import { MAX_USES, langs } from '../static'
+import { MAX_USES } from '../static'
 import { useI18n } from 'vue-i18n'
 import AuthButtons from '~/components/auth/authButtons.vue'
 import { useAuth } from '~/composables/useAuth'
+import LanguageInput from '~/components/LanguageInput.vue'
 
 const { t } = useI18n()
 const { isAuth } = useAuth()
@@ -50,14 +46,9 @@ const usageCount = ref<number>(
     Number(process.client && localStorage.getItem(usageKey)) || 0
 )
 const isBlocked = computed(() => usageCount.value >= MAX_USES)
-const { locale } = useI18n()
 
 const onChangeFile = (text: string) => {
     fileText.value = text
-}
-
-const changeLang = (val: string) => {
-    locale.value = val
 }
 
 const onClickButton = async () => {

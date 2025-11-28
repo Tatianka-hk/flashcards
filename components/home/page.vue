@@ -1,12 +1,13 @@
 <template>
     <div class="flex items-stretch min-h-screen">
         <!-- menu -->
-        <div class="flex flex-col w-[460px] min-h-dvh">
+        <div class="flex flex-col w-[460px] min-h-dvh lg:block hidden h-full">
             <PersonalInfo />
             <Menu @changed="() => updateFolders()" />
         </div>
         <!-- end menu -->
         <main class="flex flex-col w-full overflow-y-auto">
+            <MobileTop />
             <div v-if="isLoading" class="p-4 opacity-70"><Loading /></div>
             <div
                 v-else-if="error"
@@ -37,6 +38,7 @@
                     {{ t('card.noCards') }}
                 </div>
             </template>
+            <MobileAddButtons :folderId="routeId" />
         </main>
     </div>
 </template>
@@ -44,8 +46,7 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import { getFolders } from '~/api/folder'
 import FolderItem from '../folder/FolderItem.vue'
-import PersonalInfo from './PersonalInfo.vue'
-import Menu from './Menu.vue'
+import { PersonalInfo, Menu, MobileTop, MobileAddButtons } from './'
 import { useRoute } from 'vue-router'
 import { useAuth } from '~/composables/useAuth'
 import { ICard, IFolder } from '~/types'
@@ -53,6 +54,7 @@ import { getCards } from '~/api/cards'
 import CardItem from '../folder/CardItem.vue'
 import { Loading } from '../../ui'
 import { useI18n } from 'vue-i18n'
+import { navigateTo } from 'nuxt/app'
 
 const route = useRoute()
 const folders = ref<IFolder[]>([])
@@ -97,12 +99,4 @@ watch(
     },
     { immediate: true }
 )
-
-onMounted(async () => {
-    const { isAuth } = useAuth()
-    console.log('isAuth', isAuth.value)
-    if (!isAuth.value) {
-        // navigateTo('/')
-    }
-})
 </script>

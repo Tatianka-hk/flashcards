@@ -8,13 +8,15 @@
                 <IconBack class="w-[24px] h-[24px] min-w-[24px]" />
             </VButton>
         </div>
-        <CardForm
-            v-if="card || !isLoading"
-            :defCard="card"
-            @update:front="card.front = $event"
-            @update:back="card.back = $event"
-            :canDelete="false"
-        />
+        <div class="flex justify-center items-center">
+            <CardForm
+                v-if="card || !isLoading"
+                :defCard="card"
+                @update:front="card.front = $event"
+                @update:back="card.back = $event"
+                :canDelete="false"
+            />
+        </div>
         <Loading v-if="isLoading" />
         <div class="w-full flex justify-center mt-4">
             <VButton @click="handleEditCard">{{ t('card.edit') }}</VButton>

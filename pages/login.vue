@@ -1,8 +1,10 @@
 <template>
     <div class="w-full flex flex-col items-center justify-center">
-        <Logo class="mt-[80px] mb-[40px]" />
+        <Logo class="mt-[80px] mb-[40px] mx-auto" />
 
-        <div class="flex flex-col gap-4 mx-auto w-[700px] mb-[40px]">
+        <div
+            class="flex flex-col gap-4 mx-auto w-[80%] lg:w-[700px] mb-[40px] space-y-2"
+        >
             <Field
                 type="email"
                 name="email"
@@ -27,6 +29,7 @@ import { useI18n } from 'vue-i18n'
 import { login } from '~/api/auth'
 import { Field, Logo, VButton } from '~/ui'
 import { useSnackbar } from '~/composables/useSnackbar'
+import { navigateTo } from 'nuxt/app'
 const { showSnackbar } = useSnackbar()
 
 const { t } = useI18n()
@@ -34,15 +37,20 @@ const email = ref('')
 const password = ref('')
 
 const onClick = () => {
-    login({ email: email.value, password: password.value }).catch((err) => {
-        showSnackbar(
-            err instanceof Error && err.message === 'Invalid data'
-                ? t('auth.errors.invalid_credentials')
-                : err.message === 'Too many login attempts. Try again later.'
-                  ? t('auth.errors.too_many_attempts')
-                  : t('auth.errors.something_went_wrong'),
-            'error'
-        )
-    })
+    login({ email: email.value, password: password.value })
+        .then(() => {
+            navigateTo('/home')
+        })
+        .catch((err) => {
+            showSnackbar(
+                err instanceof Error && err.message === 'Invalid data'
+                    ? t('auth.errors.invalid_credentials')
+                    : err.message ===
+                        'Too many login attempts. Try again later.'
+                      ? t('auth.errors.too_many_attempts')
+                      : t('auth.errors.something_went_wrong'),
+                'error'
+            )
+        })
 }
 </script>

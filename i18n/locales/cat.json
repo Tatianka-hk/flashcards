@@ -3,7 +3,8 @@
     "button": {
         "generate": "Generar flashcards",
         "download": "Descarregar fitxer",
-        "back": "Enrere"
+        "back": "Enrere",
+        "addCards": "Afegeix targetes"
     },
     "message": {
         "limitReached": "Has utilitzat els nostres serveis {count} vegades",

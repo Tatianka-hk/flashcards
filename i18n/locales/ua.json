@@ -3,7 +3,8 @@
     "button": {
         "generate": "Зробити флеш-картки",
         "download": "Завантажити файл",
-        "back": "Назад"
+        "back": "Назад",
+        "addCards": "Додати карти"
     },
     "message": {
         "limitReached": "Ви використали наші послуги {count} рази",
