@@ -33,7 +33,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { registerUser } from '~/apiі/auth'
+import { registerUser } from '~/apis/auth'
 import { Field, Logo, VButton } from '~/ui'
 import { useSnackbar } from '../composables/useSnackbar'
 const { showSnackbar } = useSnackbar()
