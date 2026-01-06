@@ -38,7 +38,7 @@ import VButton from '~/ui/VButton.vue'
 import FolderDialog from '../folder/FolderDialog.vue'
 import { useDialog } from '~/composables/useDialog'
 import { useRoute } from 'vue-router'
-import { logout } from '~/api/auth'
+import { logout } from '~/apis/auth'
 import LanguageInput from '../LanguageInput.vue'
 
 interface IButton {

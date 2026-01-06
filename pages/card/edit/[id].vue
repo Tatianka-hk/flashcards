@@ -27,7 +27,7 @@
 import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
-import { getCard, editCard } from '~/api/cards'
+import { getCard, editCard } from '~/apis/cards'
 import CardForm from '~/components/CardForm.vue'
 import { useSnackbar } from '~/composables/useSnackbar'
 import { ICard } from '~/types'

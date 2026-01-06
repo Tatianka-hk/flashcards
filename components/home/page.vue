@@ -44,13 +44,13 @@
 </template>
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
-import { getFolders } from '~/api/folder'
+import { getFolders } from '~/apis/folder'
 import FolderItem from '../folder/FolderItem.vue'
 import { PersonalInfo, Menu, MobileTop, MobileAddButtons } from './'
 import { useRoute } from 'vue-router'
 import { useAuth } from '~/composables/useAuth'
 import { ICard, IFolder } from '~/types'
-import { getCards } from '~/api/cards'
+import { getCards } from '~/apis/cards'
 import CardItem from '../folder/CardItem.vue'
 import { Loading } from '../../ui'
 import { useI18n } from 'vue-i18n'

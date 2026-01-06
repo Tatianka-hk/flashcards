@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { login } from '~/api/auth'
+import { login } from '~/apis/auth'
 import { Field, Logo, VButton } from '~/ui'
 import { useSnackbar } from '~/composables/useSnackbar'
 import { navigateTo } from 'nuxt/app'

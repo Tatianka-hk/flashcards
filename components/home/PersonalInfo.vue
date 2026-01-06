@@ -8,7 +8,7 @@
 </template>
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { getEmail } from '~/api/auth'
+import { getEmail } from '~/apis/auth'
 import { UserCircle, Loading } from '~/ui'
 
 const email = ref('')

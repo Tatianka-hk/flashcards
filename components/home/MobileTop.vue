@@ -23,7 +23,7 @@
 </template>
 <script setup lang="ts">
 import { IconLogout } from '~/assets/icons'
-import { logout } from '~/api/auth'
+import { logout } from '~/apis/auth'
 import { VButton } from '~/ui'
 import IconBack from '~/assets/icons/IconBack.vue'
 

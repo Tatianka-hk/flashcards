@@ -56,7 +56,7 @@ import FolderDialog from '~/components/folder/FolderDialog.vue'
 import { Icon3Points, IconEdit, IconDelete } from '~/assets/icons'
 import { useI18n } from 'vue-i18n'
 import { useDialog } from '~/composables/useDialog'
-import { deleteFolder } from '~/api/folder'
+import { deleteFolder } from '~/apis/folder'
 
 const props = defineProps<{
     folderName: string

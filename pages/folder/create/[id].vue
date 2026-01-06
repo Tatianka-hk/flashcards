@@ -47,12 +47,12 @@ import CardForm from '~/components/CardForm.vue'
 import { ICard, IDbCard } from '~/types'
 import { IconPlus } from '../../../assets/icons'
 import VButton from '~/ui/VButton.vue'
-import { getCards, saveCards } from '~/api/cards'
+import { getCards, saveCards } from '~/apis/cards'
 import { useRoute } from 'vue-router'
 import { useSnackbar } from '~/composables/useSnackbar'
 import { IconLogout, IconBack } from '~/assets/icons/'
 import { useI18n } from 'vue-i18n'
-import { logout } from '~/api/auth'
+import { logout } from '~/apis/auth'
 
 const createEmptyCard = (): ICard => ({
     front: '',

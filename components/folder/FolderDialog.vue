@@ -18,7 +18,7 @@ import { Dialog, Field, VButton } from '~/ui'
 import { ref } from 'vue'
 import { useSnackbar } from '~/composables/useSnackbar'
 import { useI18n } from 'vue-i18n'
-import { addFolder, editFolder } from '~/api/folder'
+import { addFolder, editFolder } from '~/apis/folder'
 
 const props = defineProps<{
     isOpen: boolean

@@ -73,7 +73,7 @@
 import { onMounted, ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
-import { getAllCard } from '~/api/folder'
+import { getAllCard } from '~/apis/folder'
 import TestResult from '~/components/learn/TestResult.vue'
 import { useSnackbar } from '~/composables/useSnackbar'
 import { IAnswer, ICard } from '~/types'
