@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
 
     const { visited } = limitLoginAttempts(event)
 
-    if (visited >= 10) {
+    if (visited >= 30) {
         throw createError({
             statusCode: 429,
             statusMessage: 'Too many login attempts. Try again later.',
