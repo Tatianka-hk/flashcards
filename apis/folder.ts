@@ -1,4 +1,4 @@
-import { apiRequest } from './apis'
+import { apiRequest } from './api'
 
 const PREFIX = '/auth/folders'
 
