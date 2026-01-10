@@ -30,6 +30,7 @@ import { login } from '~/apis/auth'
 import { Field, Logo, VButton } from '~/ui'
 import { useSnackbar } from '~/composables/useSnackbar'
 import { navigateTo } from 'nuxt/app'
+import { useAuth } from '~/composables/useAuth'
 const { showSnackbar } = useSnackbar()
 
 const { t } = useI18n()
@@ -38,8 +39,12 @@ const password = ref('')
 
 const onClick = () => {
     login({ email: email.value, password: password.value })
+        .then(async() => {
+            const { fetchAuth } = useAuth();
+            await fetchAuth();
+        })
         .then(() => {
-            navigateTo('/home')
+            navigateTo('/home');
         })
         .catch((err) => {
             showSnackbar(

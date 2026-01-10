@@ -33,7 +33,9 @@
             "password_mismatch": "Les contrasenyes no coincideixen.",
             "invalid_credentials": "Correu electrònic o contrasenya incorrectes.",
             "too_many_attempts": "Massa intents. Torna-ho a provar més tard.",
-            "something_went_wrong": "Alguna cosa ha anat malament."
+            "something_went_wrong": "Alguna cosa ha anat malament.",
+            "password_invalid": "La contrasenya ha de tenir almenys una lletra i una cifra.",
+            "password_too_short": "La contrasenya ha de tenir almenys 6 caracters."
         },
         "success": {
             "signup": "El compte s'ha creat correctament.",

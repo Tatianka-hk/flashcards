@@ -33,7 +33,9 @@
             "password_mismatch": "Las contraseñas no coinciden.",
             "invalid_credentials": "Correo electrónico o contraseña incorrectos.",
             "too_many_attempts": "Demasiados intentos. Inténtalo más tarde.",
-            "something_went_wrong": "Algo salió mal."
+            "something_went_wrong": "Algo salió mal.",
+            "password_invalid": "La contraseña debe tener al menos una letra y una cifra.",
+            "password_too_short": "La contraseña debe tener al menos 6 caracteres."
         },
         "success": {
             "signup": "La cuenta ha sido creada.",
