@@ -54,7 +54,8 @@
             "addFolder": "Añadir carpeta",
             "addFlashcard": "Añadir tarjeta",
             "logout": "Cerrar sesión",
-            "generate": "Generar tarjetas"
+            "generate": "Generar tarjetas",
+            "studyFlashcards": "Estudiar tarjetas"
         }
     },
     "folder": {
@@ -78,8 +79,8 @@
     },
     "learn": {
         "allCards": "Todas las tarjetas",
-        "Correct": "Correcto",
-        "Incorrect": "Incorrecto",
+        "correct": "Correcto",
+        "incorrect": "Incorrecto",
         "all": "Todos",
         "NoCard": "Lo siento, la carpeta no tiene tarjetas",
         "wrongAnswer": "Respuesta incorrecta",

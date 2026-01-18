@@ -124,6 +124,7 @@ const checkAnswer = () => {
     isCorrect.value =
         normalize(cards.value[currentIndex.value].back) ===
         normalize(answer.value)
+    if (isCorrect.value) showSnackbar(t('learn.correct'))
     isChecked.value = true
 }
 

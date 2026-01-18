@@ -31,7 +31,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { VueElement } from 'vue'
+import { VueElement, computed } from 'vue'
 import { IconAddFolder, IconPlus, IconBase, IconLogout } from '~/assets/icons'
 import { useI18n } from 'vue-i18n'
 import VButton from '~/ui/VButton.vue'
@@ -40,12 +40,19 @@ import { useDialog } from '~/composables/useDialog'
 import { useRoute } from 'vue-router'
 import { logout } from '~/apis/auth'
 import LanguageInput from '../LanguageInput.vue'
+import IconPlay from '~/assets/icons/IconPlay.vue'
 
 interface IButton {
     label: string
     icon: VueElement
     onClick: () => void
+    disabled: boolean
 }
+
+interface IProps {
+    hasCards: boolean
+}
+
 const emit = defineEmits(['changed'])
 
 const { t } = useI18n()
@@ -53,25 +60,53 @@ const { isOpen, openDialog, closeDialog } = useDialog()
 const route = useRoute()
 const folderID: string = route.params.id ?? ''
 
-const buttons: IButton[] = [
-    {
-        label: 'menu.buttons.addFolder',
-        icon: IconAddFolder,
-        onClick: openDialog,
-    },
-    {
-        label: 'menu.buttons.addFlashcard',
-        icon: IconPlus,
-        onClick: () => {},
-    },
-    {
-        label: 'menu.buttons.generate',
-        icon: IconBase,
-        onClick: () => {
-            window.location.href = '/'
+const props = defineProps<IProps>()
+
+const buttons = computed<IButton[]>(() => {
+    const baseButtons: IButton[] = [
+        {
+            label: 'menu.buttons.addFolder',
+            icon: IconAddFolder,
+            onClick: openDialog,
+            disabled: false,
         },
-    },
-]
+        {
+            label: 'menu.buttons.generate',
+            icon: IconBase,
+            onClick: () => {
+                window.location.href = '/'
+            },
+            disabled: false,
+        },
+    ]
+
+    if (route.path !== '/home') {
+        baseButtons.splice(
+            1,
+            0,
+            ...[
+                {
+                    label: 'menu.buttons.addFlashcard',
+                    icon: IconPlus,
+                    onClick: () => {
+                        window.location.href = `/folder/create/${folderID}`
+                    },
+                    disabled: false,
+                },
+                {
+                    label: 'menu.buttons.studyFlashcards',
+                    icon: IconPlay,
+                    onClick: () => {
+                        window.location.href = `/folder/learn/${folderID}`
+                    },
+                    disabled: !props.hasCards,
+                },
+            ]
+        )
+    }
+
+    return baseButtons
+})
 
 const handleLogout = () => {
     logout()

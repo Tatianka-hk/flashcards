@@ -4,7 +4,7 @@
         id="snackbar"
         :class="[
             'fixed bottom-5 left-1/2 transform -translate-x-1/2 text-white px-5 py-3 rounded z-[1000] transition-all duration-300',
-            message.type === 'success' && 'bg-success',
+            message.type === 'success' && 'bg-mint',
             message.type === 'error' && 'bg-error',
         ]"
     >

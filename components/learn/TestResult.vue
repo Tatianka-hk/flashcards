@@ -14,7 +14,7 @@
             <span
                 class="text-base font-julius flex-1 relative text-mint after:content-[''] after:flex-1 after:border-b after:border-dotted after:border-text after:mx-2 after:translate-y-[2px]"
             >
-                {{ t('learn.Correct') }}</span
+                {{ t('learn.correct') }}</span
             >
             <span class="text-base font-julius text-mint">
                 {{ result.correctCount }}
@@ -22,7 +22,7 @@
             <span
                 class="text-base font-julius after:content-[''] after:flex-1 after:border-b after:border-dotted after:border-text after:mx-2 after:translate-y-[2px] text-error"
             >
-                {{ t('learn.Incorrect') }}
+                {{ t('learn.incorrect') }}
             </span>
             <span class="text-base font-julius text-error">
                 {{ result.inCorrectCount }}

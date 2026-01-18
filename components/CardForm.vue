@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-blue p-[40px] flex gap-[108px] w-fit relative">
+    <div class="bg-blue p-[40px] flex gap-[108px] w-full relative">
         <div class="absolute -top-4 -right-1">
             <div
                 v-if="canDelete"
@@ -9,8 +9,8 @@
                 <IconClose class="h-[20px] w-[20px]" />
             </div>
         </div>
-        <div class="flex flex-col lg:flex-row">
-            <div class="flex flex-col gap-4 h-[222px] lg:w-[666px]">
+        <div class="flex flex-col lg:flex-row gap-4 w-full">
+            <div class="flex flex-col gap-4 h-[222px] flex-1">
                 <span for="card-front" class="text-2xl font-julius text-text"
                     >{{ t('card.frontLabel') }}
                 </span>
@@ -21,13 +21,13 @@
                     id="card-front"
                 />
             </div>
-            <div class="flex flex-col gap-4 h-[222px] lg:w-[666px]">
+            <div class="flex flex-col gap-4 h-[222px] flex-1">
                 <span for="card-back" class="text-2xl font-julius text-text"
                     >{{ t('card.backLabel') }}
                 </span>
                 <textarea
                     class="bg-[#f7f1fa] text-text text-base font-julius h-[189px] p-2 resize-none"
-                    @input="emit('update:front', back)"
+                    @input="emit('update:back', back)"
                     v-model="back"
                     id="card-back"
                 />

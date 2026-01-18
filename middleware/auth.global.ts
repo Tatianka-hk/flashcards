@@ -8,8 +8,14 @@ export default defineNuxtRouteMiddleware((to) => {
         return
     }
 
-    const { isAuth } = useAuth();
-    if (!isAuth.value) {
-        return navigateTo('/login');
-    }
+    const { isAuth, fetchAuth } = useAuth()
+    fetchAuth()
+        .then(() => {
+            if (!isAuth.value) {
+                return navigateTo('/login')
+            }
+        })
+        .catch(() => {
+            return navigateTo('/login')
+        }) // fix it (delete it)
 })
