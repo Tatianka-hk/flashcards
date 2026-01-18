@@ -1,5 +1,11 @@
 <template>
-    <div class="flip-container" @click="onClick">
+    <div class="flip-container relative" @click="onClick">
+        <div
+            class="flex justify-end w-full absolute top-3 z-10 pr-2"
+            v-if="canListen"
+        >
+            <SoundButton :value="card.front" :lang="lang" />
+        </div>
         <div class="flip-card" :class="{ flipped: !frontSide }">
             <div class="flip-front">
                 <CardSide :text="card.front" />
@@ -15,13 +21,24 @@ import { ref } from 'vue'
 import CardSide from './CardSide.vue'
 import type { ICard } from '../../types'
 
-defineProps<{
-    card: ICard
-}>()
+const props = withDefaults(
+    defineProps<{
+        card: ICard
+        canSeeBack?: boolean
+        lang?: string
+        canListen?: boolean
+    }>(),
+    {
+        canSeeBack: true,
+        lang: 'en',
+        canListen: false,
+    }
+)
 
 const frontSide = ref(true)
 
 const onClick = () => {
+    if (!props.canSeeBack) return
     frontSide.value = !frontSide.value
 }
 </script>

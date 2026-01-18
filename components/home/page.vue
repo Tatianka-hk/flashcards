@@ -3,7 +3,10 @@
         <!-- menu -->
         <div class="flex flex-col w-[460px] min-h-dvh lg:block hidden h-full">
             <PersonalInfo />
-            <Menu @changed="() => updateFolders()" />
+            <Menu
+                @changed="() => updateFolders()"
+                :hasCards="cards?.length > 0"
+            />
         </div>
         <!-- end menu -->
         <main class="flex flex-col w-full overflow-y-auto">
@@ -29,6 +32,7 @@
                     :key="card._id"
                     :card="card"
                     @changed="updateCards"
+                    :lang="lang"
                 />
 
                 <div
@@ -44,7 +48,7 @@
 </template>
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
-import { getFolders } from '~/apis/folder'
+import { getFolders, getLang } from '~/apis/folder'
 import FolderItem from '../folder/FolderItem.vue'
 import { PersonalInfo, Menu, MobileTop, MobileAddButtons } from './'
 import { useRoute } from 'vue-router'
@@ -63,6 +67,7 @@ const isLoading = ref(false)
 const error = ref<string | null>(null)
 const { t } = useI18n()
 const routeId = computed(() => (route.params.id as string) || '')
+const lang = ref<string>('en')
 
 const updateFolders = async () => {
     try {
@@ -92,10 +97,22 @@ const updateCards = async () => {
     }
 }
 
+const updateLang = async () => {
+    try {
+        const res = getLang(route.params.id as string)
+        lang.value = res.lang
+    } catch (err) {
+        console.error('Failed to load lang:', err)
+        error.value = 'lang'
+    } finally {
+        isLoading.value = false
+    }
+}
+
 watch(
     () => routeId.value,
     async () => {
-        await Promise.all([updateFolders(), updateCards()])
+        await Promise.all([updateFolders(), updateCards(), updateLang()])
     },
     { immediate: true }
 )

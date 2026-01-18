@@ -29,7 +29,13 @@
                 class="flex flex-col items-center gap-[40px]"
                 v-else-if="currentIndex < cards.length"
             >
-                <Card :card="cards[currentIndex]" v-if="cards.length > 0" />
+                <Card
+                    :card="cards[currentIndex]"
+                    v-if="cards.length > 0"
+                    :canListen="true"
+                    :lang="lang"
+                    :canSeeBack="false"
+                />
 
                 <input
                     class="bg-blue p-2"
@@ -73,7 +79,7 @@
 import { onMounted, ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
-import { getAllCard } from '~/apis/folder'
+import { getAllCard, getLang } from '~/apis/folder'
 import TestResult from '~/components/learn/TestResult.vue'
 import { useSnackbar } from '~/composables/useSnackbar'
 import { IAnswer, ICard } from '~/types'
@@ -94,6 +100,7 @@ const answer = ref<string>('')
 const isChecked = ref<boolean>(false)
 const isCorrect = ref<boolean>(false)
 const isLoading = ref<boolean>(true)
+const lang = ref<string>('en')
 
 const goToNext = () => {
     answer.value = ''
@@ -142,6 +149,8 @@ onMounted(async () => {
         getAllCard(route.params.id as string).then((res) => {
             cards.value = res.cards
         })
+        const res = getLang(route.params.id as string)
+        lang.value = res.lang
     } catch (err) {
         console.error(err)
         showSnackbar(t('auth.errors.something_went_wrong'), 'error')

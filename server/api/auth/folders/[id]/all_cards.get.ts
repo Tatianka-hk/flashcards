@@ -72,7 +72,6 @@ export default defineEventHandler(async (event) => {
                 },
             },
         ])
-        console.log(res, 'cards: ', res?.[0]?.cards)
         return { success: true, cards: res?.[0]?.cards ?? [] }
     } catch (err: any) {
         throw createError({

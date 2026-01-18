@@ -14,6 +14,7 @@
                 :folderName="folder.name"
                 :folderId="folder._id"
                 :onChanged="() => $emit('changed')"
+                :folderLang="folder.lang"
             />
         </span>
     </div>
