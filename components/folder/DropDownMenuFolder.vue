@@ -43,6 +43,7 @@
                 :folderName="folderName"
                 :closeDialog="closeEditDialog"
                 :isOpen="isEditOpen"
+                :lang="folderLang"
                 mode="Edit"
                 :onChanged="() => emit('changed')"
             />
@@ -61,6 +62,7 @@ import { deleteFolder } from '~/apis/folder'
 const props = defineProps<{
     folderName: string
     folderId: string
+    folderLang: string
 }>()
 const emit = defineEmits(['changed'])
 const { t } = useI18n()

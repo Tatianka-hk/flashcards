@@ -6,9 +6,8 @@
     />
 </template>
 <script setup lang="ts">
-import { langs } from '~/static'
+import { langs, STORAGE_KEY } from '~/static'
 import { useI18n } from 'vue-i18n'
-import { STORAGE_KEY } from '~/utils/static'
 
 const { locale } = useI18n()
 const changeLang = (val: string) => {

@@ -4,6 +4,7 @@ import { Folder } from '~/server/models/Folder'
 export default defineEventHandler(async (event) => {
     const body = await readBody<{
         name: string
+        lang: string
     }>(event)
 
     const folderID: string | undefined = getRouterParam(event, 'id')
@@ -25,7 +26,7 @@ export default defineEventHandler(async (event) => {
         await connectDB()
         const folder = await Folder.findOneAndUpdate(
             { _id: folderID },
-            { $set: { name: body.name } }
+            { $set: { name: body.name, lang: body.lang } }
         )
         if (!folder) {
             throw createError({

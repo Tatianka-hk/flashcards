@@ -2,7 +2,11 @@ import { apiRequest } from './api'
 
 const PREFIX = '/auth/folders'
 
-export function addFolder(data: { name: string; parentId?: string }) {
+export function addFolder(data: {
+    name: string
+    parentId?: string
+    lang: string
+}) {
     return apiRequest({
         method: 'POST',
         url: `${PREFIX}/add`,
@@ -21,11 +25,11 @@ export function getFolders(parentId?: string | null) {
     })
 }
 
-export function editFolder(folderID: string, name: string) {
+export function editFolder(folderID: string, name: string, lang: string) {
     return apiRequest({
         method: 'PUT',
         url: `${PREFIX}/${encodeURIComponent(folderID)}/edit`,
-        data: { name: name },
+        data: { name: name, lang: lang },
     })
 }
 
@@ -40,5 +44,12 @@ export function getAllCard(folderId: string) {
     return apiRequest({
         method: 'GET',
         url: `${PREFIX}/${encodeURIComponent(folderId)}/all_cards`,
+    })
+}
+
+export function getLang(folderId: string) {
+    return apiRequest({
+        method: 'GET',
+        url: `${PREFIX}/${encodeURIComponent(folderId)}/lang`,
     })
 }

@@ -3,6 +3,7 @@ export interface IFolder {
     parentId: string
     childrenFolders: IFolder[]
     _id: string
+    lang: string
 }
 
 export interface IAnswer {

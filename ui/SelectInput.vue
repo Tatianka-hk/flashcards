@@ -1,18 +1,28 @@
 <template>
-    <div class="relative text-text text-base bg-primary rounded-lg w-fit">
-        <div class="flex gap-1 py-4 px-4 cursor-pointer" @click="onClick">
+    <div
+        class="relative text-text text-base bg-primary rounded-lg w-fit h-full"
+    >
+        <div
+            class="flex gap-1 py-2 px-4 cursor-pointer items-center justify-between"
+            @click="onClick"
+        >
             {{ findSelectedOption(value) }}
             <IconChevronUp v-if="opened" />
             <IconChevronDown v-else />
         </div>
         <ul
             v-if="opened"
-            class="absolute top-full left-0 z-10 mt-1 w-full bg-white border border-text rounded-lg shadow-md"
+            class="absolute top-full left-0 z-10 mt-1 w-full bg-white border border-text rounded-lg shadow-md max-h-[200px] overflow-y-scroll"
         >
             <li
                 v-for="option in options"
                 :key="option.value"
-                class="py-2 px-4 cursor-pointer bg-primary hover:bg-thirty"
+                :class="[
+                    'py-2 px-4 cursor-pointer',
+                    dialogMode
+                        ? 'bg-blue hover:bg-[#cfdae6]'
+                        : ' bg-primary hover:bg-thirty',
+                ]"
                 @click="onOptionClick(option.value)"
             >
                 {{ option.label }}
@@ -32,12 +42,15 @@ type OptionType = {
 interface PropsType {
     options: OptionType[]
     value: valueType
+    dialogMode?: boolean
 }
 const emit = defineEmits<{
     (e: 'change', val: valueType): void
 }>()
 
-const props = defineProps<PropsType>()
+const props = withDefaults(defineProps<PropsType>(), {
+    dialogMode: false,
+})
 
 const opened = ref<boolean>(false) //interesting
 

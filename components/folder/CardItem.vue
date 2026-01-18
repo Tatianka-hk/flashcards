@@ -6,6 +6,7 @@
             {{ card.front }}
         </span>
         <span class="flex gap-5 items-center">
+            <SoundButton :value="card.front" :lang="lang" />
             <DropDownMenuCard
                 :cardId="card._id"
                 :onChanged="() => $emit('changed')"
@@ -17,6 +18,6 @@
 import { ICard } from '~/types'
 import DropDownMenuCard from './DropDownMenuCard.vue'
 
-defineProps<{ card: ICard }>()
+defineProps<{ card: ICard; lang: string }>()
 defineEmits(['changed'])
 </script>

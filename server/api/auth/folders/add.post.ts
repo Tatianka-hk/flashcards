@@ -5,6 +5,7 @@ export default defineEventHandler(async (event) => {
     const body = await readBody<{
         name: string
         parentId?: string
+        lang: string
     }>(event)
 
     if (!body.name) {
@@ -19,8 +20,12 @@ export default defineEventHandler(async (event) => {
         const userId = event.context.userId
         Folder.insertOne({
             name: body.name,
-            parentId: body?.parentId && body?.parentId?.length > 0 ? body.parentId : null,
+            parentId:
+                body?.parentId && body?.parentId?.length > 0
+                    ? body.parentId
+                    : null,
             userId: userId,
+            lang: body.lang,
         })
         return { success: true }
     } catch (err: any) {
