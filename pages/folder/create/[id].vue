@@ -70,7 +70,6 @@ const handleAddClick = () => {
 }
 
 const deleteHandler = (index: number) => {
-    console.log(index)
     cards.value = cards.value.filter((_, i) => i !== index)
 }
 
@@ -98,7 +97,6 @@ const logoutHandle = () => {
 onMounted(async () => {
     try {
         const { cards: cardsFromDB } = await getCards(route.params.id as string)
-        console.log(cardsFromDB)
         cards.value =
             cardsFromDB && cardsFromDB?.length > 0
                 ? [...cardsFromDB]

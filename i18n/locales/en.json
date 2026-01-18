@@ -54,7 +54,8 @@
             "addFolder": "Add folder",
             "addFlashcard": "Add flashcard",
             "logout": "Logout",
-            "generate": "Generate flashcards"
+            "generate": "Generate flashcards",
+            "studyFlashcards": "Study flashcards"
         }
     },
     "folder": {
@@ -78,8 +79,8 @@
     },
     "learn": {
         "allCards": "All cards",
-        "Correct": "Correct",
-        "Incorrect": "Incorrect",
+        "correct": "Correct",
+        "incorrect": "Incorrect",
         "all": "All",
         "NoCard": " Sorry, Folder doesn't have cards",
         "wrongAnswer": "Answer isn't correct",

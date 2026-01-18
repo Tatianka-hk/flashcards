@@ -37,7 +37,6 @@ const emit = defineEmits(['changed'])
 const { isOpen, openDialog, closeDialog } = useDialog()
 
 const addCard = () => {
-    console.log(props.folderId)
     navigateTo(`/folder/create/${props.folderId}`)
 }
 </script>

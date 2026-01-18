@@ -54,7 +54,8 @@
             "addFolder": "Afegir una carpeta",
             "addFlashcard": "Afegir flashcard",
             "logout": "Tancar sessió",
-            "generate": "Generar flashcards"
+            "generate": "Generar flashcards",
+            "studyFlashcards": "Estudiar flashcards"
         }
     },
     "folder": {
@@ -78,8 +79,8 @@
     },
     "learn": {
         "allCards": "Totes les targetes",
-        "Correct": "Correcte",
-        "Incorrect": "Incorrecte",
+        "correct": "Correcte",
+        "incorrect": "Incorrecte",
         "all": "Totes",
         "NoCard": "Desgració, la carpeta no te targetes",
         "wrongAnswer": "Resposta incorrecta",

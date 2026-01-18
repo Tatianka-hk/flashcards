@@ -1,7 +1,7 @@
 import { ICard, IDbCard } from '~/types'
 import connectDB from '../../../utils/db'
 import { Card } from '~/server/models/Card'
-
+// треба подумати чи щоб при створенні карток на сторінці мають бути картки що вже є чи немає
 export default defineEventHandler(async (event) => {
     const body = await readBody<{
         folderId: string
@@ -59,14 +59,14 @@ export default defineEventHandler(async (event) => {
             (card) => !cardsExist.find((c) => c._id === card._id)
         )
         if (cardToAdd.length > 0) {
-            await Card.insertMany(
-                cardToAdd.map((card) => ({
-                    front: card.front,
-                    back: card.back,
-                    folderId: body.folderId,
-                    createdAt: new Date(),
-                }))
-            )
+            // await Card.insertMany(
+            //     cardToAdd.map((card) => ({
+            //         front: card.front,
+            //         back: card.back,
+            //         folderId: body.folderId,
+            //         createdAt: new Date(),
+            //     }))
+            // )
             cardToAdd.forEach(async (card) => {
                 await Card.create({
                     front: card.front,

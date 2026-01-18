@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
         const userId = event.context.userId
         Folder.insertOne({
             name: body.name,
-            parentId: body?.parentId ?? null,
+            parentId: body?.parentId && body?.parentId?.length > 0 ? body.parentId : null,
             userId: userId,
         })
         return { success: true }
