@@ -4,11 +4,13 @@
         "generate": "Generar flashcards",
         "download": "Descargar archivo",
         "back": "Atrás",
-        "addCards": "Agregar tarjetas"
+        "addCards": "Agregar tarjetas",
+        "saveInFolder": "Guardar en carpeta"
     },
     "message": {
         "limitReached": "Has utilizado nuestros servicios {count} veces",
-        "generateCardError": "Error al generar las tarjetas de memoria"
+        "generateCardError": "Error al generar las tarjetas de memoria",
+        "userIsntAuth": "Para guardar tarjetas de memoria debes iniciar sesión"
     },
     "file": {
         "noFile": "Por favor, sube un archivo PDF",
