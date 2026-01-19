@@ -53,10 +53,3 @@ export function getLang(folderId: string) {
         url: `${PREFIX}/${encodeURIComponent(folderId)}/lang`,
     })
 }
-
-export function getParentFolder(folderId: string) {
-    return apiRequest({
-        method: 'GET',
-        url: `${PREFIX}/${encodeURIComponent(folderId)}/parent`,
-    })
-}

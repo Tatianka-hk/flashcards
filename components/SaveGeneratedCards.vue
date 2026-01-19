@@ -1,11 +1,6 @@
 <template>
     <Dialog
-        :onClose="
-            () => {
-                console.log('close')
-                closeDialog()
-            }
-        "
+        :onClose="closeDialog"
         :isOpen="isOpen"
         mode="error"
         classString="min-w-[200px] !px-[20px]"
