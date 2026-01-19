@@ -20,6 +20,38 @@
             </div>
 
             <template v-else>
+                <!-- BULK ACTION BAR -->
+                <div
+                    v-if="selectedCardIds.length"
+                    class="sticky top-0 z-10 backdrop-blur border-b border-slate-200 px-4 py-3 flex items-center justify-between"
+                >
+                    <div class="text-sm text-slate-700">
+                        {{ t('folder.selected') }}:
+                        <b>{{ selectedCardIds.length }}</b>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <button
+                            class="px-3 py-2 rounded-lg border border-slate-300 hover:bg-slate-50 text-sm"
+                            @click="clearSelection"
+                        >
+                            {{ t('folder.cancel') }}
+                        </button>
+
+                        <IconCopy
+                            class="cursor-pointer text-read hover:text-slate-600"
+                            @click="openDialog"
+                        />
+                    </div>
+                    <SelectFolderDialog
+                        v-if="isOpen"
+                        :cards="selectedCards"
+                        @changed="onCopiedFolder"
+                        :lang="lang"
+                        :onClose="closeDialog"
+                        :isOpen="isOpen"
+                    />
+                </div>
                 <FolderItem
                     v-for="folder in folders"
                     :key="folder._id"
@@ -33,6 +65,8 @@
                     :card="card"
                     @changed="updateCards"
                     :lang="lang"
+                    :selected="selectedCardIds.includes(card._id)"
+                    @toggleSelect="toggleSelect(card._id, $event)"
                 />
 
                 <div
@@ -47,27 +81,46 @@
     </div>
 </template>
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { getFolders, getLang } from '~/apis/folder'
 import FolderItem from '../folder/FolderItem.vue'
 import { PersonalInfo, Menu, MobileTop, MobileAddButtons } from './'
 import { useRoute } from 'vue-router'
-import { useAuth } from '~/composables/useAuth'
 import { ICard, IFolder } from '~/types'
 import { getCards } from '~/apis/cards'
 import CardItem from '../folder/CardItem.vue'
 import { Loading } from '../../ui'
 import { useI18n } from 'vue-i18n'
-import { navigateTo } from 'nuxt/app'
+import { useDialog } from '~/composables/useDialog'
+import { useSnackbar } from '~/composables/useSnackbar'
+import { IconCopy } from '~/assets/icons'
 
-const route = useRoute()
 const folders = ref<IFolder[]>([])
 const cards = ref<ICard[]>([])
 const isLoading = ref(false)
 const error = ref<string | null>(null)
-const { t } = useI18n()
-const routeId = computed(() => (route.params.id as string) || '')
+const selectedCardIds = ref<string[]>([])
 const lang = ref<string>('en')
+
+const { isOpen, openDialog, closeDialog } = useDialog()
+const { showSnackbar } = useSnackbar()
+const { t } = useI18n()
+const route = useRoute()
+
+const routeId = computed(() => (route.params.id as string) || '')
+const selectedCards = computed(() => {
+    console.log('computed')
+    return cards.value.filter((x) => selectedCardIds.value.includes(x._id))
+})
+
+const toggleSelect = (id: string, checked: boolean) => {
+    if (checked) {
+        if (!selectedCardIds.value.includes(id)) selectedCardIds.value.push(id)
+    } else {
+        selectedCardIds.value = selectedCardIds.value.filter((x) => x !== id)
+    }
+}
+const clearSelection = () => (selectedCardIds.value = [])
 
 const updateFolders = async () => {
     try {
@@ -107,6 +160,11 @@ const updateLang = async () => {
     } finally {
         isLoading.value = false
     }
+}
+
+const onCopiedFolder = () => {
+    clearSelection()
+    showSnackbar(t('folder.copySuccess'), 'success')
 }
 
 watch(

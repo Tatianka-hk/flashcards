@@ -66,7 +66,10 @@
         "name": "Nom de la carpeta",
         "nameError": "El nom de la carpeta ha de tenir almenys 3 caracters",
         "editSuccess": "Carpeta editada correctament",
-        "createSuccess": "Carpeta creada correctament"
+        "createSuccess": "Carpeta creada correctament",
+        "selected": "Seleccionat",
+        "cancel": "Cancel·lar",
+        "copySuccess": "Targetes copiades correctament"
     },
     "card": {
         "frontLabel": "Terme",

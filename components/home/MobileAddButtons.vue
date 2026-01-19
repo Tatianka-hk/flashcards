@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full absolute bottom-[80px] block lg:hidden">
+    <div class="w-full relative mt-5 block lg:hidden">
         <div class="flex items-center justify-center w-full">
             <div
                 class="bg-blue rounded-full w-[68px] h-[68px] flex items-center justify-center"
