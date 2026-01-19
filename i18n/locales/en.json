@@ -4,11 +4,13 @@
         "generate": "Generate flashcards",
         "download": "Download file",
         "back": "Back",
-        "addCards": "Add cards"
+        "addCards": "Add cards",
+        "saveInFolder": "Save in folder"
     },
     "message": {
         "limitReached": "You have used the service {count} times",
-        "generateCardError": "Error generating flashcards"
+        "generateCardError": "Error generating flashcards",
+        "userIsntAuth": "To save flashcards you must be logged in"
     },
     "file": {
         "noFile": "Please upload a pdf file",

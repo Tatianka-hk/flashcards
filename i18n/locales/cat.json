@@ -4,11 +4,13 @@
         "generate": "Generar flashcards",
         "download": "Descarregar fitxer",
         "back": "Enrere",
-        "addCards": "Afegeix targetes"
+        "addCards": "Afegeix targetes",
+        "saveInFolder": "Guardar en carpeta"
     },
     "message": {
         "limitReached": "Has utilitzat els nostres serveis {count} vegades",
-        "generateCardError": "Error en generar les targetes de memòria"
+        "generateCardError": "Error en generar les targetes de memòria",
+        "userIsntAuth": "Per guardar targetes de memòria has de iniciar sessió"
     },
     "file": {
         "noFile": "Si us plau, puja un fitxer PDF",

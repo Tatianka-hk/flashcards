@@ -9,6 +9,7 @@
                 :class="[
                     'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-[40px] px-[80px]',
                     mode === 'error' ? 'bg-blue' : 'bg-primary',
+                    classString,
                 ]"
             >
                 <button
@@ -34,9 +35,11 @@ const props = withDefaults(
         onClose: () => void
         isOpen: boolean
         mode?: 'default' | 'error'
+        classString?: string
     }>(),
     {
         mode: 'default',
+        classString: '',
     }
 )
 
