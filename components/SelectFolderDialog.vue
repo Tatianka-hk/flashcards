@@ -5,7 +5,7 @@
         mode="error"
         classString="min-w-[200px] !px-[20px]"
     >
-        <div v-if="isAuth" class="flex flex-col w-full">
+        <div class="flex flex-col w-full">
             <div v-if="!isBase" :class="CLASS_UNIT" @click="goToBack">
                 <Icon3PointsHorizontal />
             </div>
@@ -30,23 +30,6 @@
             <VButton @click="save" class="mt-4">
                 {{ t('button.saveInFolder') }}
             </VButton>
-        </div>
-        <div v-else class="flex flex-col gap-2">
-            <div>{{ t('message.userIsntAuth') }}</div>
-            <div class="flex gap-2">
-                <button
-                    @click="$router.push('/login')"
-                    class="bg-primary cursor-pointer py-1 px-2 text-base rounded-[8px] font-julius"
-                >
-                    {{ t('auth.actions.login') }}
-                </button>
-                <button
-                    @click="$router.push('/signup')"
-                    class="bg-blue cursor-pointer py-1 px-2 text-base rounded-[8px] font-julius"
-                >
-                    {{ t('auth.actions.signup') }}
-                </button>
-            </div>
         </div>
     </Dialog>
 </template>
