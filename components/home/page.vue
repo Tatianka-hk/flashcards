@@ -152,7 +152,7 @@ const updateCards = async () => {
 
 const updateLang = async () => {
     try {
-        const res = getLang(route.params.id as string)
+        const res = await getLang(route.params.id as string)
         lang.value = res.lang
     } catch (err) {
         console.error('Failed to load lang:', err)

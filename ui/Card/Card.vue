@@ -35,7 +35,7 @@ const props = withDefaults(
     }
 )
 
-const frontSide = ref(true)
+const frontSide = ref(props.canSeeBack ? true : false)
 
 const onClick = () => {
     if (!props.canSeeBack) return

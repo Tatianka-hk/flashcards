@@ -149,7 +149,7 @@ onMounted(async () => {
         getAllCard(route.params.id as string).then((res) => {
             cards.value = res.cards
         })
-        const res = getLang(route.params.id as string)
+        const res = await getLang(route.params.id as string)
         lang.value = res.lang
     } catch (err) {
         console.error(err)
