@@ -44,8 +44,16 @@
                     @keyup.enter="isChecked ? nextQuestion() : checkAnswer"
                 />
 
-                <div v-if="!isCorrect && isChecked" class="text-error">
-                    {{ t('learn.wrongAnswer') }}
+                <div
+                    v-if="!isCorrect && isChecked"
+                    class="flex gap-2 flex-col items-center justify-center"
+                >
+                    <span class="text-error">
+                        {{ t('learn.wrongAnswer') }}
+                    </span>
+                    <span class="text-mint">
+                        {{ cards[currentIndex]?.back }}
+                    </span>
                 </div>
 
                 <div class="flex gap-4">
