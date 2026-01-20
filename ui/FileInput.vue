@@ -4,7 +4,7 @@
     >
         <input
             type="file"
-            accept=".pdf,application/pdf"
+            :accept="accept"
             class="hidden"
             @change="onFileChange"
         />
@@ -16,6 +16,17 @@
 import { computed, ref } from 'vue'
 import { extractPdfText } from '../utils/files'
 import { useI18n } from 'vue-i18n'
+
+const props = withDefaults(
+    defineProps<{
+        accept?: string
+        mode?: 'pdf' | 'json'
+    }>(),
+    {
+        accept: '.pdf,application/pdf',
+        mode: 'pdf',
+    }
+)
 
 const emit = defineEmits<{
     (e: 'file:change', text: string): void
@@ -31,14 +42,20 @@ const message = computed(() => {
     return t('file.noFile')
 })
 
-async function onFileChange(event: Event) {
+async function pdfHandler(event: Event) {
     const input = event.target as HTMLInputElement
     error.value = false
+
     try {
         const file = input.files?.[0]
-
         if (!file) return
-        if (file.name?.length > 0) rawFileName.value = file.name
+
+        const isPdf =
+            file.type === 'application/pdf' ||
+            file.name.toLowerCase().endsWith('.pdf')
+        if (!isPdf) throw new Error('Invalid file type. Expected PDF.')
+
+        rawFileName.value = file.name || null
 
         const text = await extractPdfText(file)
         emit('file:change', text)
@@ -46,6 +63,44 @@ async function onFileChange(event: Event) {
         error.value = true
         rawFileName.value = null
         console.error(e)
+    } finally {
+        input.value = ''
+    }
+}
+
+async function jsonHandler(event: Event) {
+    const input = event.target as HTMLInputElement
+    error.value = false
+
+    try {
+        const file = input.files?.[0]
+        if (!file) return
+
+        const isJson =
+            file.type === 'application/json' ||
+            file.name.toLowerCase().endsWith('.json')
+        if (!isJson) throw new Error('Invalid file type. Expected JSON.')
+
+        rawFileName.value = file.name || null
+
+        const text = await file.text()
+        JSON.parse(text)
+
+        emit('file:change', text)
+    } catch (e) {
+        error.value = true
+        rawFileName.value = null
+        console.error(e)
+    } finally {
+        input.value = ''
+    }
+}
+
+async function onFileChange(event: Event) {
+    if (props.mode === 'json') {
+        await jsonHandler(event)
+    } else if (props.mode === 'pdf') {
+        await pdfHandler(event)
     }
 }
 </script>
