@@ -10,6 +10,7 @@ export const langs = [
 export const langs20 = [
     { value: 'en', label: 'English' },
     { value: 'zh', label: '中文 (Mandarin)' },
+    { value: 'ca', label: 'Català' },
     { value: 'hi', label: 'हिन्दी' },
     { value: 'es', label: 'Español' },
     { value: 'fr', label: 'Français' },
