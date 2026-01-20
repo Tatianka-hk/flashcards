@@ -52,7 +52,7 @@
                         {{ t('learn.wrongAnswer') }}
                     </span>
                     <span class="text-mint">
-                        {{ cards[currentIndex]?.back }}
+                        {{ cards[currentIndex]?.front }}
                     </span>
                 </div>
 
