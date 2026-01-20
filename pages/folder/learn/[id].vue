@@ -129,7 +129,7 @@ const checkAnswer = () => {
     const normalize = (s: string) =>
         s.normalize('NFKC').trim().replace(/\s+/g, ' ').toLowerCase()
     isCorrect.value =
-        normalize(cards.value[currentIndex.value].back) ===
+        normalize(cards.value[currentIndex.value].front) ===
         normalize(answer.value)
     if (isCorrect.value) showSnackbar(t('learn.correct'))
     isChecked.value = true
