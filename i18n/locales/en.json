@@ -13,7 +13,8 @@
         "userIsntAuth": "To save flashcards you must be logged in"
     },
     "file": {
-        "noFile": "Please upload a pdf file",
+        "noFilePdf": "Please upload a pdf file",
+        "noFileJson": "Please upload a json file",
         "error": "Error processing file",
         "uploaded": "Uploaded: "
     },
@@ -69,7 +70,8 @@
         "createSuccess": "Folder created successfully",
         "selected": "Selected",
         "cancel": "Cancel",
-        "copySuccess": "Flashcards copied successfully"
+        "copySuccess": "Flashcards copied successfully",
+        "selectFolder": "Select folder"
     },
     "card": {
         "frontLabel": "Termin",

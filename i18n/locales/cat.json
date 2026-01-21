@@ -13,7 +13,8 @@
         "userIsntAuth": "Per guardar targetes de memòria has de iniciar sessió"
     },
     "file": {
-        "noFile": "Si us plau, puja un fitxer PDF",
+        "noFilePdf": "Si us plau, puja un fitxer PDF",
+        "noFileJson": "Si us plau, puja un fitxer JSON",
         "error": "Error en processar el fitxer",
         "uploaded": "Pujat: "
     },
@@ -69,7 +70,8 @@
         "createSuccess": "Carpeta creada correctament",
         "selected": "Seleccionat",
         "cancel": "Cancel·lar",
-        "copySuccess": "Targetes copiades correctament"
+        "copySuccess": "Targetes copiades correctament",
+        "selectFolder": "Selecciona una carpeta"
     },
     "card": {
         "frontLabel": "Terme",

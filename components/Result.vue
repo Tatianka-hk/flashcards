@@ -33,7 +33,7 @@
                     {{ t('button.saveInFolder') }}
                 </VButton>
             </div>
-            <SaveGeneratedCards
+            <SelectFolderDialog
                 :isOpen="isOpen"
                 :closeDialog="closeDialog"
                 :cards="cards"
@@ -55,7 +55,7 @@ import { downloadJSON } from '@/utils/files'
 import { useI18n } from 'vue-i18n'
 import Card from '../ui/Card/Card.vue'
 import { useDialog } from '~/composables/useDialog'
-import SaveGeneratedCards from './SaveGeneratedCards.vue'
+import SelectFolderDialog from './SelectFolderDialog.vue'
 const props = defineProps<{
     cards: ICard[]
 }>()

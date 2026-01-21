@@ -48,3 +48,31 @@ export function deleteCard(cardId: string) {
         url,
     })
 }
+
+export function addCards(data: { folderId: string; cards: ICard[] }) {
+    return apiRequest({
+        method: 'POST',
+        url: `${PREFIX}/add`,
+        data,
+    })
+}
+
+export function deleteManyCards(ids: string[]) {
+    return apiRequest({
+        method: 'DELETE',
+        url: `${PREFIX}/delete_many`,
+        data: { cardIds: ids },
+    })
+}
+
+export function moveCards(data: {
+    folderId: string
+    cards: ICard[]
+    oldFolderId: string
+}) {
+    return apiRequest({
+        method: 'POST',
+        url: `${PREFIX}/move`,
+        data,
+    })
+}

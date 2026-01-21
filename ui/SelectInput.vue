@@ -1,5 +1,6 @@
 <template>
     <div
+        ref="rootRef"
         class="relative text-text text-base bg-primary rounded-lg w-fit h-full"
     >
         <div
@@ -31,8 +32,9 @@
     </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { IconChevronDown, IconChevronUp } from '../assets/icons'
+const rootRef = ref<HTMLElement | null>(null)
 
 type valueType = string | number
 type OptionType = {
@@ -69,4 +71,18 @@ const onOptionClick = (val: valueType) => {
     emit('change', val)
     opened.value = false
 }
+const handleClickOutside = (event: MouseEvent) => {
+    if (!opened.value) return
+    if (rootRef.value && !rootRef.value.contains(event.target as Node)) {
+        opened.value = false
+    }
+}
+
+onMounted(() => {
+    document.addEventListener('click', handleClickOutside)
+})
+
+onBeforeUnmount(() => {
+    document.removeEventListener('click', handleClickOutside)
+})
 </script>
