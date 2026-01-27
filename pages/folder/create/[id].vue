@@ -14,7 +14,8 @@
                 <IconLogout class="w-[24px] h-[24px] min-w-[24px]" />
             </VButton>
         </div>
-        <div class="flex flex-col gap-[40px] w-full items-center">
+        <Loading v-if="isLoading" />
+        <div class="flex flex-col gap-[40px] w-full items-center" v-else>
             <TransitionGroup
                 name="card"
                 tag="div"
@@ -53,6 +54,7 @@ import { useSnackbar } from '~/composables/useSnackbar'
 import { IconLogout, IconBack } from '~/assets/icons/'
 import { useI18n } from 'vue-i18n'
 import { logout } from '~/apis/auth'
+import { Loading } from '~/ui'
 
 const createEmptyCard = (): ICard => ({
     front: '',
@@ -62,6 +64,7 @@ const createEmptyCard = (): ICard => ({
 
 const route = useRoute()
 const cards = ref<ICard[]>([createEmptyCard()])
+const isLoading = ref(false)
 const { showSnackbar } = useSnackbar()
 const { t } = useI18n()
 
@@ -96,11 +99,13 @@ const logoutHandle = () => {
 
 onMounted(async () => {
     try {
+        isLoading.value = true
         const { cards: cardsFromDB } = await getCards(route.params.id as string)
         cards.value =
             cardsFromDB && cardsFromDB?.length > 0
                 ? [...cardsFromDB]
                 : [createEmptyCard()]
+        isLoading.value = false
     } catch (err) {
         console.error(err)
         showSnackbar(t('auth.errors.something_went_wrong'), 'error')

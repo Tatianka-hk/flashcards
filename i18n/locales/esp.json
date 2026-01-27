@@ -13,7 +13,8 @@
         "userIsntAuth": "Para guardar tarjetas de memoria debes iniciar sesión"
     },
     "file": {
-        "noFile": "Por favor, sube un archivo PDF",
+        "noFilePdf": "Por favor, sube un archivo PDF",
+        "noFileJson": "Por favor, sube un archivo JSON",
         "error": "Error al procesar el archivo",
         "uploaded": "Subido: "
     },
@@ -69,7 +70,10 @@
         "createSuccess": "Carpeta creada correctamente",
         "selected": "Seleccionado",
         "cancel": "Cancelar",
-        "copySuccess": "Tarjetas copiadas correctamente"
+        "copySuccess": "Tarjetas copiadas correctamente",
+        "selectFolder": "Selecciona una carpeta",
+        "deleteSuccess": "Carpeta eliminada correctamente",
+        "selectFolderError": "Por favor, selecciona una carpeta"
     },
     "card": {
         "frontLabel": "Término",
@@ -91,7 +95,13 @@
         "wrongAnswer": "Respuesta incorrecta",
         "skip": "Saltar",
         "setCorrect": "Establecer como correcto",
-        "next": "Siguiente"
+        "next": "Siguiente",
+        "repeat": "Repetir",
+        "continue": "Continuar"
     },
-    "failedToLoad": "No se pudo cargar"
+    "failedToLoad": "No se pudo cargar",
+    "error404": {
+        "message": "Página no encontrada",
+        "button": "Volver"
+    }
 }

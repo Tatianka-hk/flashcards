@@ -40,16 +40,27 @@
 
                         <IconCopy
                             class="cursor-pointer text-read hover:text-slate-600"
-                            @click="openDialog"
+                            @click="onCopyOrMode(SaveMode.ADD)"
+                        />
+                        <IconSend
+                            class="cursor-pointer text-read hover:text-slate-600"
+                            @click="onCopyOrMode(SaveMode.MOVE)"
+                        />
+                        <IconDelete
+                            class="cursor-pointer text-rose-600 hover:text-rose-700"
+                            @click="onDelete"
                         />
                     </div>
                     <SelectFolderDialog
+                        :closeDialog="closeDialog"
                         v-if="isOpen"
                         :cards="selectedCards"
                         @changed="onCopiedFolder"
                         :lang="lang"
                         :onClose="closeDialog"
                         :isOpen="isOpen"
+                        :oldFolderID="routeId"
+                        :mode="mode"
                     />
                 </div>
                 <FolderItem
@@ -86,14 +97,14 @@ import { getFolders, getLang } from '~/apis/folder'
 import FolderItem from '../folder/FolderItem.vue'
 import { PersonalInfo, Menu, MobileTop, MobileAddButtons } from './'
 import { useRoute } from 'vue-router'
-import { ICard, IFolder } from '~/types'
-import { getCards } from '~/apis/cards'
+import { ICard, IFolder, SaveMode } from '~/types'
+import { deleteManyCards, getCards } from '~/apis/cards'
 import CardItem from '../folder/CardItem.vue'
 import { Loading } from '../../ui'
 import { useI18n } from 'vue-i18n'
 import { useDialog } from '~/composables/useDialog'
 import { useSnackbar } from '~/composables/useSnackbar'
-import { IconCopy } from '~/assets/icons'
+import { IconCopy, IconDelete, IconSend } from '~/assets/icons'
 
 const folders = ref<IFolder[]>([])
 const cards = ref<ICard[]>([])
@@ -101,6 +112,7 @@ const isLoading = ref(false)
 const error = ref<string | null>(null)
 const selectedCardIds = ref<string[]>([])
 const lang = ref<string>('en')
+const mode = ref<SaveMode>(SaveMode.ADD)
 
 const { isOpen, openDialog, closeDialog } = useDialog()
 const { showSnackbar } = useSnackbar()
@@ -109,7 +121,6 @@ const route = useRoute()
 
 const routeId = computed(() => (route.params.id as string) || '')
 const selectedCards = computed(() => {
-    console.log('computed')
     return cards.value.filter((x) => selectedCardIds.value.includes(x._id))
 })
 
@@ -163,11 +174,27 @@ const updateLang = async () => {
     }
 }
 
-const onCopiedFolder = () => {
+const onCopiedFolder = async () => {
     clearSelection()
     showSnackbar(t('folder.copySuccess'), 'success')
+    await updateCards()
 }
 
+const onCopyOrMode = (selectedMode: SaveMode) => {
+    mode.value = selectedMode
+    openDialog()
+}
+
+const onDelete = async () => {
+    try {
+        await deleteManyCards(selectedCardIds.value)
+        clearSelection()
+        showSnackbar(t('folder.deleteSuccess'), 'success')
+        await updateCards()
+    } catch (e) {
+        showSnackbar(t('auth.errors.something_went_wrong'), 'error')
+    }
+}
 watch(
     () => routeId.value,
     async () => {

@@ -39,12 +39,12 @@ const password = ref('')
 
 const onClick = () => {
     login({ email: email.value, password: password.value })
-        .then(async() => {
-            const { fetchAuth } = useAuth();
-            await fetchAuth();
+        .then(async () => {
+            const { fetchAuth } = useAuth()
+            await fetchAuth()
         })
         .then(() => {
-            navigateTo('/home');
+            navigateTo('/home')
         })
         .catch((err) => {
             showSnackbar(

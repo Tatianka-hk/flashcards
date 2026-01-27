@@ -18,7 +18,14 @@ export default defineEventHandler(async (event) => {
             userId,
             parentId: parentId ?? null,
         })
-        return { success: true, folders }
+        let name: string | null = null
+        if (parentId) {
+            const parent = await Folder.findOne({ _id: parentId })
+            if (parent) {
+                name = parent.name ?? null
+            }
+        }
+        return { success: true, folders, name }
     } catch (err: any) {
         throw createError({
             statusCode: 500,

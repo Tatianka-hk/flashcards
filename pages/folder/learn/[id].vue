@@ -1,12 +1,12 @@
 <template>
-    <div class="flex p-[40px]">
+    <div class="flex p-[40px] h-full">
         <div
             v-if="isLoading"
             class="flex items-center justify-center h-full w-full"
         >
             <Loading />
         </div>
-        <div class="w-full" v-else>
+        <div class="w-full h-full" v-else>
             <VButton
                 class="absolute left-4 top-4 w-[42px] h-[42px] flex items-center justify-center !p-0 block lg:hidden"
                 @click="$router.back()"
@@ -27,21 +27,26 @@
             </div>
             <div
                 class="flex flex-col items-center gap-[40px]"
-                v-else-if="currentIndex < cards.length"
+                v-else-if="currentIndex < cards.length && !isEndOfEtap"
             >
-                <Card
-                    :card="cards[currentIndex]"
-                    v-if="cards.length > 0"
-                    :canListen="true"
-                    :lang="lang"
-                    :canSeeBack="false"
-                />
-
+                <div class="flex flex-col items-center gap-2">
+                    <div class="flex justify-end w-[222px]">
+                        {{ currentIndex + 1 }} / {{ cards.length }}
+                    </div>
+                    <Card
+                        :card="cards[currentIndex]"
+                        v-if="cards.length > 0"
+                        :canListen="true"
+                        :lang="lang"
+                        :canSeeBack="false"
+                        @enter="isChecked ? nextQuestion() : checkAnswer"
+                    />
+                </div>
                 <input
                     class="bg-blue p-2"
                     v-model="answer"
-                    :disabled="isChecked"
-                    @keyup.enter="isChecked ? nextQuestion() : checkAnswer"
+                    :readonly="isChecked"
+                    @keyup.enter="isChecked ? goToNext() : checkAnswer()"
                 />
 
                 <div
@@ -75,6 +80,24 @@
                 </div>
             </div>
             <div
+                v-if="isEndOfEtap"
+                class="flex gap-4 w-full h-full items-center justify-center"
+            >
+                <VButton
+                    @click="repeatEtap"
+                    class="w-[102px] h-[68px] flex items-center justify-center"
+                >
+                    {{ t('learn.repeat') }}
+                </VButton>
+                <VButton
+                    @click="nextEtap"
+                    class="w-[102px] h-[68px] flex items-center justify-center"
+                >
+                    {{ t('learn.continue') }}
+                </VButton>
+            </div>
+
+            <div
                 class="flex w-full h-full items-center justify-center"
                 v-if="currentIndex >= cards.length"
             >
@@ -84,7 +107,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref, computed } from 'vue'
+import { onMounted, ref, computed, onUnmounted, useTemplateRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { getAllCard, getLang } from '~/apis/folder'
@@ -95,6 +118,8 @@ import { Loading } from '~/ui'
 import Card from '~/ui/Card/Card.vue'
 import VButton from '~/ui/VButton.vue'
 import { IconBack } from '~/assets/icons'
+
+const ETAP_CARDS_AMOUNT = 9
 
 const route = useRoute()
 const { t } = useI18n()
@@ -109,12 +134,32 @@ const isChecked = ref<boolean>(false)
 const isCorrect = ref<boolean>(false)
 const isLoading = ref<boolean>(true)
 const lang = ref<string>('en')
+const etapIndex = ref<number>(0)
+const isEndOfEtap = ref<boolean>(false)
+
+const normalize = (s: string) =>
+    s.normalize('NFKC').trim().replace(/\s+/g, ' ').toLowerCase()
+
+const repeatEtap = () => {
+    etapIndex.value = 0
+    isEndOfEtap.value = false
+    currentIndex.value -= 9
+}
+
+const nextEtap = () => {
+    etapIndex.value = 0
+    isEndOfEtap.value = false
+}
 
 const goToNext = () => {
     answer.value = ''
     isCorrect.value = false
     isChecked.value = false
     currentIndex.value++
+    etapIndex.value++
+    if (etapIndex.value >= ETAP_CARDS_AMOUNT) {
+        isEndOfEtap.value = currentIndex.value < cards.value.length
+    }
 }
 
 const skipQuestion = () => {
@@ -134,8 +179,6 @@ const setCorrect = () => {
 }
 
 const checkAnswer = () => {
-    const normalize = (s: string) =>
-        s.normalize('NFKC').trim().replace(/\s+/g, ' ').toLowerCase()
     isCorrect.value =
         normalize(cards.value[currentIndex.value].front) ===
         normalize(answer.value)
@@ -146,7 +189,7 @@ const checkAnswer = () => {
 const nextQuestion = () => {
     answers.value.push({
         cardId: cards.value[currentIndex.value]._id ?? '0',
-        isCorrect: isCorrect.value,
+        isCorrect: isCorrect.value ?? false,
     })
     goToNext()
 }

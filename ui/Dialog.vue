@@ -1,7 +1,7 @@
 <template>
     <Teleport to="#caps">
         <div
-            class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 overflow-y-hidden"
+            class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 overflow-y-hidden"
         >
             <div
                 aria-modal="true"

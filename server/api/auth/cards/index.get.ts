@@ -1,4 +1,4 @@
-import connectDB from '../../../utils/db'
+import connectDB from '~/server/utils/db'
 import { Card } from '~/server/models/Card'
 
 export default defineEventHandler(async (event) => {

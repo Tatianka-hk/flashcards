@@ -4,7 +4,7 @@
     >
         <input
             type="file"
-            :accept="accept"
+            :accept="acceptComputed"
             class="hidden"
             @change="onFileChange"
         />
@@ -14,16 +14,18 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { extractPdfText } from '../utils/files'
 import { useI18n } from 'vue-i18n'
+import { extractPdfText } from '../utils/files'
+
+type Mode = 'pdf' | 'json'
 
 const props = withDefaults(
     defineProps<{
         accept?: string
-        mode?: 'pdf' | 'json'
+        mode?: Mode
     }>(),
     {
-        accept: '.pdf,application/pdf',
+        accept: '',
         mode: 'pdf',
     }
 )
@@ -34,73 +36,86 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 const rawFileName = ref<string | null>(null)
-const error = ref<boolean>(false)
+const error = ref(false)
+
+const MODE_RULES: Record<
+    Mode,
+    {
+        accept: string
+        exts: string[]
+        mimes: string[]
+        read: (file: File) => Promise<string>
+        validate?: (text: string) => void
+        errorMsg: string
+        noFileMsg: string
+    }
+> = {
+    pdf: {
+        accept: '.pdf,application/pdf',
+        exts: ['.pdf'],
+        mimes: ['application/pdf'],
+        read: (file) => extractPdfText(file),
+        errorMsg: 'Invalid file type. Expected PDF.',
+        noFileMsg: 'noFilePdf',
+    },
+    json: {
+        accept: '.json,application/json',
+        exts: ['.json'],
+        mimes: ['application/json'],
+        read: (file) => file.text(),
+        validate: (text) => {
+            JSON.parse(text)
+        },
+        errorMsg: 'Invalid file type. Expected JSON.',
+        noFileMsg: 'noFileJson',
+    },
+}
+
+const acceptComputed = computed(
+    () => props.accept || MODE_RULES[props.mode].accept
+)
 
 const message = computed(() => {
     if (rawFileName.value) return `${t('file.uploaded')} ${rawFileName.value}`
     if (error.value) return t('file.error')
-    return t('file.noFile')
+    return t(`file.${MODE_RULES[props.mode].noFileMsg}`)
 })
 
-async function pdfHandler(event: Event) {
-    const input = event.target as HTMLInputElement
-    error.value = false
-
-    try {
-        const file = input.files?.[0]
-        if (!file) return
-
-        const isPdf =
-            file.type === 'application/pdf' ||
-            file.name.toLowerCase().endsWith('.pdf')
-        if (!isPdf) throw new Error('Invalid file type. Expected PDF.')
-
-        rawFileName.value = file.name || null
-
-        const text = await extractPdfText(file)
-        emit('file:change', text)
-    } catch (e) {
-        error.value = true
-        rawFileName.value = null
-        console.error(e)
-    } finally {
-        input.value = ''
-    }
-}
-
-async function jsonHandler(event: Event) {
-    const input = event.target as HTMLInputElement
-    error.value = false
-
-    try {
-        const file = input.files?.[0]
-        if (!file) return
-
-        const isJson =
-            file.type === 'application/json' ||
-            file.name.toLowerCase().endsWith('.json')
-        if (!isJson) throw new Error('Invalid file type. Expected JSON.')
-
-        rawFileName.value = file.name || null
-
-        const text = await file.text()
-        JSON.parse(text)
-
-        emit('file:change', text)
-    } catch (e) {
-        error.value = true
-        rawFileName.value = null
-        console.error(e)
-    } finally {
-        input.value = ''
-    }
+const matchFileType = (file: File, mode: Mode) => {
+    const rule = MODE_RULES[mode]
+    const name = file.name.toLowerCase()
+    return (
+        rule.mimes.includes(file.type) ||
+        rule.exts.some((ext) => name.endsWith(ext))
+    )
 }
 
 async function onFileChange(event: Event) {
-    if (props.mode === 'json') {
-        await jsonHandler(event)
-    } else if (props.mode === 'pdf') {
-        await pdfHandler(event)
+    const input = event.target as HTMLInputElement
+    error.value = false
+
+    try {
+        const file = input.files?.[0]
+        if (!file) return
+
+        const rule = MODE_RULES[props.mode]
+
+        if (!matchFileType(file, props.mode)) {
+            throw new Error(rule.errorMsg)
+        }
+
+        rawFileName.value = file.name || null
+
+        const text = await rule.read(file)
+        rule.validate?.(text)
+
+        emit('file:change', text)
+    } catch (e) {
+        error.value = true
+        rawFileName.value = null
+        console.error(e)
+    } finally {
+        input.value = ''
     }
 }
 </script>
