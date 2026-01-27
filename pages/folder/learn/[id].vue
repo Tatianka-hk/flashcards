@@ -136,7 +136,6 @@ const isLoading = ref<boolean>(true)
 const lang = ref<string>('en')
 const etapIndex = ref<number>(0)
 const isEndOfEtap = ref<boolean>(false)
-const containerRef = useTemplateRef('container')
 
 const normalize = (s: string) =>
     s.normalize('NFKC').trim().replace(/\s+/g, ' ').toLowerCase()
@@ -159,7 +158,7 @@ const goToNext = () => {
     currentIndex.value++
     etapIndex.value++
     if (etapIndex.value >= ETAP_CARDS_AMOUNT) {
-        isEndOfEtap.value = true
+        isEndOfEtap.value = currentIndex.value < cards.value.length
     }
 }
 

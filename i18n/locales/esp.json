@@ -72,7 +72,8 @@
         "cancel": "Cancelar",
         "copySuccess": "Tarjetas copiadas correctamente",
         "selectFolder": "Selecciona una carpeta",
-        "deleteSuccess": "Carpeta eliminada correctamente"
+        "deleteSuccess": "Carpeta eliminada correctamente",
+        "selectFolderError": "Por favor, selecciona una carpeta"
     },
     "card": {
         "frontLabel": "Término",
@@ -100,7 +101,7 @@
     },
     "failedToLoad": "No se pudo cargar",
     "error404": {
-        "message": "Pagina no encontrada",
+        "message": "Página no encontrada",
         "button": "Volver"
     }
 }

@@ -7,7 +7,7 @@
     },
     "scripts": {
         "build": "nuxt build",
-        "dev": "set NODE_OPTIONS=--dns-result-order=ipv4first && nuxt dev",
+        "dev": "nuxt dev",
         "generate": "nuxt generate",
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare",

@@ -72,7 +72,8 @@
         "cancel": "Cancel",
         "copySuccess": "Flashcards copied successfully",
         "selectFolder": "Select folder",
-        "deleteSuccess": "Folder deleted successfully"
+        "deleteSuccess": "Folder deleted successfully",
+        "selectFolderError": "Please select a folder"
     },
     "card": {
         "frontLabel": "Termin",

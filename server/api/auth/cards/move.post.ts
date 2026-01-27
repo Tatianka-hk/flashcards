@@ -7,7 +7,6 @@ export default defineEventHandler(async (event) => {
     const body = await readBody<{
         folderId: string
         cards?: ICard[]
-        oldFolderId?: string
     }>(event)
 
     if (!body.cards) {
@@ -17,7 +16,7 @@ export default defineEventHandler(async (event) => {
         })
     }
 
-    if (!body.folderId && !body.oldFolderId) {
+    if (!body.folderId) {
         throw createError({
             statusCode: 400,
             statusMessage: 'Missing folder ID',

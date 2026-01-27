@@ -65,11 +65,7 @@ export function deleteManyCards(ids: string[]) {
     })
 }
 
-export function moveCards(data: {
-    folderId: string
-    cards: ICard[]
-    oldFolderId: string
-}) {
+export function moveCards(data: { folderId: string; cards: ICard[] }) {
     return apiRequest({
         method: 'POST',
         url: `${PREFIX}/move`,

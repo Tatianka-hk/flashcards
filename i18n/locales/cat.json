@@ -72,7 +72,8 @@
         "cancel": "Cancel·lar",
         "copySuccess": "Targetes copiades correctament",
         "selectFolder": "Selecciona una carpeta",
-        "deleteSuccess": "Carpeta eliminada correctament"
+        "deleteSuccess": "Carpeta eliminada correctament",
+        "selectFolderError": "Si us plau, selecciona una carpeta"
     },
     "card": {
         "frontLabel": "Terme",

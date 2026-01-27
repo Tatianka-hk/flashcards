@@ -63,7 +63,8 @@
         "cancel": "Скасувати",
         "copySuccess": "Флеш-картки успішно скопійовані",
         "selectFolder": "Оберіть папку",
-        "deleteSuccess": "Папка успішно видалена"
+        "deleteSuccess": "Папка успішно видалена",
+        "selectFolderError": "Будь ласка, оберіть папку"
     },
     "menu": {
         "buttons": {

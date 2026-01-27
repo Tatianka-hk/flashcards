@@ -18,13 +18,14 @@
                 <Icon3PointsHorizontal />
             </div>
             <Loading v-if="isLoading" />
-            <div
-                v-else
-                v-for="folder in folders"
-                @click="getNextFolders(folder._id)"
-                :class="CLASS_UNIT"
-            >
-                <span>{{ folder.name }}</span>
+            <div v-else>
+                <div
+                    v-for="folder in folders"
+                    @click="getNextFolders(folder._id)"
+                    :class="CLASS_UNIT"
+                >
+                    <span>{{ folder.name }}</span>
+                </div>
             </div>
             <div :class="CLASS_UNIT" @click="openCreateDialog">
                 {{ t('folder.create') }}
@@ -37,7 +38,7 @@
                 @changed="fetchFolders"
                 :folderID="currentFolderID"
             />
-            <VButton @click="save" class="mt-4">
+            <VButton @click="save" class="mt-4" :disabled="!currentFolderID">
                 {{ t('button.saveInFolder') }}
             </VButton>
         </div>
@@ -102,46 +103,48 @@ const {
     closeDialog: closeCreateDialog,
 } = useDialog()
 
-const emit = defineEmits(['changed'])
+const emit = defineEmits<{
+    (e: 'changed'): void
+}>()
 
-const getNextFolders = async (nextFolderID: string) => {
+const loadFolders = async (folderId: string | null) => {
     isLoading.value = true
-    folderStack.value.push(nextFolderID)
-    currentFolderID.value = nextFolderID
-
-    const res = await getFolders(nextFolderID)
-    folders.value = res.folders
-    currentFolderName.value = res.name
-    isLoading.value = false
+    try {
+        const res = await getFolders(folderId)
+        folders.value = res.folders
+        currentFolderName.value = res.name ?? null
+        currentFolderID.value = folderId
+    } finally {
+        isLoading.value = false
+    }
 }
-
-const fetchFolders = async () => {
-    if (!currentFolderID.value) return
-    isLoading.value = true
-    const res = await getFolders(currentFolderID.value)
-    folders.value = res.folders
-    currentFolderName.value = res.name
-    isLoading.value = false
+const getNextFolders = async (nextFolderID: string) => {
+    folderStack.value.push(nextFolderID)
+    await loadFolders(nextFolderID)
 }
 
 const goToBack = async () => {
     if (folderStack.value.length === 0) return
-    isLoading.value = true
     folderStack.value.pop()
-    currentFolderID.value =
-        folderStack.value[folderStack.value.length - 1] ?? null
-    const res = await getFolders(currentFolderID.value ?? null)
-    folders.value = res.folders
-    currentFolderName.value = res.name
-    isLoading.value = false
+    await loadFolders(folderStack.value[folderStack.value.length - 1] ?? null)
 }
+
+const fetchFolders = async () => await loadFolders(currentFolderID.value)
+
 const save = async () => {
+    if (!currentFolderID.value) {
+        showSnackbar(t('folder.selectFolderError'), 'error')
+        return
+    }
     try {
-        if (props.mode === SaveMode.MOVE && props.oldFolderID) {
+        if (props.mode === SaveMode.MOVE) {
+            if (!props.oldFolderID) {
+                showSnackbar(t('auth.errors.something_went_wrong'), 'error')
+                return
+            }
             await moveCards({
                 cards: props.cards,
                 folderId: currentFolderID.value as string,
-                oldFolderId: props.oldFolderID,
             })
         } else {
             await addCards({
@@ -159,10 +162,13 @@ const save = async () => {
 
 onMounted(async () => {
     isLoading.value = true
-    await fetchAuth()
-    if (!isAuth.value) return
-    const res = await getFolders()
-    folders.value = res.folders
-    isLoading.value = false
+    try {
+        await fetchAuth()
+        if (!isAuth.value) return
+        const res = await getFolders()
+        folders.value = res.folders
+    } finally {
+        isLoading.value = false
+    }
 })
 </script>
