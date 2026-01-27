@@ -71,7 +71,8 @@
         "selected": "Seleccionat",
         "cancel": "Cancel·lar",
         "copySuccess": "Targetes copiades correctament",
-        "selectFolder": "Selecciona una carpeta"
+        "selectFolder": "Selecciona una carpeta",
+        "deleteSuccess": "Carpeta eliminada correctament"
     },
     "card": {
         "frontLabel": "Terme",
@@ -93,7 +94,13 @@
         "wrongAnswer": "Resposta incorrecta",
         "skip": "Saltar",
         "setCorrect": "Estableix correcte",
-        "next": "Següent"
+        "next": "Següent",
+        "repeat": "Repetir",
+        "continue": "Continuar"
     },
-    "failedToLoad": "No s'ha pogut carregar"
+    "failedToLoad": "No s'ha pogut carregar",
+    "error404": {
+        "message": "Pagina no trobada",
+        "button": "Torna enrere"
+    }
 }

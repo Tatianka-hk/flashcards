@@ -1,32 +1,34 @@
 import mongoose from 'mongoose'
 
-declare global {
-  // eslint-disable-next-line no-var
-  var _mongooseConn: typeof mongoose | null
-  // eslint-disable-next-line no-var
-  var _mongoosePromise: Promise<typeof mongoose> | null
+let cached = global.mongoose
+
+if (!cached) {
+    cached = global.mongoose = { conn: null, promise: null }
 }
 
-globalThis._mongooseConn = globalThis._mongooseConn || null
-globalThis._mongoosePromise = globalThis._mongoosePromise || null
-
 export default async function connectDB() {
-  const { MONGODB_URL, MONGODB_DB } = process.env
+    const { MONGODB_URL, MONGODB_DB } = process.env
+    if (cached.conn) return cached.conn
 
-  if (!MONGODB_URL) throw new Error('MONGODB_URL is not set')
-  if (!MONGODB_DB) throw new Error('MONGODB_DB is not set')
+    if (!cached.promise) {
+        const opts = {
+            dbName: MONGODB_DB,
+            bufferCommands: false,
+            family: 4,
+        }
 
-  if (globalThis._mongooseConn && mongoose.connection.readyState === 1) {
-    return globalThis._mongooseConn
-  }
+        cached.promise = mongoose.connect(MONGODB_URL, opts).then((m) => {
+            console.log('✅ MongoDB Connected')
+            return m
+        })
+    }
 
-  if (!globalThis._mongoosePromise) {
-    globalThis._mongoosePromise = mongoose.connect(MONGODB_URL, {
-      dbName: MONGODB_DB,
-      serverSelectionTimeoutMS: 5000,
-    })
-  }
+    try {
+        cached.conn = await cached.promise
+    } catch (e) {
+        cached.promise = null
+        throw e
+    }
 
-  globalThis._mongooseConn = await globalThis._mongoosePromise
-  return globalThis._mongooseConn
+    return cached.conn
 }

@@ -2,9 +2,12 @@
     "name": "nuxt-app",
     "type": "module",
     "private": true,
+    "engines": {
+        "node": "24.12.0"
+    },
     "scripts": {
         "build": "nuxt build",
-        "dev": "nuxt dev",
+        "dev": "set NODE_OPTIONS=--dns-result-order=ipv4first && nuxt dev",
         "generate": "nuxt generate",
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare",

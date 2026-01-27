@@ -71,7 +71,8 @@
         "selected": "Seleccionado",
         "cancel": "Cancelar",
         "copySuccess": "Tarjetas copiadas correctamente",
-        "selectFolder": "Selecciona una carpeta"
+        "selectFolder": "Selecciona una carpeta",
+        "deleteSuccess": "Carpeta eliminada correctamente"
     },
     "card": {
         "frontLabel": "Término",
@@ -93,7 +94,13 @@
         "wrongAnswer": "Respuesta incorrecta",
         "skip": "Saltar",
         "setCorrect": "Establecer como correcto",
-        "next": "Siguiente"
+        "next": "Siguiente",
+        "repeat": "Repetir",
+        "continue": "Continuar"
     },
-    "failedToLoad": "No se pudo cargar"
+    "failedToLoad": "No se pudo cargar",
+    "error404": {
+        "message": "Pagina no encontrada",
+        "button": "Volver"
+    }
 }

@@ -71,7 +71,8 @@
         "selected": "Selected",
         "cancel": "Cancel",
         "copySuccess": "Flashcards copied successfully",
-        "selectFolder": "Select folder"
+        "selectFolder": "Select folder",
+        "deleteSuccess": "Folder deleted successfully"
     },
     "card": {
         "frontLabel": "Termin",
@@ -93,7 +94,13 @@
         "wrongAnswer": "Answer isn't correct",
         "setCorrect": "Set correct",
         "skip": "Skip",
-        "next": "Next"
+        "next": "Next",
+        "repeat": "Repeat",
+        "continue": "Continue"
     },
-    "failedToLoad": "Failed to load"
+    "failedToLoad": "Failed to load",
+    "error404": {
+        "message": "Page not found",
+        "button": "Go back"
+    }
 }
