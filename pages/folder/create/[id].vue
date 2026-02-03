@@ -1,19 +1,9 @@
 <template>
-    <div class="p-[40px]">
-        <div class="w-full justify-between flex mb-[20px]">
-            <VButton
-                @click="$router.back()"
-                class="w-[42px] h-[42px] flex items-center justify-center"
-            >
-                <IconBack class="w-[24px] h-[24px] min-w-[24px]" />
-            </VButton>
-            <VButton
-                @click="logoutHandle()"
-                class="w-[42px] h-[42px] flex items-center justify-center"
-            >
-                <IconLogout class="w-[24px] h-[24px] min-w-[24px]" />
-            </VButton>
+    <div class="p-[40px] relative">
+        <div class="w-full sticky left-[40px] top-[40px] right-[40px] z-20">
+            <HeaderUserAuthed />
         </div>
+
         <Loading v-if="isLoading" />
         <div class="flex flex-col gap-[40px] w-full items-center" v-else>
             <TransitionGroup
@@ -48,21 +38,18 @@ import CardForm from '~/components/CardForm.vue'
 import { ICard, IDbCard } from '~/types'
 import { IconPlus } from '../../../assets/icons'
 import VButton from '~/ui/VButton.vue'
-import { getCards, saveCards } from '~/apis/cards'
+import { addCards, getCards, saveCards } from '~/apis/cards'
 import { useRoute } from 'vue-router'
 import { useSnackbar } from '~/composables/useSnackbar'
-import { IconLogout, IconBack } from '~/assets/icons/'
 import { useI18n } from 'vue-i18n'
-import { logout } from '~/apis/auth'
-import { Loading } from '~/ui'
-
+import { Loading, HeaderUserAuthed } from '~/ui'
+const route = useRoute()
 const createEmptyCard = (): ICard => ({
     front: '',
     back: '',
     id: crypto?.randomUUID(),
 })
 
-const route = useRoute()
 const cards = ref<ICard[]>([createEmptyCard()])
 const isLoading = ref(false)
 const { showSnackbar } = useSnackbar()
@@ -77,34 +64,23 @@ const deleteHandler = (index: number) => {
 }
 
 const save = async () => {
-    saveCards({
+    addCards({
         folderId: route.params.id as string,
         cards: cards.value,
     })
         .then(() => {
             showSnackbar(t('card.saveSuccess'), 'success')
+            window.history.back()
         })
         .catch((err) => {
             showSnackbar(t('auth.errors.something_went_wrong'), 'error')
         })
 }
 
-const logoutHandle = () => {
-    try {
-        logout()
-    } catch (err) {
-        console.log(err)
-    }
-}
-
 onMounted(async () => {
     try {
         isLoading.value = true
-        const { cards: cardsFromDB } = await getCards(route.params.id as string)
-        cards.value =
-            cardsFromDB && cardsFromDB?.length > 0
-                ? [...cardsFromDB]
-                : [createEmptyCard()]
+        cards.value = [createEmptyCard()]
         isLoading.value = false
     } catch (err) {
         console.error(err)

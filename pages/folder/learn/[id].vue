@@ -27,7 +27,9 @@
             </div>
             <div
                 class="flex flex-col items-center gap-[40px]"
-                v-else-if="currentIndex < cards.length && !isEndOfEtap"
+                v-else-if="
+                    currentIndex < cards.length && !isEndOfEtap && !isEnd
+                "
             >
                 <div class="flex flex-col items-center gap-2">
                     <div class="flex justify-end w-[222px]">
@@ -46,7 +48,7 @@
                     class="bg-blue p-2"
                     v-model="answer"
                     :readonly="isChecked"
-                    @keyup.enter="isChecked ? goToNext() : checkAnswer()"
+                    @keyup.enter="isChecked ? nextQuestion() : checkAnswer()"
                 />
 
                 <div
@@ -79,29 +81,29 @@
                     </VButton>
                 </div>
             </div>
-            <div
-                v-if="isEndOfEtap"
-                class="flex gap-4 w-full h-full items-center justify-center"
-            >
-                <VButton
-                    @click="repeatEtap"
-                    class="w-[102px] h-[68px] flex items-center justify-center"
-                >
-                    {{ t('learn.repeat') }}
-                </VButton>
-                <VButton
-                    @click="nextEtap"
-                    class="w-[102px] h-[68px] flex items-center justify-center"
-                >
-                    {{ t('learn.continue') }}
-                </VButton>
-            </div>
 
             <div
-                class="flex w-full h-full items-center justify-center"
-                v-if="currentIndex >= cards.length"
+                class="flex w-full h-full items-center justify-center flex-col"
+                v-if="currentIndex >= cards.length || isEndOfEtap || isEnd"
             >
-                <TestResult :answers="answers" />
+                <TestResult :answers="getEtapAnswers()" :isEnd="isEnd" />
+                <div
+                    class="flex gap-4 w-full items-center justify-center mt-4"
+                    v-if="!isEnd"
+                >
+                    <VButton
+                        @click="repeatEtap"
+                        class="w-[102px] h-[68px] flex items-center justify-center"
+                    >
+                        {{ t('learn.repeat') }}
+                    </VButton>
+                    <VButton
+                        @click="nextEtap"
+                        class="w-[102px] h-[68px] flex items-center justify-center"
+                    >
+                        {{ t('learn.continue') }}
+                    </VButton>
+                </div>
             </div>
         </div>
     </div>
@@ -119,7 +121,7 @@ import Card from '~/ui/Card/Card.vue'
 import VButton from '~/ui/VButton.vue'
 import { IconBack } from '~/assets/icons'
 
-const ETAP_CARDS_AMOUNT = 9
+const ETAP_CARDS_AMOUNT = 10
 
 const route = useRoute()
 const { t } = useI18n()
@@ -136,6 +138,7 @@ const isLoading = ref<boolean>(true)
 const lang = ref<string>('en')
 const etapIndex = ref<number>(0)
 const isEndOfEtap = ref<boolean>(false)
+const isEnd = ref<boolean>(false)
 
 const normalize = (s: string) =>
     s.normalize('NFKC').trim().replace(/\s+/g, ' ').toLowerCase()
@@ -143,12 +146,13 @@ const normalize = (s: string) =>
 const repeatEtap = () => {
     etapIndex.value = 0
     isEndOfEtap.value = false
-    currentIndex.value -= 9
+    currentIndex.value -= ETAP_CARDS_AMOUNT
 }
 
 const nextEtap = () => {
     etapIndex.value = 0
     isEndOfEtap.value = false
+    if (currentIndex.value >= cards.value.length) isEnd.value = true
 }
 
 const goToNext = () => {
@@ -163,18 +167,18 @@ const goToNext = () => {
 }
 
 const skipQuestion = () => {
-    answers.value.push({
+    answers.value[currentIndex.value] = {
         cardId: cards.value[currentIndex.value]._id ?? '0',
         isCorrect: false,
-    })
+    }
     goToNext()
 }
 
 const setCorrect = () => {
-    answers.value.push({
+    answers.value[currentIndex.value] = {
         cardId: cards.value[currentIndex.value]._id ?? '0',
         isCorrect: true,
-    })
+    }
     goToNext()
 }
 
@@ -187,11 +191,19 @@ const checkAnswer = () => {
 }
 
 const nextQuestion = () => {
-    answers.value.push({
+    answers.value[currentIndex.value] = {
         cardId: cards.value[currentIndex.value]._id ?? '0',
         isCorrect: isCorrect.value ?? false,
-    })
+    }
     goToNext()
+}
+
+const getEtapAnswers = () => {
+    if (isEnd.value) return answers.value
+    return answers.value.slice(
+        currentIndex.value - etapIndex.value,
+        currentIndex.value
+    )
 }
 
 onMounted(async () => {

@@ -28,7 +28,7 @@
                 {{ result.inCorrectCount }}
             </span>
         </div>
-        <div class="flex gap-4">
+        <div class="flex gap-4" v-show="isEnd">
             <VButton @click="$router.back()" extraClass="!w-full">{{
                 t('button.back')
             }}</VButton>
@@ -42,7 +42,12 @@ import { useI18n } from 'vue-i18n'
 import { IAnswer } from '~/types'
 import VButton from '~/ui/VButton.vue'
 
-const props = defineProps<{ answers: IAnswer[] }>()
+const props = withDefaults(
+    defineProps<{ answers: IAnswer[]; isEnd?: boolean }>(),
+    {
+        isEnd: false,
+    }
+)
 const { t } = useI18n()
 
 const result = computed(() => {
