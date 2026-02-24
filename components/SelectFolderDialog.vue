@@ -18,7 +18,7 @@
                 <Icon3PointsHorizontal />
             </div>
             <Loading v-if="isLoading" />
-            <div v-else>
+            <div v-else class="max-h-[250px] overflow-y-scroll">
                 <div
                     v-for="folder in folders"
                     @click="getNextFolders(folder._id)"

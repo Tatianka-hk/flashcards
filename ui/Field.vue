@@ -11,7 +11,7 @@
             :value="modelValue"
             @input="onInput"
             v-bind="attrs"
-            class="w-full border border-text bg-blue py-2 px-4 "
+            class="w-full appearance-none shadow-none outline-none border border-text bg-blue py-2 px-4 hover:border-hovertext focus:border-hovertext focus:outline-none"
         />
     </div>
 </template>

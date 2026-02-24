@@ -14,7 +14,7 @@
             >
                 <button
                     :class="[
-                        'absolute -top-2 -right-2 rounded-full p-1',
+                        'absolute -top-2 -right-2 rounded-full p-1 hover:border-hovertext focus:border-hovertext focus:outline-none',
                         mode === 'error' ? 'bg-primary' : 'bg-blue',
                         isOpen ? 'block' : 'hidden',
                     ]"

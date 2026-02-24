@@ -1,33 +1,42 @@
 <template>
     <Dialog :onClose="closeDialog" :isOpen="isOpen">
-        <div class="flex flex-col gap-2">
-            <Field
-                type="text"
-                v-model="folderName"
-                name="folderName"
-                :label="t('folder.name')"
-            />
-            <div class="h-full">
-                <SelectInput
-                    class="!bg-blue w-full h-[40px] border border-text !rounded-none h-full"
-                    :value="folderLang"
-                    :options="langs20"
-                    dialogMode
-                    @change="changeLang($event)"
+        <form @submit.prevent="handleClick">
+            <div class="flex flex-col gap-2">
+                <Field
+                    type="text"
+                    v-model="folderName"
+                    name="folderName"
+                    :label="t('folder.name')"
                 />
+                <div class="h-full flex flex-col">
+                    <label class="font-julius text-base mb-2">{{
+                        t('folder.lang')
+                    }}</label>
+                    <SelectInput
+                        class="!bg-blue w-full h-[40px] border border-text !rounded-none h-full"
+                        :value="folderLang"
+                        :options="langs20"
+                        dialogMode
+                        @change="changeLang($event)"
+                    />
+                </div>
             </div>
-        </div>
-        <div class="flex justify-center mt-[20px]">
-            <VButton extraClass="!bg-blue" :onClick="handleClick">
-                {{ mode === 'Create' ? t('folder.create') : t('folder.edit') }}
-            </VButton>
-        </div>
+            <div class="flex justify-center mt-[20px]">
+                <VButton extraClass="!bg-blue" :onClick="handleClick">
+                    {{
+                        mode === 'Create'
+                            ? t('folder.create')
+                            : t('folder.edit')
+                    }}
+                </VButton>
+            </div>
+        </form>
     </Dialog>
 </template>
 <script setup lang="ts">
-import { Dialog, Field, VButton } from '~/ui'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { Dialog, Field, VButton } from '~/ui'
 import { useSnackbar } from '~/composables/useSnackbar'
 import { addFolder, editFolder } from '~/apis/folder'
 import { langs20 } from '~/static'
@@ -45,7 +54,7 @@ const emit = defineEmits<{
     (e: 'changed'): void
 }>()
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const { showSnackbar } = useSnackbar()
 
 const folderName = ref(props.folderName ?? '')
