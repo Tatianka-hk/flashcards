@@ -1,33 +1,40 @@
 <template>
     <div class="w-full flex flex-col items-center justify-center">
-        <Logo class="mt-[80px] mb-[40px] mx-auto" />
-
-        <div class="flex flex-col gap-4 mx-auto w-[700px] mb-[40px] w-[80%] lg:w-[700px]  space-y-2">
-            <Field
-                type="email"
-                name="email"
-                :label="t('auth.labels.email')"
-                v-model="email"
-            />
-            <Field
-                type="password"
-                name="password"
-                :label="t('auth.labels.password')"
-                v-model="password"
-            />
-            <Field
-                type="password"
-                name="сonfirm_password"
-                :label="t('auth.labels.confirm_password')"
-                v-model="confirmPassword"
-            />
-        </div>
-        <VButton
-            :disabled="!email || !password || !confirmPassword"
-            :onClick="onClick"
+        <form
+            @keydown.enter.prevent="onClick"
+            class="w-full flex flex-col items-center justify-center"
         >
-            {{ t('auth.actions.signup') }}
-        </VButton>
+            <Logo class="mt-[80px] mb-[40px] mx-auto" />
+
+            <div
+                class="flex flex-col gap-4 mx-auto w-[700px] mb-[40px] w-[80%] lg:w-[700px] space-y-2"
+            >
+                <Field
+                    type="email"
+                    name="email"
+                    :label="t('auth.labels.email')"
+                    v-model="email"
+                />
+                <Field
+                    type="password"
+                    name="password"
+                    :label="t('auth.labels.password')"
+                    v-model="password"
+                />
+                <Field
+                    type="password"
+                    name="сonfirm_password"
+                    :label="t('auth.labels.confirm_password')"
+                    v-model="confirmPassword"
+                />
+            </div>
+            <VButton
+                :disabled="!email || !password || !confirmPassword"
+                :onClick="onClick"
+            >
+                {{ t('auth.actions.signup') }}
+            </VButton>
+        </form>
     </div>
 </template>
 <script setup lang="ts">
@@ -66,16 +73,15 @@ const onClick = () => {
     }
     registerUser({ email: email.value, password: password.value })
         .then(() => {
-            navigateTo('/home');
-        }).catch(
-        (err) => {
+            navigateTo('/home')
+        })
+        .catch((err) => {
             showSnackbar(
                 err instanceof Error && err.message === 'User already exists'
                     ? t('auth.errors.email_exists')
                     : t('auth.errors.something_went_wrong'),
                 'error'
             )
-        }
-    )
+        })
 }
 </script>

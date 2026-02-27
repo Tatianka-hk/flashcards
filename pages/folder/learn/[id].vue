@@ -144,9 +144,9 @@ const normalize = (s: string) =>
     s.normalize('NFKC').trim().replace(/\s+/g, ' ').toLowerCase()
 
 const repeatEtap = () => {
-    etapIndex.value = 0
     isEndOfEtap.value = false
-    currentIndex.value -= ETAP_CARDS_AMOUNT
+    currentIndex.value -= etapIndex.value
+    etapIndex.value = 0
 }
 
 const nextEtap = () => {

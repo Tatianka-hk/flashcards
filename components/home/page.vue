@@ -11,7 +11,9 @@
         <!-- end menu -->
         <main class="flex flex-col w-full overflow-y-auto">
             <MobileTop />
-            <div v-if="isLoading" class="p-4 opacity-70"><Loading /></div>
+            <div v-if="isCardLoading || isFolderLoading" class="p-4 opacity-70">
+                <Loading />
+            </div>
             <div
                 v-else-if="error"
                 class="p-4 text-rose-600 w-full h-full flex items-center justify-center"
@@ -92,23 +94,24 @@
     </div>
 </template>
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
 import { getFolders, getLang } from '~/apis/folder'
 import FolderItem from '../folder/FolderItem.vue'
 import { PersonalInfo, Menu, MobileTop, MobileAddButtons } from './'
-import { useRoute } from 'vue-router'
 import { ICard, IFolder, SaveMode } from '~/types'
 import { deleteManyCards, getCards } from '~/apis/cards'
 import CardItem from '../folder/CardItem.vue'
 import { Loading } from '../../ui'
-import { useI18n } from 'vue-i18n'
 import { useDialog } from '~/composables/useDialog'
 import { useSnackbar } from '~/composables/useSnackbar'
 import { IconCopy, IconDelete, IconSend } from '~/assets/icons'
 
 const folders = ref<IFolder[]>([])
 const cards = ref<ICard[]>([])
-const isLoading = ref(false)
+const isCardLoading = ref(false)
+const isFolderLoading = ref(false)
 const error = ref<string | null>(null)
 const selectedCardIds = ref<string[]>([])
 const lang = ref<string>('en')
@@ -135,7 +138,7 @@ const clearSelection = () => (selectedCardIds.value = [])
 
 const updateFolders = async () => {
     try {
-        isLoading.value = true
+        isFolderLoading.value = true
         error.value = null
         const res = await getFolders(routeId.value)
         folders.value = res?.folders ?? res
@@ -143,13 +146,13 @@ const updateFolders = async () => {
         console.error('Failed to load folders:', err)
         error.value = 'folders'
     } finally {
-        isLoading.value = false
+        isFolderLoading.value = false
     }
 }
 
 const updateCards = async () => {
     try {
-        isLoading.value = true
+        isCardLoading.value = true
         error.value = null
         const res = await getCards(route.params.id as string)
         cards.value = res?.cards ?? res
@@ -157,7 +160,7 @@ const updateCards = async () => {
         console.error('Failed to load cards:', err)
         error.value = 'cards'
     } finally {
-        isLoading.value = false
+        isCardLoading.value = false
     }
 }
 
@@ -169,8 +172,6 @@ const updateLang = async () => {
     } catch (err) {
         console.error('Failed to load lang:', err)
         error.value = 'lang'
-    } finally {
-        isLoading.value = false
     }
 }
 
@@ -196,10 +197,20 @@ const onDelete = async () => {
     }
 }
 watch(
-    () => routeId.value,
+    () => route.fullPath,
     async () => {
-        await Promise.all([updateFolders(), updateCards(), updateLang()])
+        await Promise.allSettled([updateFolders(), updateCards(), updateLang()])
     },
     { immediate: true }
 )
+
+onMounted(async () => {
+    try {
+        console.log('mounted')
+        await Promise.allSettled([updateFolders(), updateCards(), updateLang()])
+    } catch (err) {
+        console.error(err)
+        showSnackbar(t('auth.errors.something_went_wrong'), 'error')
+    }
+})
 </script>

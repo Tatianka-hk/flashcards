@@ -1,26 +1,31 @@
 <template>
     <div class="w-full flex flex-col items-center justify-center">
-        <Logo class="mt-[80px] mb-[40px] mx-auto" />
-
-        <div
-            class="flex flex-col gap-4 mx-auto w-[80%] lg:w-[700px] mb-[40px] space-y-2"
+        <form
+            @keydown.enter.prevent="onClick"
+            class="w-full flex flex-col items-center justify-center"
         >
-            <Field
-                type="email"
-                name="email"
-                :label="t('auth.labels.email')"
-                v-model="email"
-            />
-            <Field
-                type="password"
-                name="password"
-                :label="t('auth.labels.password')"
-                v-model="password"
-            />
-        </div>
-        <VButton :disabled="!email || !password" :onClick="onClick">{{
-            t('auth.actions.login')
-        }}</VButton>
+            <Logo class="mt-[80px] mb-[40px] mx-auto" />
+
+            <div
+                class="flex flex-col gap-4 mx-auto w-[80%] lg:w-[700px] mb-[40px] space-y-2"
+            >
+                <Field
+                    type="email"
+                    name="email"
+                    :label="t('auth.labels.email')"
+                    v-model="email"
+                />
+                <Field
+                    type="password"
+                    name="password"
+                    :label="t('auth.labels.password')"
+                    v-model="password"
+                />
+            </div>
+            <VButton :disabled="!email || !password" :onClick="onClick">{{
+                t('auth.actions.login')
+            }}</VButton>
+        </form>
     </div>
 </template>
 <script setup lang="ts">

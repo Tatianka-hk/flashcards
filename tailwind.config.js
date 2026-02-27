@@ -21,6 +21,7 @@ export default {
                 hoverblue: '#c5d2e0',
                 hoverbackground: '#e8dbed',
                 mint: '#4e9c83',
+                hovertext: '#181414',
             },
             fontFamily: {
                 julius: ['"Julius Sans One"', 'sans-serif'],

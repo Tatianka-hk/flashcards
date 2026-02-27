@@ -22,7 +22,7 @@
             </TransitionGroup>
             <div
                 @click="handleAddClick"
-                class="bg-blue rounded-full w-[68px] h-[68px] flex items-center justify-center"
+                class="bg-blue rounded-full w-[68px] h-[68px] flex items-center justify-center cursor-pointer"
             >
                 <IconPlus class="h-[36px] w-[36px]" />
             </div>
@@ -33,17 +33,17 @@
     </div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import CardForm from '~/components/CardForm.vue'
-import { ICard, IDbCard } from '~/types'
+import { ICard } from '~/types'
 import { IconPlus } from '../../../assets/icons'
 import VButton from '~/ui/VButton.vue'
-import { addCards, getCards, saveCards } from '~/apis/cards'
-import { useRoute } from 'vue-router'
+import { addCards } from '~/apis/cards'
 import { useSnackbar } from '~/composables/useSnackbar'
-import { useI18n } from 'vue-i18n'
 import { Loading, HeaderUserAuthed } from '~/ui'
-const route = useRoute()
+
 const createEmptyCard = (): ICard => ({
     front: '',
     back: '',
@@ -54,6 +54,8 @@ const cards = ref<ICard[]>([createEmptyCard()])
 const isLoading = ref(false)
 const { showSnackbar } = useSnackbar()
 const { t } = useI18n()
+const router = useRouter()
+const route = useRoute()
 
 const handleAddClick = () => {
     cards.value.push(createEmptyCard())
@@ -64,29 +66,19 @@ const deleteHandler = (index: number) => {
 }
 
 const save = async () => {
-    addCards({
-        folderId: route.params.id as string,
-        cards: cards.value,
-    })
-        .then(() => {
-            showSnackbar(t('card.saveSuccess'), 'success')
-            window.history.back()
-        })
-        .catch((err) => {
-            showSnackbar(t('auth.errors.something_went_wrong'), 'error')
-        })
-}
-
-onMounted(async () => {
     try {
-        isLoading.value = true
-        cards.value = [createEmptyCard()]
-        isLoading.value = false
+        const res = await addCards({
+            folderId: route.params.id as string,
+            cards: cards.value,
+        })
+        if (res?.success) {
+            showSnackbar(t('card.saveSuccess'))
+            await router.replace(`/folder/${route.params.id}`)
+        }
     } catch (err) {
-        console.error(err)
         showSnackbar(t('auth.errors.something_went_wrong'), 'error')
     }
-})
+}
 </script>
 <style scoped>
 .card-enter-from {

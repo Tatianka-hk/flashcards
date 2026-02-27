@@ -4,7 +4,7 @@
         class="relative text-text text-base bg-primary rounded-lg w-fit h-full"
     >
         <div
-            class="flex gap-1 py-2 px-4 cursor-pointer items-center justify-between"
+            class="flex gap-1 py-2 px-4 cursor-pointer items-center justify-between appearance-none shadow-none outline-none border-text hover:border-hovertext focus:border-hovertext focus:outline-none"
             @click="onClick"
         >
             {{ selectedLabel }}
@@ -13,7 +13,7 @@
         </div>
         <ul
             v-if="opened"
-            class="absolute top-full left-0 z-10 mt-1 w-full bg-white border border-text rounded-lg shadow-md max-h-[200px] overflow-y-scroll"
+            class="absolute top-full left-0 z-10 mt-1 w-full bg-white border border-text rounded-lg shadow-md max-h-[200px] overflow-y-auto"
         >
             <li
                 v-for="option in options"
