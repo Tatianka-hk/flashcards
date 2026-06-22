@@ -19,7 +19,7 @@
                 v-for="option in options"
                 :key="option.value"
                 :class="[
-                    'py-2 px-4 cursor-pointer',
+                    'py-2 px-4 cursor-pointer text-text',
                     dialogMode
                         ? 'bg-blue hover:bg-[#cfdae6]'
                         : ' bg-primary hover:bg-thirty',
