@@ -11,7 +11,7 @@
             :value="modelValue"
             @input="onInput"
             v-bind="attrs"
-            class="w-full appearance-none shadow-none outline-none border border-text bg-blue py-2 px-4 hover:border-hovertext focus:border-hovertext focus:outline-none"
+            class="w-full appearance-none shadow-none outline-none border border-text bg-blue py-2 px-4 hover:border-hovertext focus:border-hovertext focus:outline-none text-black"
         />
     </div>
 </template>
@@ -46,7 +46,7 @@ const inputId = computed(
 )
 
 function onInput(e: Event) {
-    const el = e.target as HTMLInputElement
+    const el = e.target as any
     emit('update:modelValue', el.value)
 }
 </script>
