@@ -5,12 +5,14 @@
     <div class="flex flex-col gap-2" v-else>
         <button
             @click="$router.push('/login')"
+            aria-label="Login"
             class="bg-primary cursor-pointer py-1 px-2 text-base rounded-[8px] font-julius"
         >
             {{ t('auth.actions.login') }}
         </button>
         <button
             @click="$router.push('/signup')"
+            aria-label="Signup"
             class="bg-blue cursor-pointer py-1 px-2 text-base rounded-[8px] font-julius"
         >
             {{ t('auth.actions.signup') }}

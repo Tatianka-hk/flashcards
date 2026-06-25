@@ -5,7 +5,8 @@
         "download": "Descarregar fitxer",
         "back": "Enrere",
         "addCards": "Afegeix targetes",
-        "saveInFolder": "Guardar en carpeta"
+        "saveInFolder": "Guardar en carpeta",
+        "next": "Següent"
     },
     "message": {
         "limitReached": "Has utilitzat els nostres serveis {count} vegades",
@@ -104,5 +105,14 @@
     "error404": {
         "message": "Pagina no trobada",
         "button": "Torna enrere"
+    },
+    "errors": {
+        "generate": {
+            "invalidInput": "Fitxer o entrada no vàlids. Si us plau, puja un PDF vàlid.",
+            "authorization": "Error d'autorització. Si us plau, torna-ho a provar més tard.",
+            "tooManyRequests": "Massa sol·licituds. Espera una mica i torna-ho a provar.",
+            "server": "Error del servidor. Si us plau, torna-ho a provar més tard.",
+            "network": "Error de xarxa. Comprova la teva connexió a internet."
+        }
     }
 }

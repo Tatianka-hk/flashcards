@@ -10,11 +10,13 @@ export default defineEventHandler(async (event) => {
                 statusMessage: 'Invalid input',
             })
         }
-
+        console.log('here')
+        console.log(body.text)
         const flashcards = await getFlashCardsFromDocument(body.text)
         return { flashcards }
     } catch (err: any) {
         if (err?.statusCode) throw err
+        console.error(err)
         throw createError({
             statusCode: 500,
             statusMessage: 'Server error',

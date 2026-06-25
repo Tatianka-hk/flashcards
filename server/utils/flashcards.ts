@@ -1,3 +1,5 @@
+import { ICard } from '~/types'
+
 const TOGETHER_API_KEY = process.env.TOGETHER_API_KEY
 
 if (!TOGETHER_API_KEY) {
@@ -21,28 +23,71 @@ export async function getFlashCardsFromDocument(text: string) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                model: 'mistralai/Mixtral-8x7B-Instruct-v0.1',
+                model: 'Qwen/Qwen3.5-9B',
                 messages: [
                     { role: 'system', content: 'Ти генератор флешкарток' },
                     { role: 'user', content: prompt },
                 ],
                 temperature: 0.7,
-                max_tokens: 1000,
+                reasoning: { enabled: false },
             }),
         }
     )
     const json = await togetherRes.json()
-    const content = json.choices[0].message.content
+    if (!togetherRes.ok) {
+        console.error('Together API error:', json)
+
+        throw new Error(
+            json?.error?.message || `Together API error: ${togetherRes.status}`
+        )
+    }
+    console.log(json?.choices?.[0]?.message)
+
+    const content = json?.choices?.[0]?.message?.content
+
+    if (!content) {
+        console.error('Unexpected Together response:', json)
+
+        throw new Error('Together API did not return message content')
+    }
+
     return parseResult(content)
 }
 
-function parseResult(content: string) {
-    const blocks = content.split('\n\n').map((b) => b.trim())
-    return blocks
-        .map((b) => {
-            const front = b.match(/front:\s*(.+)/i)?.[1] || ''
-            const back = b.match(/back:\s*(.+)/i)?.[1] || ''
-            return { front, back }
-        })
-        .filter((fc) => fc.front && fc.back)
+function parseResult(content: string): ICard[] {
+    try {
+        const cleaned = content
+            .replace(/```json/g, '')
+            .replace(/```/g, '')
+            .replace(/`json/g, '')
+            .replace(/`/g, '')
+            .trim()
+
+        const start = cleaned.indexOf('[')
+        const end = cleaned.lastIndexOf(']')
+
+        if (start === -1 || end === -1) {
+            throw new Error('No JSON array found in AI response')
+        }
+
+        const jsonString = cleaned.slice(start, end + 1)
+
+        const parsed = JSON.parse(jsonString)
+
+        if (!Array.isArray(parsed)) {
+            throw new Error('AI response is not an array')
+        }
+
+        return parsed
+            .map((item: any) => ({
+                front: String(item.front || '').trim(),
+                back: String(item.back || '').trim(),
+            }))
+            .filter((item: ICard) => item.front && item.back)
+    } catch (err) {
+        console.error('Failed to parse AI response:')
+        console.error(content)
+
+        throw new Error('Failed to parse flashcards response')
+    }
 }

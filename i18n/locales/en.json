@@ -5,7 +5,8 @@
         "download": "Download file",
         "back": "Back",
         "addCards": "Add cards",
-        "saveInFolder": "Save in folder"
+        "saveInFolder": "Save in folder",
+        "next": "Next"
     },
     "message": {
         "limitReached": "You have used the service {count} times",
@@ -104,5 +105,14 @@
     "error404": {
         "message": "Page not found",
         "button": "Go back"
+    },
+    "errors": {
+        "generate": {
+            "invalidInput": "Invalid file or input. Please upload a valid PDF.",
+            "authorization": "Authorization error. Please try again later.",
+            "tooManyRequests": "Too many requests. Please wait a bit and try again.",
+            "server": "Server error. Please try again later.",
+            "network": "Network error. Please check your internet connection."
+        }
     }
 }

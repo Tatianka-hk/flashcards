@@ -13,7 +13,20 @@
                 {{ usageCount }} / 3</span
             >
             <FileInput @file:change="onChangeFile" />
-            <VButton @click="onClickButton" :disabled="!fileText || loading">
+            <p
+                v-if="errorMessage"
+                data-testid="error-message"
+                role="alert"
+                class="text-red-600"
+            >
+                {{ errorMessage }}
+            </p>
+            <VButton
+                data-testid="generate-button"
+                @click="onClickButton"
+                :disabled="!fileText || loading"
+                :ariaLabel="t('button.generate')"
+            >
                 {{ t('button.generate') }}
             </VButton>
             <Loading v-if="loading" />
@@ -40,6 +53,7 @@ const { isAuth } = useAuth()
 const fileText = ref<string | null>(null)
 const viewResult = ref<boolean>(false)
 const flashcards = ref<ICard[]>([])
+const errorMessage = ref<string | null>(null)
 const loading = ref<boolean>(false)
 const usageKey = 'asdasd'
 const usageCount = ref<number>(
@@ -51,8 +65,24 @@ const onChangeFile = (text: string) => {
     fileText.value = text
 }
 
+function getGenerateErrorMessage(status?: number) {
+    switch (status) {
+        case 400:
+            return t('errors.generate.invalidInput')
+        case 401:
+            return t('errors.generate.authorization')
+        case 429:
+            return t('errors.generate.tooManyRequests')
+        case 500:
+            return t('errors.generate.server')
+        default:
+            return t('errors.generate.network')
+    }
+}
+
 const onClickButton = async () => {
     if (!fileText.value) return
+
     loading.value = true
     try {
         const response = await fetch(`/api/generate`, {
@@ -61,17 +91,20 @@ const onClickButton = async () => {
             body: JSON.stringify({ text: fileText.value }),
         })
 
-        if (response.ok) {
-            usageCount.value++
-            if (process.client) {
-                localStorage.setItem(usageKey, usageCount.value.toString())
-            }
+        if (!response.ok) {
+            errorMessage.value = getGenerateErrorMessage(response.status)
+            return
+        }
+        usageCount.value++
+        if (process.client) {
+            localStorage.setItem(usageKey, usageCount.value.toString())
         }
         const data = await response.json()
         flashcards.value = data.flashcards
         viewResult.value = true
-    } catch (error) {
-        console.error(error)
+    } catch (err) {
+        console.error(err)
+        errorMessage.value = getGenerateErrorMessage()
     } finally {
         loading.value = false
     }

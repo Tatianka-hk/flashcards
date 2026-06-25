@@ -5,7 +5,8 @@
         "download": "Descargar archivo",
         "back": "Atrás",
         "addCards": "Agregar tarjetas",
-        "saveInFolder": "Guardar en carpeta"
+        "saveInFolder": "Guardar en carpeta",
+        "next": "Siguiente"
     },
     "message": {
         "limitReached": "Has utilizado nuestros servicios {count} veces",
@@ -104,5 +105,14 @@
     "error404": {
         "message": "Página no encontrada",
         "button": "Volver"
+    },
+    "errors": {
+        "generate": {
+            "invalidInput": "Archivo o entrada no válidos. Por favor, sube un PDF válido.",
+            "authorization": "Error de autorización. Por favor, inténtalo de nuevo más tarde.",
+            "tooManyRequests": "Demasiadas solicitudes. Espera un poco e inténtalo de nuevo.",
+            "server": "Error del servidor. Por favor, inténtalo de nuevo más tarde.",
+            "network": "Error de red. Comprueba tu conexión a internet."
+        }
     }
 }

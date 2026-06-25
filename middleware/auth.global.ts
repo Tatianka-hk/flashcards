@@ -1,7 +1,7 @@
 import { defineNuxtRouteMiddleware, navigateTo } from '#app'
 import { useAuth } from '~/composables/useAuth'
 
-export default defineNuxtRouteMiddleware((to) => {
+export default defineNuxtRouteMiddleware(async (to) => {
     const publicRoutes = ['/', '/login', '/signup', '/404']
 
     if (publicRoutes.includes(to.path)) {
@@ -9,13 +9,9 @@ export default defineNuxtRouteMiddleware((to) => {
     }
 
     const { isAuth, fetchAuth } = useAuth()
-    fetchAuth()
-        .then(() => {
-            if (!isAuth.value) {
-                return navigateTo('/login')
-            }
-        })
-        .catch(() => {
-            return navigateTo('/login')
-        }) // fix it (delete it)
+    await fetchAuth()
+
+    if (!isAuth.value) {
+        return navigateTo('/login')
+    }
 })

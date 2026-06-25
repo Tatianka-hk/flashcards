@@ -10,6 +10,7 @@
             extraClass,
         ]"
         :disabled="disabled"
+        :aria-label="ariaLabel"
     >
         <slot />
     </button>
@@ -21,6 +22,7 @@ const props = withDefaults(
         onClick: () => void
         disabled?: boolean
         extraClass?: string
+        ariaLabel?: string
     }>(),
     {
         disabled: false,

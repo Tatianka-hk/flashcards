@@ -4,7 +4,7 @@
             <div class="flex gap-4 items-center justify-center">
                 <div class="md:w-[110px] h-[100px] w-[50px]">
                     <Arrow
-                        label="Previous"
+                        :label="t('button.back')"
                         v-show="currentIndex > 0"
                         @click="onClick(-1)"
                         class="rotate-180"
@@ -15,6 +15,7 @@
                 </div>
                 <div class="md:w-[110px] h-[100px] w-[50px]">
                     <Arrow
+                        :label="t('button.next')"
                         v-show="currentIndex < cards.length - 1"
                         @click="onClick(1)"
                     />
@@ -22,14 +23,24 @@
             </div>
             <div class="flex flex-col items-center justify-center">
                 <div class="flex items-center justify-center mt-4 gap-4">
-                    <VButton @click="downloadJSON(cards)">
+                    <VButton
+                        @click="downloadJSON(cards)"
+                        :ariaLabel="t('button.download')"
+                    >
                         {{ t('button.download') }}
                     </VButton>
-                    <VButton @click="$emit('close')">
+                    <VButton
+                        @click="$emit('close')"
+                        :ariaLabel="t('button.back')"
+                    >
                         {{ $t('button.back') }}
                     </VButton>
                 </div>
-                <VButton @click="openDialog" class="mt-4">
+                <VButton
+                    @click="openDialog"
+                    class="mt-4"
+                    :ariaLabel="t('button.saveInFolder')"
+                >
                     {{ t('button.saveInFolder') }}
                 </VButton>
             </div>
@@ -42,7 +53,9 @@
         </div>
         <div v-else class="flex flex-col items-center justify-center">
             <MessageItem :message="$t('message.generateCardError')" />
-            <VButton @click="$emit('close')"> {{ t('button.back') }} </VButton>
+            <VButton @click="$emit('close')" :ariaLabel="t('button.back')">
+                {{ t('button.back') }}
+            </VButton>
         </div>
     </div>
 </template>
