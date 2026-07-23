@@ -1,75 +1,91 @@
-# Nuxt Minimal Starter
+# Flashcards
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A Nuxt 3 application for creating, organizing, and studying flashcards. The app supports user accounts, nested folders, manual card editing, AI-generated flashcards from text, and a simple learning mode.
 
-## Setup
+## Features
 
-Make sure to install dependencies:
+- Email/password registration and login with JWT session cookies
+- Flashcard generation from pasted text
+- Folder-based organization with nested folders
+- Create, edit, delete, move, and copy cards
+- Study mode for practicing saved cards
+- Multiple UI languages via `@nuxtjs/i18n`
+- MongoDB persistence with Mongoose
+
+## Tech Stack
+
+- Nuxt 3
+- Vue 3
+- TypeScript
+- Tailwind CSS
+- MongoDB / Mongoose
+- JSON Web Tokens
+- Playwright
+
+## Getting Started
+
+Install dependencies:
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+Create a local `.env` file:
 
-Start the development server on `http://localhost:3000`:
+```env
+MONGODB_URL=
+MONGODB_DB=
+JWT_SECRET=
+JWT_EXPIRES_IN=7d
+PASSWORD_SALT=
+TOGETHER_API_KEY=
+VITE_BACKEND_URL=
+VITE_USAGE_KEY=
+```
+
+Run the development server:
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+Open the app at:
 
-Build the application for production:
+```text
+http://localhost:3000
+```
+
+## Scripts
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+npm run dev       # Start local development
+npm run build     # Build for production
+npm run preview   # Preview production build
+npm run generate  # Generate static output
 ```
 
-Locally preview production build:
+## Project Structure
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+```text
+pages/          Nuxt pages and routes
+components/     App-specific Vue components
+ui/             Shared UI components
+server/api/     Nitro API routes
+server/models/  Mongoose models
+server/utils/   Server helpers for auth, DB, and flashcard generation
+middleware/     Route protection middleware
+i18n/locales/   Translation files
+apis/           Client API wrappers
+types/          Shared TypeScript types
+tests/          Playwright tests
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Authentication
+
+After login, the server signs a JWT and stores it in an HTTP-only `session` cookie. Protected API routes read the cookie, verify the token, and attach the user id to the request context.
+
+For local development, keep `JWT_SECRET` stable in `.env`; changing it will invalidate existing sessions.
+
+## License
+
+Private project.
