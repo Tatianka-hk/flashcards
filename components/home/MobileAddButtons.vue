@@ -9,7 +9,7 @@
                 <IconPlus class="h-[36px] w-[36px]" />
             </div>
         </div>
-        <div>
+        <div v-if="folderId?.length > 1">
             <button
                 @click="addCard"
                 class="flex items-center justify-center bg-blue rounded-lg p-4 gap-2 left-2 absolute text-text"
