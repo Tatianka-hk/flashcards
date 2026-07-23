@@ -100,7 +100,8 @@
         "skip": "Skip",
         "next": "Next",
         "repeat": "Repeat",
-        "continue": "Continue"
+        "continue": "Continue",
+        "check": "Check"
     },
     "failedToLoad": "Failed to load",
     "error404": {

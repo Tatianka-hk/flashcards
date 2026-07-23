@@ -100,7 +100,8 @@
         "setCorrect": "Establecer como correcto",
         "next": "Siguiente",
         "repeat": "Repetir",
-        "continue": "Continuar"
+        "continue": "Continuar",
+        "check": "Comprobar"
     },
     "failedToLoad": "No se pudo cargar",
     "error404": {

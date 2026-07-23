@@ -10,19 +10,17 @@
             <VButton
                 class="absolute left-4 top-4 w-[42px] h-[42px] flex items-center justify-center !p-0 block lg:hidden"
                 @click="$router.back()"
+                :ariaLabel="t('button.back')"
             >
                 <IconBack class="h-[24px] w-[24px]" />
             </VButton>
             <div
-                class="flex items-center justify-center h-full w-full"
+                class="flex flex-col items-center justify-center h-full w-full gap-5"
                 v-if="(cards?.length ?? 0) === 0"
             >
-                {{ t('learn.noCards') }}
-                <VButton @click="$router.back()">
+                {{ t('learn.NoCard') }}
+                <VButton @click="$router.back()" :ariaLabel="t('button.back')">
                     {{ t('button.back') }}
-                </VButton>
-                <VButton @click="$router.push(`/folder/create/${folderID}`)">
-                    {{ t('learn.AllCards') }}
                 </VButton>
             </div>
             <div
@@ -45,6 +43,7 @@
                     />
                 </div>
                 <input
+                    aria-label="answer"
                     class="bg-blue p-2"
                     v-model="answer"
                     :readonly="isChecked"
@@ -55,28 +54,50 @@
                     v-if="!isCorrect && isChecked"
                     class="flex gap-2 flex-col items-center justify-center"
                 >
-                    <span class="text-error">
+                    <span
+                        class="text-error"
+                        :aria-label="t('learn.wrongAnswer')"
+                    >
                         {{ t('learn.wrongAnswer') }}
                     </span>
-                    <span class="text-mint">
+                    <span
+                        class="text-mint"
+                        :aria-label="cards[currentIndex]?.front"
+                    >
                         {{ cards[currentIndex]?.front }}
                     </span>
                 </div>
 
                 <div class="flex gap-4">
-                    <VButton v-if="!isChecked" @click="skipQuestion">
+                    <VButton
+                        v-if="!isChecked"
+                        @click="skipQuestion"
+                        :ariaLabel="t('learn.skip')"
+                    >
                         {{ t('learn.skip') }}
                     </VButton>
 
-                    <VButton v-if="!isChecked" @click="checkAnswer">
-                        Check
+                    <VButton
+                        v-if="!isChecked"
+                        @click="checkAnswer"
+                        :ariaLabel="t('learn.check')"
+                    >
+                        {{ t('learn.check') }}
                     </VButton>
 
-                    <VButton v-if="isChecked && !isCorrect" @click="setCorrect">
+                    <VButton
+                        v-if="isChecked && !isCorrect"
+                        @click="setCorrect"
+                        :ariaLabel="t('learn.setCorrect')"
+                    >
                         {{ t('learn.setCorrect') }}
                     </VButton>
 
-                    <VButton v-if="isChecked" @click="nextQuestion">
+                    <VButton
+                        v-if="isChecked"
+                        @click="nextQuestion"
+                        :ariaLabel="t('learn.next')"
+                    >
                         {{ t('learn.next') }}
                     </VButton>
                 </div>

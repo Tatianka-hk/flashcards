@@ -100,7 +100,8 @@
         "setCorrect": "Estableix correcte",
         "next": "Següent",
         "repeat": "Repetir",
-        "continue": "Continuar"
+        "continue": "Continuar",
+        "check": "Comprovar"
     },
     "failedToLoad": "No s'ha pogut carregar",
     "error404": {

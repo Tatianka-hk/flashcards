@@ -9,6 +9,7 @@
                 @click="button.onClick"
                 class="flex items-center gap-5"
                 :aria-label="t(button.label)"
+                :disabled="button.disabled"
             >
                 <component :is="button.icon" class="h-[36px] w-[36px]" />
                 {{ t(button.label) }}
