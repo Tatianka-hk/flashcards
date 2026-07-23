@@ -7,11 +7,34 @@ if (!TOGETHER_API_KEY) {
 }
 
 export async function getFlashCardsFromDocument(text: string) {
-    const prompt = `Прочитай текст і створи флешкартки у форматі:
-    front: запитання
-    back: відповідь
+    const prompt = `You must create flashcards from the provided text.
 
-    Текст:
+STRICT OUTPUT RULES:
+- Return ONLY valid JSON.
+- Do NOT use markdown.
+- Do NOT use bullet points.
+- Do NOT write explanations.
+- Do NOT wrap JSON in \`\`\`.
+- The response must start with { and end with }.
+- Use exactly this structure:
+
+{
+  "flashcards": [
+    {
+      "front": "short question",
+      "back": "short answer"
+    }
+  ]
+}
+
+Rules for flashcards:
+- Create between 5 and 15 flashcards.
+- front must be a question.
+- back must be a short answer.
+- Do not include email, phone number, Telegram, LinkedIn, or private contact data.
+- Use the same language as the input text if possible.
+
+TEXT:
     ${text}
     Флешкартки:`
     const togetherRes = await fetch(
@@ -28,8 +51,38 @@ export async function getFlashCardsFromDocument(text: string) {
                     { role: 'system', content: 'Ти генератор флешкарток' },
                     { role: 'user', content: prompt },
                 ],
-                temperature: 0.7,
+                temperature: 0,
                 reasoning: { enabled: false },
+                response_format: {
+                    type: 'json_schema',
+                    json_schema: {
+                        name: 'flashcards_response',
+                        schema: {
+                            type: 'object',
+                            additionalProperties: false,
+                            properties: {
+                                flashcards: {
+                                    type: 'array',
+                                    maxItems: 10,
+                                    items: {
+                                        type: 'object',
+                                        additionalProperties: false,
+                                        properties: {
+                                            front: {
+                                                type: 'string',
+                                            },
+                                            back: {
+                                                type: 'string',
+                                            },
+                                        },
+                                        required: ['front', 'back'],
+                                    },
+                                },
+                            },
+                            required: ['flashcards'],
+                        },
+                    },
+                },
             }),
         }
     )
@@ -53,41 +106,71 @@ export async function getFlashCardsFromDocument(text: string) {
 
     return parseResult(content)
 }
-
 function parseResult(content: string): ICard[] {
+    const cleaned = content
+        .replace(/```json/gi, '')
+        .replace(/```/g, '')
+        .replace(/`json/gi, '')
+        .replace(/`/g, '')
+        .trim()
+
     try {
-        const cleaned = content
-            .replace(/```json/g, '')
-            .replace(/```/g, '')
-            .replace(/`json/g, '')
-            .replace(/`/g, '')
-            .trim()
+        const parsed = JSON.parse(cleaned)
 
-        const start = cleaned.indexOf('[')
-        const end = cleaned.lastIndexOf(']')
+        const flashcards = Array.isArray(parsed) ? parsed : parsed?.flashcards
 
-        if (start === -1 || end === -1) {
-            throw new Error('No JSON array found in AI response')
+        if (!Array.isArray(flashcards)) {
+            throw new Error('AI response does not contain flashcards array')
         }
 
-        const jsonString = cleaned.slice(start, end + 1)
+        return normalizeFlashcards(flashcards)
+    } catch (jsonError) {
+        console.warn('JSON.parse failed, trying fallback parser...')
+    }
 
-        const parsed = JSON.parse(jsonString)
+    const fallbackCards = parseBrokenJsonFlashcards(cleaned)
 
-        if (!Array.isArray(parsed)) {
-            throw new Error('AI response is not an array')
-        }
+    if (fallbackCards.length > 0) {
+        return fallbackCards
+    }
 
-        return parsed
-            .map((item: any) => ({
-                front: String(item.front || '').trim(),
-                back: String(item.back || '').trim(),
-            }))
-            .filter((item: ICard) => item.front && item.back)
-    } catch (err) {
-        console.error('Failed to parse AI response:')
-        console.error(content)
+    console.error('Failed to parse AI response:')
+    console.error(content)
 
-        throw new Error('Failed to parse flashcards response')
+    throw new Error('Failed to parse flashcards response')
+}
+
+function normalizeFlashcards(items: any[]): ICard[] {
+    return items
+        .map((item) => ({
+            front: String(item?.front || '').trim(),
+            back: String(item?.back || '').trim(),
+        }))
+        .filter((item: ICard) => item.front && item.back)
+}
+
+function parseBrokenJsonFlashcards(content: string): ICard[] {
+    const cards: ICard[] = []
+
+    const pairRegex =
+        /"front"\s*:\s*"((?:\\.|[^"\\])*)"\s*,\s*"back"\s*:\s*"((?:\\.|[^"\\])*)"/g
+
+    let match: RegExpExecArray | null
+
+    while ((match = pairRegex.exec(content)) !== null) {
+        cards.push({
+            front: decodeJsonString(match[1]).trim(),
+            back: decodeJsonString(match[2]).trim(),
+        })
+    }
+
+    return cards.filter((card) => card.front && card.back)
+}
+
+function decodeJsonString(value: string): string {
+    try {
+        return JSON.parse(`"${value}"`)
+    } catch {
+        return value
     }
 }

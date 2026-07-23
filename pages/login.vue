@@ -22,9 +22,12 @@
                     v-model="password"
                 />
             </div>
-            <VButton :disabled="!email || !password" :onClick="onClick">{{
-                t('auth.actions.login')
-            }}</VButton>
+            <VButton
+                :disabled="!email || !password"
+                :onClick="onClick"
+                :ariaLabel="t('auth.actions.login')"
+                >{{ t('auth.actions.login') }}
+            </VButton>
         </form>
     </div>
 </template>

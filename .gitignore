@@ -26,3 +26,5 @@ logs
 
 test
 test.js
+test-results
+/test-results

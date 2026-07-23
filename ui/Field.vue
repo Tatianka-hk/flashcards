@@ -6,6 +6,7 @@
 
         <input
             :id="inputId"
+            :aria-label="label"
             :name="name"
             :type="type"
             :value="modelValue"

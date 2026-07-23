@@ -1,5 +1,6 @@
 <template>
     <div class="w-full flex flex-col items-center justify-center">
+        <Loading v-if="isLoading" />
         <form
             @keydown.enter.prevent="onClick"
             class="w-full flex flex-col items-center justify-center"
@@ -31,6 +32,7 @@
             <VButton
                 :disabled="!email || !password || !confirmPassword"
                 :onClick="onClick"
+                :ariaLabel="t('auth.actions.signup')"
             >
                 {{ t('auth.actions.signup') }}
             </VButton>
@@ -49,6 +51,7 @@ const { t } = useI18n()
 const email = ref('')
 const password = ref('')
 const confirmPassword = ref('')
+const isLoading = ref(false)
 
 function isValidEmail(email: string): boolean {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
@@ -73,6 +76,7 @@ const onClick = () => {
     }
     registerUser({ email: email.value, password: password.value })
         .then(() => {
+            showSnackbar(t('auth.success.signup'), 'success')
             navigateTo('/home')
         })
         .catch((err) => {
@@ -82,6 +86,9 @@ const onClick = () => {
                     : t('auth.errors.something_went_wrong'),
                 'error'
             )
+        })
+        .finally(() => {
+            isLoading.value = false
         })
 }
 </script>
