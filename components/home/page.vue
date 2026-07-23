@@ -16,6 +16,7 @@
             </div>
             <div
                 v-else-if="error"
+                :aria-label="t('failedToLoad')"
                 class="p-4 text-rose-600 w-full h-full flex items-center justify-center"
             >
                 {{ t('failedToLoad') }}
@@ -27,29 +28,29 @@
                     v-if="selectedCardIds.length"
                     class="sticky top-0 z-10 backdrop-blur border-b border-slate-200 px-4 py-3 flex items-center justify-between"
                 >
-                    <div class="text-sm text-slate-700">
+                    <div class="text-sm text-slate-700 text-text">
                         {{ t('folder.selected') }}:
                         <b>{{ selectedCardIds.length }}</b>
                     </div>
 
                     <div class="flex items-center gap-2">
                         <button
-                            class="px-3 py-2 rounded-lg border border-slate-300 hover:bg-slate-50 text-sm"
+                            class="px-3 py-2 rounded-lg border border-slate-300 hover:bg-slate-50 text-sm text-text"
                             @click="clearSelection"
                         >
                             {{ t('folder.cancel') }}
                         </button>
 
                         <IconCopy
-                            class="cursor-pointer text-read hover:text-slate-600"
+                            class="cursor-pointer text-read hover:text-slate-600 text-text"
                             @click="onCopyOrMode(SaveMode.ADD)"
                         />
                         <IconSend
-                            class="cursor-pointer text-read hover:text-slate-600"
+                            class="cursor-pointer text-read hover:text-slate-600 text-text"
                             @click="onCopyOrMode(SaveMode.MOVE)"
                         />
                         <IconDelete
-                            class="cursor-pointer text-rose-600 hover:text-rose-700"
+                            class="cursor-pointer text-rose-600 hover:text-rose-700 text-text"
                             @click="onDelete"
                         />
                     </div>
@@ -84,7 +85,7 @@
 
                 <div
                     v-if="!folders.length && !cards.length"
-                    class="p-6 text-slate-500 w-full h-full flex items-center justify-center"
+                    class="p-6 text-slate-500 w-full flex h-[calc(100vh-230px)] lg:h-full items-center justify-center"
                 >
                     {{ t('card.noCards') }}
                 </div>

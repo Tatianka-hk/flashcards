@@ -6,7 +6,8 @@
         "back": "Enrere",
         "addCards": "Afegeix targetes",
         "saveInFolder": "Guardar en carpeta",
-        "next": "Següent"
+        "next": "Següent",
+        "logout": "Tancar sessió"
     },
     "message": {
         "limitReached": "Has utilitzat els nostres serveis {count} vegades",

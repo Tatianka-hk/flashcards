@@ -4,18 +4,21 @@
             class="absolute left-4 w-[42px] h-[42px] flex items-center justify-center !p-0"
             @click="$router.back()"
             v-if="$route.path !== '/home'"
+            :aria-label="$t('button.back')"
         >
             <IconBack class="h-[24px] w-[24px]" />
         </VButton>
         <span
             class="font-julius text-2xl text-text underline [justify-self:center] cursor-pointer"
             @click="handleGenerate"
+            :aria-label="$t('button.generate')"
         >
-            GENERATE
+            {{ $t('button.generate') }}
         </span>
         <VButton
             class="absolute right-4 w-[42px] h-[42px] flex items-center justify-center !p-0"
             @click="handleLogout"
+            :aria-label="$t('button.logout')"
         >
             <IconLogout class="h-[24px] w-[24px]" />
         </VButton>

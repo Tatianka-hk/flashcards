@@ -6,7 +6,8 @@
         "back": "Back",
         "addCards": "Add cards",
         "saveInFolder": "Save in folder",
-        "next": "Next"
+        "next": "Next",
+        "logout": "Logout"
     },
     "message": {
         "limitReached": "You have used the service {count} times",

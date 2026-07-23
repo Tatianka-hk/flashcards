@@ -6,7 +6,8 @@
         "back": "Atrás",
         "addCards": "Agregar tarjetas",
         "saveInFolder": "Guardar en carpeta",
-        "next": "Siguiente"
+        "next": "Siguiente",
+        "logout": "Cerrar sesión"
     },
     "message": {
         "limitReached": "Has utilizado nuestros servicios {count} veces",

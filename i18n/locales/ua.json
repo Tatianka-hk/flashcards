@@ -6,7 +6,8 @@
         "back": "Назад",
         "addCards": "Додати карти",
         "saveInFolder": "Зберегти у папку",
-        "next": "Далі"
+        "next": "Далі",
+        "logout": "Вийти"
     },
     "message": {
         "limitReached": "Ви використали наші послуги {count} рази",

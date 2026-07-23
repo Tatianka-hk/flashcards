@@ -8,6 +8,7 @@
                 :key="button.label"
                 @click="button.onClick"
                 class="flex items-center gap-5"
+                :aria-label="t(button.label)"
             >
                 <component :is="button.icon" class="h-[36px] w-[36px]" />
                 {{ t(button.label) }}
@@ -15,7 +16,11 @@
             <LanguageInput />
         </div>
         <div>
-            <VButton class="flex items-center gap-5" @click="handleLogout">
+            <VButton
+                class="flex items-center gap-5"
+                @click="handleLogout"
+                :aria-label="t('menu.buttons.logout')"
+            >
                 <IconLogout class="h-[36px] w-[36px]" />
                 {{ t('menu.buttons.logout') }}
             </VButton>

@@ -4,6 +4,7 @@
             <div
                 class="bg-blue rounded-full w-[68px] h-[68px] flex items-center justify-center"
                 @click="openDialog"
+                :aria-label="$t('button.addFolder')"
             >
                 <IconPlus class="h-[36px] w-[36px]" />
             </div>
@@ -11,7 +12,8 @@
         <div>
             <button
                 @click="addCard"
-                class="flex items-center justify-center bg-blue rounded-lg p-4 gap-2 left-2 absolute"
+                class="flex items-center justify-center bg-blue rounded-lg p-4 gap-2 left-2 absolute text-text"
+                :aria-label="$t('button.addCards')"
             >
                 <IconPlus />
                 {{ $t('button.addCards') }}
