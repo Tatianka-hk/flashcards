@@ -18,6 +18,7 @@
                         mode === 'error' ? 'bg-primary' : 'bg-blue',
                         isOpen ? 'block' : 'hidden',
                     ]"
+                    :aria-label="$t('close')"
                 >
                     <IconClose @click="onClose" />
                 </button>

@@ -90,7 +90,7 @@
                     {{ t('card.noCards') }}
                 </div>
             </template>
-            <MobileAddButtons :folderId="routeId" />
+            <MobileAddButtons :folderId="routeId" @changed="updateFolders" />
         </main>
     </div>
 </template>
