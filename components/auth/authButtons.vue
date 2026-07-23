@@ -6,14 +6,14 @@
         <button
             @click="$router.push('/login')"
             :aria-label="t('auth.actions.login')"
-            class="bg-primary cursor-pointer py-1 px-2 text-base rounded-[8px] font-julius"
+            class="bg-primary cursor-pointer py-1 px-2 text-base rounded-[8px] font-julius text-text"
         >
             {{ t('auth.actions.login') }}
         </button>
         <button
             @click="$router.push('/signup')"
             :aria-label="t('auth.actions.signup')"
-            class="bg-blue cursor-pointer py-1 px-2 text-base rounded-[8px] font-julius"
+            class="bg-blue cursor-pointer py-1 px-2 text-base rounded-[8px] font-julius text-text"
         >
             {{ t('auth.actions.signup') }}
         </button>
