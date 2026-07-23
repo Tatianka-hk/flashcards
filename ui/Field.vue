@@ -1,8 +1,11 @@
 <template>
     <div class="flex flex-col">
-        <label v-if="label" :for="inputId" class="font-julius text-base mb-2">{{
-            label
-        }}</label>
+        <label
+            v-if="label"
+            :for="inputId"
+            class="font-julius text-base mb-2 text-text"
+            >{{ label }}</label
+        >
 
         <input
             :id="inputId"
