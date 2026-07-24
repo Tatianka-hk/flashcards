@@ -3,6 +3,7 @@
         :value="locale"
         :options="langs"
         @change="changeLang($event)"
+        ulClassName="!overflow-y-hidden"
     />
 </template>
 <script setup lang="ts">

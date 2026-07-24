@@ -1,0 +1,125 @@
+{
+    "title": "Flashcards",
+    "button": {
+        "generate": "Generer des flashcards",
+        "download": "Telecharger le fichier",
+        "back": "Retour",
+        "addCards": "Ajouter des cartes",
+        "saveInFolder": "Enregistrer dans un dossier",
+        "next": "Suivant",
+        "logout": "Se deconnecter"
+    },
+    "message": {
+        "limitReached": "Vous avez utilise le service {count} fois",
+        "generateCardError": "Erreur lors de la generation des flashcards",
+        "userIsntAuth": "Pour enregistrer les flashcards, vous devez etre connecte"
+    },
+    "file": {
+        "noFilePdf": "Veuillez importer un fichier PDF",
+        "noFileJson": "Veuillez importer un fichier JSON",
+        "error": "Erreur lors du traitement du fichier",
+        "uploaded": "Importe : "
+    },
+    "auth": {
+        "labels": {
+            "email": "Email",
+            "password": "Mot de passe",
+            "confirm_password": "Confirmer le mot de passe"
+        },
+        "actions": {
+            "login": "Connexion",
+            "signup": "Inscription",
+            "login_google": "Connexion avec Google",
+            "forgot": "Mot de passe oublie ?"
+        },
+        "errors": {
+            "email_invalid": "Saisissez un email valide.",
+            "email_exists": "Cet email est deja enregistre.",
+            "password_mismatch": "Les mots de passe ne correspondent pas.",
+            "password_invalid": "Le mot de passe doit contenir au moins 1 lettre et 1 chiffre.",
+            "invalid_credentials": "Email ou mot de passe invalide.",
+            "too_many_attempts": "Trop de tentatives. Veuillez reessayer plus tard.",
+            "something_went_wrong": "Une erreur est survenue.",
+            "password_too_short": "Le mot de passe doit contenir au moins 6 caracteres."
+        },
+        "success": {
+            "signup": "Compte cree.",
+            "login": "Connexion reussie."
+        },
+        "info": {
+            "reset_sent": "Si l'email existe, nous avons envoye les instructions de reinitialisation."
+        }
+    },
+    "dropdown": {
+        "edit": "Modifier",
+        "delete": "Supprimer"
+    },
+    "menu": {
+        "buttons": {
+            "addFolder": "Ajouter un dossier",
+            "addFlashcard": "Ajouter une flashcard",
+            "logout": "Se deconnecter",
+            "generate": "Generer des flashcards",
+            "studyFlashcards": "Etudier les flashcards"
+        }
+    },
+    "folder": {
+        "edit": "Modifier le dossier",
+        "create": "Creer un dossier",
+        "lang": "Langue",
+        "name": "Nom du dossier",
+        "nameError": "Le nom du dossier doit contenir au moins 3 caracteres",
+        "editSuccess": "Dossier modifie avec succes",
+        "createSuccess": "Dossier cree avec succes",
+        "selected": "Selectionne",
+        "cancel": "Annuler",
+        "copySuccess": "Flashcards copiees avec succes",
+        "selectFolder": "Selectionner un dossier",
+        "deleteSuccess": "Dossier supprime avec succes",
+        "selectFolderError": "Veuillez selectionner un dossier"
+    },
+    "card": {
+        "frontLabel": "Terme",
+        "backLabel": "Description",
+        "save": "Enregistrer",
+        "saveSuccess": "Cartes enregistrees avec succes",
+        "edit": "Modifier la carte",
+        "noCards": "Rien ici pour le moment...",
+        "error": {
+            "empty": "Le recto et le verso ne peuvent pas etre vides"
+        }
+    },
+    "learn": {
+        "allCards": "Toutes les cartes",
+        "correct": "Correct",
+        "incorrect": "Incorrect",
+        "all": "Tout",
+        "NoCard": "Desole, ce dossier ne contient aucune carte",
+        "wrongAnswer": "La reponse n'est pas correcte",
+        "setCorrect": "Marquer comme correct",
+        "skip": "Passer",
+        "next": "Suivant",
+        "repeat": "Repeter",
+        "continue": "Continuer",
+        "check": "Verifier"
+    },
+    "failedToLoad": "Echec du chargement",
+    "error404": {
+        "message": "Page introuvable",
+        "button": "Retour"
+    },
+    "errors": {
+        "generate": {
+            "invalidInput": "Fichier ou saisie invalide. Veuillez importer un PDF valide.",
+            "authorization": "Erreur d'autorisation. Veuillez reessayer plus tard.",
+            "tooManyRequests": "Trop de requetes. Veuillez patienter puis reessayer.",
+            "server": "Erreur serveur. Veuillez reessayer plus tard.",
+            "network": "Erreur reseau. Veuillez verifier votre connexion internet."
+        }
+    },
+    "seo": {
+        "title": "Apprends. Retiens. Répète.",
+        "description": "Apprenez plus rapidement grâce aux cartes mémoire interactives. Étudiez les langues, l'histoire, la programmation, les sciences, la médecine et bien plus encore.",
+        "keywords": "flashcards, cartes mémoire, apprendre, mémoriser, répétition espacée, éducation, histoire, programmation, médecine, sciences, vocabulaire, application éducative, mémoire, études, apprentissage"
+    }
+}

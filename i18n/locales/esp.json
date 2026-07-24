@@ -116,5 +116,10 @@
             "server": "Error del servidor. Por favor, inténtalo de nuevo más tarde.",
             "network": "Error de red. Comprueba tu conexión a internet."
         }
+    },
+    "seo": {
+        "title": "Aprende. Recuerda. Repite.",
+        "description": "Aprende más rápido con tarjetas interactivas. Memoriza idiomas, historia, programación, ciencias, medicina y cualquier materia con repetición espaciada.",
+        "keywords": "flashcards, tarjetas de estudio, aprender, memorizar, repetición espaciada, educación, historia, programación, medicina, ciencias, vocabulario, aprendizaje, memoria, app educativa, estudio"
     }
 }

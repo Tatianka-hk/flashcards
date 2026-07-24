@@ -9,9 +9,12 @@
             />
         </div>
         <!-- end menu -->
-        <main class="flex flex-col w-full overflow-y-auto">
+        <main class="flex flex-col w-full overflow-y-auto relative">
             <MobileTop />
-            <div v-if="isCardLoading || isFolderLoading" class="p-4 opacity-70">
+            <div
+                v-if="isCardLoading || isFolderLoading"
+                class="p-4 opacity-70 z-20 relative"
+            >
                 <Loading />
             </div>
             <div

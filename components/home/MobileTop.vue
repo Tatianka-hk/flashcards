@@ -1,27 +1,33 @@
 <template>
-    <div class="lg:hidden flex items-center justify-center min-h-[80px]">
-        <VButton
-            class="absolute left-4 w-[42px] h-[42px] flex items-center justify-center !p-0"
-            @click="$router.back()"
-            v-if="$route.path !== '/home'"
-            :aria-label="$t('button.back')"
-        >
-            <IconBack class="h-[24px] w-[24px]" />
-        </VButton>
-        <span
-            class="font-julius text-2xl text-text underline [justify-self:center] cursor-pointer"
-            @click="handleGenerate"
-            :aria-label="$t('button.generate')"
-        >
-            {{ $t('button.generate') }}
-        </span>
-        <VButton
-            class="absolute right-4 w-[42px] h-[42px] flex items-center justify-center !p-0"
-            @click="handleLogout"
-            :aria-label="$t('button.logout')"
-        >
-            <IconLogout class="h-[24px] w-[24px]" />
-        </VButton>
+    <div
+        class="lg:hidden flex flex-col items-center justify-center min-h-[80px]"
+    >
+        <div class="flex w-full justify-center">
+            <span
+                class="font-julius text-2xl text-text underline [justify-self:center] cursor-pointer"
+                @click="handleGenerate"
+                :aria-label="$t('button.generate')"
+            >
+                {{ $t('button.generate') }}
+            </span>
+        </div>
+        <div class="flex justify-between w-full">
+            <VButton
+                class="absolute left-4 w-[42px] h-[42px] flex items-center justify-center !p-0"
+                @click="$router.back()"
+                v-if="$route.path !== '/home'"
+                :aria-label="$t('button.back')"
+            >
+                <IconBack class="h-[24px] w-[24px]" />
+            </VButton>
+            <VButton
+                class="absolute right-4 w-[42px] h-[42px] flex items-center justify-center !p-0"
+                @click="handleLogout"
+                :aria-label="$t('button.logout')"
+            >
+                <IconLogout class="h-[24px] w-[24px]" />
+            </VButton>
+        </div>
     </div>
 </template>
 <script setup lang="ts">

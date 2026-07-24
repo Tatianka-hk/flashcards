@@ -116,5 +116,11 @@
             "server": "Server error. Please try again later.",
             "network": "Network error. Please check your internet connection."
         }
+    },
+
+    "seo": {
+        "title": "Learn. Remember. Repeat.",
+        "description": "Learn faster with interactive flashcards. Memorize languages, science, history, programming and any subject using spaced repetition and personalized study.",
+        "keywords": "flashcards,study flashcards,flashcard app,learn faster,memorize,spaced repetition,study app,vocabulary,science flashcards,history flashcards,programming flashcards,medical flashcards,education,learning,memory training"
     }
 }

@@ -5,6 +5,7 @@ export const langs = [
     { value: 'ua', label: 'Українська' },
     { value: 'esp', label: 'Español' },
     { value: 'cat', label: 'Catalan' },
+    { value: 'fr', label: 'Francais' },
 ]
 
 export const langs20 = [

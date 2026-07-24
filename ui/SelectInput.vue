@@ -3,17 +3,23 @@
         ref="rootRef"
         class="relative text-text text-base bg-primary rounded-lg w-fit h-full"
     >
-        <div
-            class="flex gap-1 py-2 px-4 cursor-pointer items-center justify-between appearance-none shadow-none outline-none border-text hover:border-hovertext focus:border-hovertext focus:outline-none"
+        <button
+            type="button"
+            class="w-full flex gap-1 py-2 px-4 cursor-pointer items-center justify-between appearance-none shadow-none outline-none border-text hover:border-hovertext focus:border-hovertext focus:outline-none"
             @click="onClick"
         >
-            {{ selectedLabel }}
-            <IconChevronUp v-if="opened" />
-            <IconChevronDown v-else />
-        </div>
+            <span>{{ selectedLabel }}</span>
+            <span class="flex items-center" @click.stop="onClick">
+                <IconChevronUp v-if="opened" />
+                <IconChevronDown v-else />
+            </span>
+        </button>
         <ul
             v-if="opened"
-            class="absolute top-full left-0 z-10 mt-1 w-full bg-white border border-text rounded-lg shadow-md max-h-[200px] overflow-y-auto"
+            :class="[
+                'absolute top-full left-0 z-10 mt-1 w-full bg-white border border-text rounded-lg shadow-md max-h-[200px] overflow-y-auto',
+                props.ulClassName,
+            ]"
         >
             <li
                 v-for="option in options"
@@ -45,6 +51,7 @@ interface PropsType {
     options: OptionType[]
     value: valueType
     dialogMode?: boolean
+    ulClassName?: string
 }
 const emit = defineEmits<{
     (e: 'change', val: valueType): void

@@ -3,6 +3,7 @@ import en from '@/i18n/locales/en.json'
 import ua from '@/i18n/locales/ua.json'
 import esp from '@/i18n/locales/esp.json'
 import cat from '@/i18n/locales/cat.json'
+import fr from '@/i18n/locales/fr.json'
 import { STORAGE_KEY } from '~/static'
 import { defineNuxtPlugin } from 'nuxt/app'
 
@@ -19,6 +20,7 @@ export default defineNuxtPlugin((nuxtApp) => {
             ua,
             esp,
             cat,
+            fr,
         },
     })
 

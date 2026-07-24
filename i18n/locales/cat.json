@@ -116,5 +116,10 @@
             "server": "Error del servidor. Si us plau, torna-ho a provar més tard.",
             "network": "Error de xarxa. Comprova la teva connexió a internet."
         }
+    },
+    "seo": {
+        "title": "Aprèn. Recorda. Repeteix.",
+        "description": "Aprèn més ràpid amb targetes interactives. Memoritza idiomes, història, programació, ciències, medicina i qualsevol altra matèria amb repetició espaiada.",
+        "keywords": "flashcards, targetes d'estudi, aprendre, memoritzar, repetició espaiada, educació, història, programació, medicina, ciències, vocabulari, aplicació educativa, memòria, estudi, aprenentatge"
     }
 }

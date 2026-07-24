@@ -5,4 +5,6 @@
 </template>
 <script setup lang="ts">
 import Snackbar from '@/ui/Snackbar.vue'
+import { useLocalizedSeo } from '@/composables/useLocalizedSeo'
+useLocalizedSeo()
 </script>
