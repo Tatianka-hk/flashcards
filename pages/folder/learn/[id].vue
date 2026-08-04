@@ -44,7 +44,7 @@
                 </div>
                 <input
                     aria-label="answer"
-                    class="bg-blue p-2"
+                    class="bg-blue p-2 text-text"
                     v-model="answer"
                     :readonly="isChecked"
                     @keyup.enter="isChecked ? nextQuestion() : checkAnswer()"
