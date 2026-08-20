@@ -2,6 +2,8 @@ import { User } from '~/server/models/User'
 import connectDB from './../../utils/db'
 import { hashPassword, limitLoginAttempts } from './utils'
 import { signJwt, setSessionCookie } from './../../utils/jwt'
+import { trackUserEvent } from '~/server/services/analyticsService'
+import { EVENTS } from '~/static/analytic'
 
 export default defineEventHandler(async (event) => {
     const body = await readBody<{
@@ -38,6 +40,12 @@ export default defineEventHandler(async (event) => {
     if (existing && existing.password === hashedPassword) {
         const token = signJwt({ uid: String(existing._id) })
         setSessionCookie(event, token)
+
+        await trackUserEvent({
+            userId: existing._id.toString(),
+            email,
+            type: EVENTS.LOGIN,
+        })
         return { success: true, message: 'User is authorized' }
     } else {
         throw createError({

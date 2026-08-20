@@ -1,6 +1,8 @@
 import { User } from '~/server/models/User'
 import connectDB from './../../utils/db'
 import { hashPassword } from './utils'
+import { trackUserEvent } from '~/server/services/analyticsService'
+import { EVENTS } from '~/static/analytic'
 
 export default defineEventHandler(async (event) => {
     const body = await readBody<{
@@ -29,10 +31,16 @@ export default defineEventHandler(async (event) => {
         })
     }
 
-    await User.insertOne({
+    const user = await User.insertOne({
         email: email,
         password: hashedPassword,
         createdAt: new Date(),
+    })
+
+    await trackUserEvent({
+        userId: user._id.toString(),
+        email,
+        type: EVENTS.REGISTER,
     })
 
     return { success: true, message: 'User registered' }
