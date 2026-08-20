@@ -94,6 +94,47 @@
             "terms": "Conditions d’utilisation",
             "and": "et",
             "privacy": "Politique de confidentialité"
+        },
+        "forgot_password": "Mot de passe oublié ?",
+        "reset_password": {
+            "title": "Réinitialisez votre mot de passe",
+            "description": "Saisissez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+            "submit": "Envoyer le lien de réinitialisation",
+            "success": "Nous avons envoyé un lien de réinitialisation du mot de passe à votre adresse e-mail.",
+            "not_received": "Vous n’avez pas reçu l’e-mail ?",
+            "resend": "Le renvoyer",
+            "back_to_login": "Retour à la connexion",
+            "errors": {
+                "USER_NOT_FOUND": "Aucun compte associé à cette adresse e-mail n’a été trouvé.",
+                "INVALID_EMAIL": "Veuillez saisir une adresse e-mail valide.",
+                "default": "Une erreur s’est produite. Veuillez réessayer."
+            },
+            "email": {
+                "subject": "Réinitialisez votre mot de passe ytCarpets",
+                "title": "Réinitialisez votre mot de passe",
+                "welcome": "Nous avons reçu une demande de réinitialisation de votre mot de passe.",
+                "description": "Cliquez sur le bouton ci-dessous pour choisir un nouveau mot de passe pour votre compte ytCarpets.",
+                "button": "Réinitialiser le mot de passe",
+                "expires": "Ce lien expirera pour des raisons de sécurité.",
+                "fallback": "Si le bouton ne fonctionne pas, copiez et collez ce lien dans votre navigateur :",
+                "ignore": "Si vous n’avez pas demandé la réinitialisation de votre mot de passe, vous pouvez ignorer cet e-mail."
+            }
+        },
+        "reset_password_change": {
+            "title": "Créer un nouveau mot de passe",
+            "description": "Saisissez votre nouveau mot de passe ci-dessous.",
+            "password": "Nouveau mot de passe",
+            "confirm_password": "Confirmer le nouveau mot de passe",
+            "submit": "Modifier le mot de passe",
+            "success": "Votre mot de passe a été modifié avec succès.",
+            "to_login": "Aller à la connexion",
+            "errors": {
+                "not_match": "Les mots de passe ne correspondent pas.",
+                "PASSWORD_TOO_SHORT": "Votre mot de passe doit contenir au moins 8 caractères.",
+                "INVALID_OR_EXPIRED_TOKEN": "Ce lien de réinitialisation du mot de passe est invalide ou a expiré.",
+                "TOKEN_AND_PASSWORD_REQUIRED": "Le lien de réinitialisation ou le mot de passe est manquant.",
+                "default": "Une erreur s’est produite. Veuillez réessayer."
+            }
         }
     },
     "dropdown": {
@@ -178,6 +219,16 @@
             "expires": "Ce lien expirera bientôt pour des raisons de sécurité.",
             "fallback": "Si le bouton ne fonctionne pas, copiez et collez ce lien dans votre navigateur :",
             "ignore": "Si vous n’avez pas créé ce compte, vous pouvez ignorer cet e-mail."
+        },
+        "reset-password": {
+            "subject": "Réinitialisez votre mot de passe",
+            "title": "Réinitialisez votre mot de passe",
+            "welcome": "Bonjour !",
+            "description": "Nous avons reçu une demande de réinitialisation du mot de passe de votre compte Flashcards.",
+            "button": "Réinitialiser le mot de passe",
+            "expires": "Pour des raisons de sécurité, ce lien expirera après une durée limitée.",
+            "fallback": "Si le bouton ne fonctionne pas, copiez et collez ce lien dans votre navigateur :",
+            "ignore": "Si vous n’avez pas demandé de réinitialisation de votre mot de passe, vous pouvez ignorer cet e-mail."
         }
     }
 }

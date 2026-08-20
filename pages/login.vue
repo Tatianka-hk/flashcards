@@ -21,6 +21,7 @@
                     :label="t('auth.labels.password')"
                     v-model="password"
                 />
+                <ForgotPassword class="mb-[40px]" />
             </div>
             <VButton
                 :disabled="!email || !password"
@@ -42,6 +43,8 @@ import { navigateTo } from 'nuxt/app'
 import { useAuth } from '~/composables/useAuth'
 import { LOGIN_ERRORS } from '~/static'
 import PleaseVerifyEmail from '~/components/auth/PleaseVerifyEmail.vue'
+import ForgotPassword from '~/components/auth/ForgotPassword.vue'
+
 const { showSnackbar } = useSnackbar()
 
 const { t } = useI18n()

@@ -52,3 +52,10 @@ export function verifyEmail(token: string) {
         data: { token },
     })
 }
+
+export const resetPassword = (data: { email: string; locale?: string }) => {
+    return $fetch('/api/auth/reset-password', {
+        method: 'POST',
+        body: data,
+    })
+}
