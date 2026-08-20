@@ -230,5 +230,18 @@
             "fallback": "Si le bouton ne fonctionne pas, copiez et collez ce lien dans votre navigateur :",
             "ignore": "Si vous n’avez pas demandé de réinitialisation de votre mot de passe, vous pouvez ignorer cet e-mail."
         }
+    },
+    "support": {
+        "title": "Contacter le support",
+        "description": "Décrivez-nous votre problème et nous vous répondrons dès que possible.",
+        "email": "E-mail",
+        "message": "Message",
+        "messagePlaceholder": "Décrivez votre problème...",
+        "submit": "Envoyer le message",
+        "sending": "Envoi...",
+        "success": "Votre message a été envoyé avec succès.",
+        "error": "Une erreur s’est produite. Veuillez réessayer.",
+        "fieldsRequired": "Veuillez remplir tous les champs.",
+        "userNotFound": "Aucun compte associé à cette adresse e-mail n’a été trouvé."
     }
 }

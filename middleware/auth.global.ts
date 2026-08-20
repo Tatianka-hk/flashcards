@@ -12,6 +12,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
         '/terms',
         '/policy',
         '/change-password',
+        '/support',
     ]
 
     if (publicRoutes.includes(to.path)) {
