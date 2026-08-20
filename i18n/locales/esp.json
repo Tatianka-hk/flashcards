@@ -88,6 +88,12 @@
                 "success": "Se ha enviado un nuevo correo de verificación.",
                 "error": "No se ha podido enviar el correo. Inténtalo de nuevo."
             }
+        },
+        "policy": {
+            "prefix": "Acepto los",
+            "terms": "Términos de uso",
+            "and": "y la",
+            "privacy": "Política de privacidad"
         }
     },
     "dropdown": {

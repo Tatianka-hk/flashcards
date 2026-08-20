@@ -88,6 +88,12 @@
                 "success": "A new verification email has been sent.",
                 "error": "We could not send the email. Please try again."
             }
+        },
+        "policy": {
+            "prefix": "I agree to the",
+            "terms": "Terms of Use",
+            "and": "and",
+            "privacy": "Privacy Policy"
         }
     },
     "dropdown": {

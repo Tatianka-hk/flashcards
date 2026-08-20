@@ -30,9 +30,14 @@
                         v-model="confirmPassword"
                     />
                 </div>
+                <AcceptTermsAndConditions v-model="acceptedPolicy" />
                 <VButton
                     :disabled="
-                        !email || !password || !confirmPassword || isLoading
+                        !email ||
+                        !password ||
+                        !confirmPassword ||
+                        isLoading ||
+                        !acceptedPolicy
                     "
                     :onClick="onClick"
                     :ariaLabel="t('auth.actions.signup')"
@@ -54,6 +59,7 @@ import { registerUser } from '~/apis/auth'
 import { Field, Logo, VButton } from '~/ui'
 import EndOfSignup from '~/components/auth/EndOfSignup.vue'
 import { useSnackbar } from '../composables/useSnackbar'
+import AcceptTermsAndConditions from '../components/auth/AcceptTermsAndConditions.vue'
 
 enum ETAP_ENUM {
     SIGNUP = 'signup',
@@ -67,6 +73,7 @@ const password = ref('')
 const confirmPassword = ref('')
 const isLoading = ref(false)
 const etap = ref<ETAP_ENUM>(ETAP_ENUM.SIGNUP)
+const acceptedPolicy = ref(false)
 
 function isValidEmail(email: string): boolean {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)

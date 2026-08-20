@@ -88,6 +88,12 @@
                 "success": "S'ha enviat un nou correu de verificació.",
                 "error": "No s'ha pogut enviar el correu. Torna-ho a provar."
             }
+        },
+        "policy": {
+            "prefix": "Accepto les",
+            "terms": "Condicions d’ús",
+            "and": "i la",
+            "privacy": "Política de privacitat"
         }
     },
     "dropdown": {

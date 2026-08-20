@@ -88,6 +88,12 @@
                 "success": "Un nouvel e-mail de vérification a été envoyé.",
                 "error": "Nous n’avons pas pu envoyer l’e-mail. Veuillez réessayer."
             }
+        },
+        "policy": {
+            "prefix": "J’accepte les",
+            "terms": "Conditions d’utilisation",
+            "and": "et",
+            "privacy": "Politique de confidentialité"
         }
     },
     "dropdown": {
