@@ -49,7 +49,7 @@ Email: ${email ?? '-'}
 
         case EVENTS.FOLDER_CREATE:
             return `
-🔎 Створення нової папки
+✏️ Створення нової папки
 
 Користувач: ${userId}
 Email: ${email ?? '-'}
