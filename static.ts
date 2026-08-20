@@ -31,4 +31,28 @@ export const langs20 = [
     { value: 'vi', label: 'Tiếng Việt' },
 ]
 
+export enum UserStatusEnum {
+    VERIFIED = 'verified',
+    PENDING = 'pending',
+}
+export const PASSWORD_MIN_LENGTH = 6
+export const TOKEN_EXPIRES_MS = 24 * 60 * 60 * 1000
 export const STORAGE_KEY = 'app-locale'
+
+export enum EVENTS {
+    REGISTER = 'REGISTER',
+    LOGIN = 'login',
+    FOLDER_CREATE = 'folder_create',
+}
+export enum TOKEN_TYPE {
+    RESET_PASSWORD = 'reset_password',
+    EMAIL_VERIFICATION = 'email_verification',
+}
+
+export enum LOGIN_ERRORS {
+    INCORRECT_CREDERNTIALS = 'Invalid data',
+    EMAIL_NOT_VERIFIED = 'email_not_verified',
+    TOO_MANY_REQUESTS = 'Too many login attempts. Try again later.',
+    TOKEN_EXPIRED = 'token_expired',
+    SOMETHING_WENT_WRONG = 'something_went_wrong',
+}

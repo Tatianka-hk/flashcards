@@ -48,6 +48,46 @@
         },
         "info": {
             "reset_sent": "Si el correo electrónico existe, hemos enviado las instrucciones de restablecimiento."
+        },
+        "verify_email": {
+            "notVerified": {
+                "title": "Correo electrónico no verificado",
+                "description": "Tienes que verificar tu correo electrónica para poder iniciar sesión."
+            },
+            "loading": {
+                "title": "Verificando tu correo electrónico",
+                "description": "Espera mientras verificamos tu enlace."
+            },
+            "success": {
+                "title": "Correo electrónico verificado",
+                "description": "Tu dirección de correo electrónico se ha verificado correctamente. Ya puedes iniciar sesión en tu cuenta.",
+                "snackbar": "Tu correo electrónico se ha verificado correctamente"
+            },
+            "error": {
+                "title": "No se pudo verificar el correo electrónico",
+                "description": "Es posible que el enlace haya caducado o que ya se haya utilizado. Inténtalo de nuevo.",
+                "snackbar": "No hemos podido verificar tu correo electrónico"
+            },
+            "invalid_token": {
+                "title": "Enlace de verificación no válido",
+                "description": "Falta el token de verificación. Comprueba el enlace que recibiste por correo electrónico."
+            },
+            "actions": {
+                "retry": "Intentarlo de nuevo",
+                "verifying": "Verificando...",
+                "login": "Iniciar sesión"
+            },
+            "sent": {
+                "title": "Revisa tu correo electrónico",
+                "description": "Te hemos enviado un correo con un enlace de verificación. Abre el correo y verifica tu dirección de correo electrónico."
+            },
+            "resend": {
+                "button": "Enviar el correo de nuevo",
+                "sending": "Enviando...",
+                "available_in": "Enviar de nuevo en {seconds} s",
+                "success": "Se ha enviado un nuevo correo de verificación.",
+                "error": "No se ha podido enviar el correo. Inténtalo de nuevo."
+            }
         }
     },
     "dropdown": {
@@ -121,5 +161,17 @@
         "title": "Aprende. Recuerda. Repite.",
         "description": "Aprende más rápido con tarjetas interactivas. Memoriza idiomas, historia, programación, ciencias, medicina y cualquier materia con repetición espaciada.",
         "keywords": "flashcards, tarjetas de estudio, aprender, memorizar, repetición espaciada, educación, historia, programación, medicina, ciencias, vocabulario, aprendizaje, memoria, app educativa, estudio"
+    },
+    "email": {
+        "verify-email": {
+            "subject": "Verifica tu correo electrónico",
+            "title": "Verifica tu correo electrónico",
+            "welcome": "¡Bienvenido/a!",
+            "description": "Gracias por crear una cuenta. Confirma tu dirección de correo electrónico para empezar a utilizar Flashcards.",
+            "button": "Verificar correo",
+            "expires": "Este enlace caducará pronto por motivos de seguridad.",
+            "fallback": "Si el botón no funciona, copia y pega este enlace en tu navegador:",
+            "ignore": "Si no has creado esta cuenta, puedes ignorar este correo."
+        }
     }
 }

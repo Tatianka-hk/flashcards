@@ -36,3 +36,19 @@ export function getEmail() {
         url: `${PREFIX}/email`,
     })
 }
+
+export function resendVerification(data: { email: string; locale?: string }) {
+    return apiRequest({
+        method: 'POST',
+        url: `${PREFIX}/resend-verify-email`,
+        data: data,
+    })
+}
+
+export function verifyEmail(token: string) {
+    return apiRequest({
+        method: 'POST',
+        url: `${PREFIX}/verify-email`,
+        data: { token },
+    })
+}

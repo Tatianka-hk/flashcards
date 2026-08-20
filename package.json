@@ -16,8 +16,10 @@
     "dependencies": {
         "@nuxtjs/google-fonts": "^3.2.0",
         "@nuxtjs/i18n": "^10.1.0",
+        "@types/nodemailer": "^8.0.1",
         "jsonwebtoken": "^9.0.2",
         "mongoose": "^8.18.2",
+        "nodemailer": "^9.0.5",
         "nuxt": "^3.13.0",
         "pdfjs-dist": "^5.3.93",
         "vue": "^3.5.21",

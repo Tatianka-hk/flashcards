@@ -3,7 +3,7 @@ import connectDB from './../../utils/db'
 import { hashPassword, limitLoginAttempts } from './utils'
 import { signJwt, setSessionCookie } from './../../utils/jwt'
 import { trackUserEvent } from '~/server/services/analyticsService'
-import { EVENTS } from '~/static/analytic'
+import { EVENTS, LOGIN_ERRORS, UserStatusEnum } from '~/static'
 
 export default defineEventHandler(async (event) => {
     const body = await readBody<{
@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
     if (visited >= 30) {
         throw createError({
             statusCode: 429,
-            statusMessage: 'Too many login attempts. Try again later.',
+            statusMessage: LOGIN_ERRORS.TOO_MANY_REQUESTS,
         })
     }
 
@@ -37,6 +37,20 @@ export default defineEventHandler(async (event) => {
     const existing = await User.findOne({
         email,
     })
+    if (!existing) {
+        throw createError({
+            statusCode: 401,
+            statusMessage: LOGIN_ERRORS.INCORRECT_CREDERNTIALS,
+        })
+    }
+    if (existing.emailStatus === UserStatusEnum.PENDING) {
+        setResponseStatus(event, 401, LOGIN_ERRORS.EMAIL_NOT_VERIFIED)
+
+        return {
+            success: false,
+            message: LOGIN_ERRORS.EMAIL_NOT_VERIFIED,
+        }
+    }
     if (existing && existing.password === hashedPassword) {
         const token = signJwt({ uid: String(existing._id) })
         setSessionCookie(event, token)

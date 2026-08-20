@@ -1,7 +1,7 @@
 import { trackUserEvent } from '~/server/services/analyticsService'
 import connectDB from '../../../utils/db'
 import { Folder } from '~/server/models/Folder'
-import { EVENTS } from '~/static/analytic'
+import { EVENTS } from '~/static'
 import { User } from '~/server/models/User'
 
 export default defineEventHandler(async (event) => {

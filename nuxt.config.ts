@@ -23,4 +23,16 @@ export default defineNuxtConfig({
         },
         display: 'swap',
     },
+    runtimeConfig: {
+        smtpUser: '',
+        smtpPassword: '',
+        smtpPort: 587,
+        emailFrom: '',
+        smtpHost: '',
+
+        public: {
+            appUrl: '',
+            searchesPerProjectPerDay: 10,
+        },
+    },
 })

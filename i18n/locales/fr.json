@@ -48,6 +48,46 @@
         },
         "info": {
             "reset_sent": "Si l'email existe, nous avons envoye les instructions de reinitialisation."
+        },
+        "verify_email": {
+            "notVerified": {
+                "title": "E-mail non vérifié",
+                "description": "Vous devez vérifier votre e-mail pour vous connecter."
+            },
+            "loading": {
+                "title": "Vérification de votre e-mail",
+                "description": "Veuillez patienter pendant que nous vérifions votre lien."
+            },
+            "success": {
+                "title": "E-mail vérifié",
+                "description": "Votre adresse e-mail a été vérifiée avec succès. Vous pouvez maintenant vous connecter à votre compte.",
+                "snackbar": "Votre e-mail a été vérifié avec succès."
+            },
+            "error": {
+                "title": "Échec de la vérification de l’e-mail",
+                "description": "Le lien a peut-être expiré ou a déjà été utilisé. Veuillez réessayer.",
+                "snackbar": "Nous n’avons pas pu vérifier votre e-mail."
+            },
+            "invalid_token": {
+                "title": "Lien de vérification invalide",
+                "description": "Le jeton de vérification est manquant. Vérifiez le lien dans votre e-mail."
+            },
+            "actions": {
+                "retry": "Réessayer",
+                "verifying": "Vérification...",
+                "login": "Se connecter"
+            },
+            "sent": {
+                "title": "Consultez votre e-mail",
+                "description": "Nous vous avons envoyé un e-mail contenant un lien de vérification. Ouvrez-le et confirmez votre adresse e-mail."
+            },
+            "resend": {
+                "button": "Renvoyer l’e-mail",
+                "sending": "Envoi...",
+                "available_in": "Renvoyer dans {seconds}s",
+                "success": "Un nouvel e-mail de vérification a été envoyé.",
+                "error": "Nous n’avons pas pu envoyer l’e-mail. Veuillez réessayer."
+            }
         }
     },
     "dropdown": {
@@ -121,5 +161,17 @@
         "title": "Apprends. Retiens. Répète.",
         "description": "Apprenez plus rapidement grâce aux cartes mémoire interactives. Étudiez les langues, l'histoire, la programmation, les sciences, la médecine et bien plus encore.",
         "keywords": "flashcards, cartes mémoire, apprendre, mémoriser, répétition espacée, éducation, histoire, programmation, médecine, sciences, vocabulaire, application éducative, mémoire, études, apprentissage"
+    },
+    "email": {
+        "verify-email": {
+            "subject": "Vérifiez votre adresse e-mail",
+            "title": "Vérifiez votre adresse e-mail",
+            "welcome": "Bienvenue !",
+            "description": "Merci d’avoir créé un compte. Confirmez votre adresse e-mail pour commencer à utiliser Flashcards.",
+            "button": "Vérifier mon e-mail",
+            "expires": "Ce lien expirera bientôt pour des raisons de sécurité.",
+            "fallback": "Si le bouton ne fonctionne pas, copiez et collez ce lien dans votre navigateur :",
+            "ignore": "Si vous n’avez pas créé ce compte, vous pouvez ignorer cet e-mail."
+        }
     }
 }

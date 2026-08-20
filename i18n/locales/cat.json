@@ -48,6 +48,46 @@
         },
         "info": {
             "reset_sent": "Si el correu electrònic existeix, t'hem enviat instruccions per restablir la contrasenya."
+        },
+        "verify_email": {
+            "notVerified": {
+                "title": "Correu electrònic no verificat",
+                "description": "Tens que verificar el teu correu electrònic per poder iniciar sessió."
+            },
+            "loading": {
+                "title": "Estem verificant el teu correu electrònic",
+                "description": "Espera mentre verifiquem el teu enllaç."
+            },
+            "success": {
+                "title": "Correu electrònic verificat",
+                "description": "La teva adreça de correu electrònic s'ha verificat correctament. Ara ja pots iniciar sessió al teu compte.",
+                "snackbar": "El teu correu electrònic s'ha verificat correctament"
+            },
+            "error": {
+                "title": "No s'ha pogut verificar el correu electrònic",
+                "description": "És possible que l'enllaç hagi caducat o que ja s'hagi utilitzat. Torna-ho a provar.",
+                "snackbar": "No hem pogut verificar el teu correu electrònic"
+            },
+            "invalid_token": {
+                "title": "Enllaç de verificació no vàlid",
+                "description": "Falta el token de verificació. Comprova l'enllaç que has rebut per correu electrònic."
+            },
+            "actions": {
+                "retry": "Tornar-ho a provar",
+                "verifying": "Verificant...",
+                "login": "Iniciar sessió"
+            },
+            "sent": {
+                "title": "Revisa el teu correu electrònic",
+                "description": "T'hem enviat un correu amb un enllaç de verificació. Obre el correu i verifica la teva adreça electrònica."
+            },
+            "resend": {
+                "button": "Tornar a enviar el correu",
+                "sending": "Enviant...",
+                "available_in": "Tornar a enviar d'aquí a {seconds} s",
+                "success": "S'ha enviat un nou correu de verificació.",
+                "error": "No s'ha pogut enviar el correu. Torna-ho a provar."
+            }
         }
     },
     "dropdown": {
@@ -121,5 +161,17 @@
         "title": "Aprèn. Recorda. Repeteix.",
         "description": "Aprèn més ràpid amb targetes interactives. Memoritza idiomes, història, programació, ciències, medicina i qualsevol altra matèria amb repetició espaiada.",
         "keywords": "flashcards, targetes d'estudi, aprendre, memoritzar, repetició espaiada, educació, història, programació, medicina, ciències, vocabulari, aplicació educativa, memòria, estudi, aprenentatge"
+    },
+    "email": {
+        "verify-email": {
+            "subject": "Verifica el teu correu electrònic",
+            "title": "Verifica el teu correu electrònic",
+            "welcome": "Benvingut/da!",
+            "description": "Gràcies per crear un compte. Confirma la teva adreça de correu electrònic per començar a utilitzar Flashcards.",
+            "button": "Verificar correu",
+            "expires": "Aquest enllaç caducarà aviat per motius de seguretat.",
+            "fallback": "Si el botó no funciona, copia i enganxa aquest enllaç al navegador:",
+            "ignore": "Si no has creat aquest compte, pots ignorar aquest correu."
+        }
     }
 }

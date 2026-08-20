@@ -1,4 +1,4 @@
-import { EVENTS } from '~/static/analytic'
+import { EVENTS } from '~/static'
 import { sendTelegramMessage } from './telegramService'
 
 interface TrackEventOptions {

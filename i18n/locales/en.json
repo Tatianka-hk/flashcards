@@ -48,6 +48,46 @@
         },
         "info": {
             "reset_sent": "If the email exists, we have sent reset instructions."
+        },
+        "verify_email": {
+            "notVerified": {
+                "title": "Email not verified",
+                "description": "You must verify your email to log in."
+            },
+            "loading": {
+                "title": "Verifying your email",
+                "description": "Please wait while we verify your link."
+            },
+            "success": {
+                "title": "Email verified",
+                "description": "Your email address has been successfully verified. You can now log in to your account.",
+                "snackbar": "Your email has been successfully verified"
+            },
+            "error": {
+                "title": "Email verification failed",
+                "description": "The link may have expired or already been used. Please try again.",
+                "snackbar": "We could not verify your email"
+            },
+            "invalid_token": {
+                "title": "Invalid verification link",
+                "description": "The verification token is missing. Please check the link in your email."
+            },
+            "actions": {
+                "retry": "Try again",
+                "verifying": "Verifying...",
+                "login": "Log in"
+            },
+            "sent": {
+                "title": "Check your email",
+                "description": "We sent you an email with a verification link. Open the email and verify your email address."
+            },
+            "resend": {
+                "button": "Send email again",
+                "sending": "Sending...",
+                "available_in": "Send again in {seconds}s",
+                "success": "A new verification email has been sent.",
+                "error": "We could not send the email. Please try again."
+            }
         }
     },
     "dropdown": {
@@ -122,5 +162,17 @@
         "title": "Learn. Remember. Repeat.",
         "description": "Learn faster with interactive flashcards. Memorize languages, science, history, programming and any subject using spaced repetition and personalized study.",
         "keywords": "flashcards,study flashcards,flashcard app,learn faster,memorize,spaced repetition,study app,vocabulary,science flashcards,history flashcards,programming flashcards,medical flashcards,education,learning,memory training"
+    },
+    "email": {
+        "verify-email": {
+            "subject": "Verify your email",
+            "title": "Verify your email",
+            "welcome": "Welcome!",
+            "description": "Thanks for creating an account. Confirm your email address to start using Flashcards.",
+            "button": "Verify email",
+            "expires": "This link will expire soon for security reasons.",
+            "fallback": "If the button does not work, copy and paste this link into your browser:",
+            "ignore": "If you did not create this account, you can safely ignore this email."
+        }
     }
 }
