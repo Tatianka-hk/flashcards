@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-stretch min-h-screen">
+    <div class="flex items-stretch min-h-screen w-full h-full">
         <!-- menu -->
         <div class="flex flex-col w-[460px] min-h-dvh lg:block hidden h-full">
             <PersonalInfo />

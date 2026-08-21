@@ -4,7 +4,7 @@
     >
         <span class="text-4xl font-julius"> 404 </span>
         <span class="text-2xl font-julius">{{ t('error404.message') }}</span>
-        <VButton @click="$router.back()" class="mt-[40px]"
+        <VButton @click="navigateTo('/')" class="mt-[40px]"
             >{{ t('error404.button') }}
         </VButton>
     </div>
@@ -13,6 +13,7 @@
 import type { NuxtError } from '#app'
 import { VButton } from '~/ui'
 import { useI18n } from 'vue-i18n'
+import { navigateTo } from 'nuxt/app'
 defineProps<{
     error: NuxtError
 }>()

@@ -1,45 +1,56 @@
 <template>
-    <div
-        class="flex w-full items-center justify-end mb-[40px] gap-[20px] pr-[40px] pt-[40px]"
-    >
-        <LanguageInput />
-        <UserCircle v-if="isAuth" />
-        <AuthButtons v-else />
-    </div>
-    <Result v-if="viewResult" :cards="flashcards" @close="viewResult = false" />
-    <div v-else class="flex w-full items-center justify-center">
-        <div v-if="!isBlocked" class="flex w-full flex-col items-center gap-4">
-            <span class="text-text flex justify-end w-2/4 gap-2">
-                {{ usageCount }} / 3
-                <Tooltip>
-                    <template #trigger> ? </template>
-                    <template #content>
-                        {{ t('attemptsTooltip') }}
-                    </template>
-                </Tooltip>
-            </span>
-
-            <FileInput @file:change="onChangeFile" />
-            <p
-                v-if="errorMessage"
-                data-testid="error-message"
-                role="alert"
-                class="text-red-600"
-            >
-                {{ errorMessage }}
-            </p>
-            <VButton
-                data-testid="generate-button"
-                @click="onClickButton"
-                :disabled="!fileText || loading"
-                :ariaLabel="t('button.generate')"
-            >
-                {{ t('button.generate') }}
-            </VButton>
-            <Loading v-if="loading" />
+    <div class="w-full h-full">
+        <div
+            class="flex w-full items-center justify-end mb-[40px] gap-[20px] pr-[40px] pt-[40px]"
+        >
+            <LanguageInput />
+            <UserCircle v-if="isAuth" />
+            <AuthButtons v-else />
         </div>
-        <div v-else class="flex flex-col items-center gap-4">
-            <MessageItem :message="$t('message.limitReached', { count: 3 })" />
+        <Result
+            v-if="viewResult"
+            :cards="flashcards"
+            @close="viewResult = false"
+        />
+        <div v-else class="flex w-full items-center justify-center">
+            <div
+                v-if="!isBlocked"
+                class="flex w-full flex-col items-center gap-4"
+            >
+                <span class="text-text flex justify-end w-2/4 gap-2">
+                    {{ usageCount }} / 3
+                    <Tooltip>
+                        <template #trigger> ? </template>
+                        <template #content>
+                            {{ t('attemptsTooltip') }}
+                        </template>
+                    </Tooltip>
+                </span>
+
+                <FileInput @file:change="onChangeFile" />
+                <p
+                    v-if="errorMessage"
+                    data-testid="error-message"
+                    role="alert"
+                    class="text-red-600"
+                >
+                    {{ errorMessage }}
+                </p>
+                <VButton
+                    data-testid="generate-button"
+                    @click="onClickButton"
+                    :disabled="!fileText || loading"
+                    :ariaLabel="t('button.generate')"
+                >
+                    {{ t('button.generate') }}
+                </VButton>
+                <Loading v-if="loading" />
+            </div>
+            <div v-else class="flex flex-col items-center gap-4">
+                <MessageItem
+                    :message="$t('message.limitReached', { count: 3 })"
+                />
+            </div>
         </div>
     </div>
 </template>

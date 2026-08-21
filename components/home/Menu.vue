@@ -99,14 +99,14 @@ const buttons = computed<IButton[]>(() => {
                     },
                     disabled: false,
                 },
-                {
-                    label: 'menu.buttons.studyFlashcards',
-                    icon: IconPlay,
-                    onClick: () => {
-                        window.location.href = `/folder/learn/${folderID}`
-                    },
-                    disabled: !props.hasCards,
-                },
+                // {
+                //     label: 'menu.buttons.studyFlashcards',
+                //     icon: IconPlay,
+                //     onClick: () => {
+                //         window.location.href = `/folder/learn/${folderID}`
+                //     },
+                //     disabled: !props.hasCards,
+                // },
             ]
         )
     }

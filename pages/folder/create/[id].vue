@@ -1,5 +1,5 @@
 <template>
-    <div class="p-[40px] relative">
+    <div class="p-[40px] relative w-full">
         <div class="w-full sticky left-[40px] top-[40px] right-[40px] z-20">
             <HeaderUserAuthed />
         </div>
