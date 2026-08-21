@@ -15,7 +15,11 @@ export default defineNuxtRouteMiddleware(async (to) => {
         '/support',
     ]
 
-    if (publicRoutes.includes(to.path)) {
+    const normalizedPath =
+        to.path.replace(/^\/(en|fr|es|uk)(?=\/|$)/, '').replace(/\/$/, '') ||
+        '/'
+
+    if (publicRoutes.includes(normalizedPath)) {
         return
     }
 
