@@ -243,5 +243,6 @@
         "error": "Algo ha salido mal. Inténtalo de nuevo.",
         "fieldsRequired": "Por favor, completa todos los campos.",
         "userNotFound": "No hemos encontrado ninguna cuenta con este correo electrónico."
-    }
+    },
+    "attemptsTooltip": "Este es un proyecto personal. Debido al número limitado de tokens gratuitos, están disponibles un máximo de 3 generaciones de tarjetas."
 }

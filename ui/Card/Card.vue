@@ -18,6 +18,7 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
+import SoundButton from '../SoundButton.vue'
 import CardSide from './CardSide.vue'
 import type { ICard } from '../../types'
 

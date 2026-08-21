@@ -244,5 +244,6 @@
         "error": "Something went wrong. Please try again.",
         "fieldsRequired": "Please fill in all fields.",
         "userNotFound": "No account was found with this email."
-    }
+    },
+    "attemptsTooltip": "This is a pet project. Due to the limited number of free tokens, a maximum of 3 flashcard generations is available."
 }

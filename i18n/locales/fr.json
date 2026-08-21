@@ -243,5 +243,6 @@
         "error": "Une erreur s’est produite. Veuillez réessayer.",
         "fieldsRequired": "Veuillez remplir tous les champs.",
         "userNotFound": "Aucun compte associé à cette adresse e-mail n’a été trouvé."
-    }
+    },
+    "attemptsTooltip": "Il s’agit d’un projet personnel. En raison du nombre limité de jetons gratuits, un maximum de 3 générations de cartes est disponible."
 }

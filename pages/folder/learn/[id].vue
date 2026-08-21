@@ -30,7 +30,7 @@
                 "
             >
                 <div class="flex flex-col items-center gap-2">
-                    <div class="flex justify-end w-[222px]">
+                    <div class="flex justify-end w-[222px] text-text">
                         {{ currentIndex + 1 }} / {{ cards.length }}
                     </div>
                     <Card

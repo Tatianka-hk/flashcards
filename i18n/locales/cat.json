@@ -243,5 +243,7 @@
         "error": "Alguna cosa ha anat malament. Torna-ho a provar.",
         "fieldsRequired": "Si us plau, completa tots els camps.",
         "userNotFound": "No hem trobat cap compte amb aquest correu electrònic."
-    }
+    },
+
+    "attemptsTooltip": "Aquest és un projecte personal. A causa del nombre limitat de tokens gratuïts, hi ha disponibles un màxim de 3 generacions de targetes."
 }

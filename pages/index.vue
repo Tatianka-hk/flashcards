@@ -9,9 +9,16 @@
     <Result v-if="viewResult" :cards="flashcards" @close="viewResult = false" />
     <div v-else class="flex w-full items-center justify-center">
         <div v-if="!isBlocked" class="flex w-full flex-col items-center gap-4">
-            <span class="text-text flex justify-end w-2/4">
-                {{ usageCount }} / 3</span
-            >
+            <span class="text-text flex justify-end w-2/4 gap-2">
+                {{ usageCount }} / 3
+                <Tooltip>
+                    <template #trigger> ? </template>
+                    <template #content>
+                        {{ t('attemptsTooltip') }}
+                    </template>
+                </Tooltip>
+            </span>
+
             <FileInput @file:change="onChangeFile" />
             <p
                 v-if="errorMessage"
@@ -38,15 +45,16 @@
 </template>
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { FileInput, VButton, MessageItem, UserCircle } from '../ui'
+import { useI18n } from 'vue-i18n'
+
+import AuthButtons from '~/components/auth/authButtons.vue'
+import { useAuth } from '~/composables/useAuth'
+import LanguageInput from '~/components/LanguageInput.vue'
+import { FileInput, VButton, MessageItem, UserCircle, Tooltip } from '../ui'
 import Result from '../components/Result.vue'
 import type { ICard } from '../types/card'
 import Loading from '../ui/Loading.vue'
 import { MAX_USES } from '../static'
-import { useI18n } from 'vue-i18n'
-import AuthButtons from '~/components/auth/authButtons.vue'
-import { useAuth } from '~/composables/useAuth'
-import LanguageInput from '~/components/LanguageInput.vue'
 
 const { t } = useI18n()
 const { isAuth } = useAuth()

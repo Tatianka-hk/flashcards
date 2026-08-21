@@ -1,5 +1,5 @@
 <template>
-    <IconSound @click="playSound" class="cursor-pointer" />
+    <IconSound @click="playSound" class="cursor-pointer text-text" />
 </template>
 
 <script setup lang="ts">
